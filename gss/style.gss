@@ -1,0 +1,4 @@
+/** Ejemplo de regla css para testear si funciona */
+p.footer{
+	background-color:#9494FF;
+}

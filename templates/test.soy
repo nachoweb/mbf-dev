@@ -1,0 +1,13 @@
+{namespace mbf.test.tmpl}
+
+/**
+ * Test para ver si el templating funciona
+ * @param testnum Numero de lis para insertar
+ */
+{template .test}
+<ul>
+	{for $i in range(1,$testnum)}
+		<li>This is the template test number {$i}</li>
+	{/for}
+</ul>
+{/template}

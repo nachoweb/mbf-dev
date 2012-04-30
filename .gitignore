@@ -1,0 +1,9 @@
+# Podemos especificar archivos individuales
+.DS_Store
+
+# O usar comodines
+*~
+*.swp
+
+# También es posible ignorar todos los subdirectorios y archivos en un directorio determinado
+#tmp/**/* 
