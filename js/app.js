@@ -9,8 +9,10 @@ goog.require('mbf.test.tmpl');
  */
 mbf.bootstrap=function(){
 
-	console.log("Aplicación arrancada");
-	document.getElementById("body").innerHTML=mbf.test.tmpl.test({testnum:4});
+	if(goog.DEBUG){
+		console.log("Aplicación arrancada");
+		document.getElementById("body").innerHTML=mbf.test.tmpl.test({testnum:4});
+	}
 
 };
 
