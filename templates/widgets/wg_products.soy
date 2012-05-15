@@ -1,0 +1,34 @@
+{namespace mbf.ui.tmpl}
+
+/**
+ * Display an list of articles.
+ * @param products List of products
+ **/
+{template .wg_products}
+<div class="s-widget">
+    <div class="title">
+        Productos
+    </div>
+    <div id="products">
+        <div id="products-container">
+            {foreach $tab in $products}
+                {call .wg_products_tab}
+                    {param products: $tab /}
+                {/call}   
+            {/foreach}
+        </div> <!-- End products container -->
+        <div id="pr-left-arrow">
+            <a href="" id="product-back">
+                <img src="./images/pr_left_arrow.png">
+            </a>
+        </div>
+            <div id="pr-right-arrow">
+            <a href="" id="product-forward">
+                <img src="./images/pr_right_arrow.png">
+            </a>
+        </div>
+        <div id="pr-right-arrow"></div>
+    </div> <!-- End Products -->
+</div> <!-- End widget -->
+{/template}
+

@@ -1,0 +1,71 @@
+{namespace mbf.ui.tmpl}
+
+/**
+ * Test para ver si el templating funciona
+ * @param name      User name
+ * @param avatar    User avatar
+ * 
+ */
+{template .wg_user_profile}
+<div id="user-profile">
+    <div class="title">
+        Profile
+    </div>
+    <div id="user-box">
+        <div id="avatar">
+            <img src="{$avatar}">
+        </div>
+        <nav id="options">
+            <div id="row-option">
+                <div class="link">
+                    <div class="link-icon">
+                        <img src="./images/icono sesiones.png">
+                    </div>
+                    <div class="link-name">
+                        Tiendas
+                    </div>
+                </div>
+                <div class="link">
+                    <div class="link-icon">
+                        <img src="./images/icono sesiones.png">
+                    </div>
+                    <div class="link-name">
+                        Mensajes
+                    </div>
+                </div>
+            </div>
+            <div class="link">
+                <div class="link-icon">
+                    <img src="./images/icono sesiones.png">
+                </div>
+                <div class="link-name">
+                    Sesiones
+                </div>
+            </div> 
+            <div class="link">
+                <div class="link-icon">
+                    <img src="./images/icono sesiones.png">
+                </div>
+                <div class="link-name">
+                    Productos
+                    </div>
+            </div>
+        </nav>
+    </div>
+    <div class="title">
+        {$name}
+    </div>
+</div>
+{/template}
+
+/**
+ * This template will be rendered by SoyWeb when the user loads tasks.soy.
+ * It deliberately includes dummy data so the designer can get a feel for how
+ * the task list will appear with real data rather with minimal copy and paste.
+ */
+{template .soyweb}
+    {call .wg_user_profile}
+        {param name:  'Christian' /}
+        {param avatar: 'avatar.jpg' /}
+    {/call}
+{/template}

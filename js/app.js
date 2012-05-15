@@ -1,3 +1,4 @@
+
 goog.provide('mbf.bootstrap');
 
 goog.require('mbf.test.tmpl');
