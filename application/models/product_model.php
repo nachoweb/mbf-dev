@@ -15,15 +15,32 @@ class Product_model extends CI_Model {
         $this->load->database();
     }
     
-    function get_products_by_session($session) {
-        $query = $this->db->query('SELECT * FROM mbf_prodcut where session='.$session);
+    /**
+     * Get array of products in a session
+     * @param int $session_id Session id
+     * @return array Array of products 
+     */
+    function get_products_by_session($session_id) {
+        $query = $this->db->query('SELECT * FROM mbf_prodcut where session='.$session_id);
         return $query->result();
     }
     
+    
+    /**
+     * Get product object by id
+     * @param int $id the product id
+     * @return object product 
+     */
     function get_product_by_id($id){
         $query = $this->db->query('SELECT * FROM mbf_prodcut where id='.$id);
         return $query->result();
     }
+    
+    /**
+     * Get the user products in myself session
+     * @param int $id_user User id
+     * @return array of objects product 
+     */
     
     function get_my_products($id_user){
         //Get session user
@@ -32,6 +49,20 @@ class Product_model extends CI_Model {
         $session = $row->id;
         return get_products_by_session($session);
     }
+    
+    /**
+     * Save in database the a new product. Add stores and relation between user and store if it is necessary
+     * @param int       $user user_id 
+     * @param string    $image Url of the product picture
+     * @param string    $price Product price
+     * @param string    $title Product title
+     * @param string    $description Product description
+     * @param string    $url Product URL (URL when the user selects the photo)
+     * @param string    $store_url Store url
+     * @param string    $store_name Store name
+     * @param string    $browser User browser
+     * @param string    $status  public or private
+     */
     
     function save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
         
@@ -83,7 +114,6 @@ class Product_model extends CI_Model {
         $this->db->insert('mbf_product', $data); 
         $product = $this->db->insert_id();
     }
-   
 }
 
 ?>
