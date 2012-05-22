@@ -1,0 +1,190 @@
+/* 
+    Document   : style.css
+    Created on : 22-may-2012, 13:24:50
+    Author     : Nacho
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* Structure */
+body{
+	background: #F1F0F5;
+	font-family: verdana;
+}
+#page{
+	width: 960px;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+#main-header{
+	width: 940px;
+	height: 70px;
+	padding-top: 40px;
+	margin: 0 10px;
+	border-bottom: 1px solid #BCBEC0;
+	overflow: hidden;
+}
+
+#sidebar{
+	width: 239px;
+	float: left;
+	min-height: 500px;
+	border-right: 1px solid #BCBEC0;
+}
+#content{
+	width: 720px;
+	padding-top: 10px;
+	float: left;
+}
+
+
+
+/* Header */
+#profile{
+	width: 207px;
+	margin-right: 10px;
+	padding: 5px;
+	border: solid 1px #D1D3D4;
+	-moz-border-radius: 4px; -ms-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+	float: left;
+	background: #FFFFFF;
+}
+#container-profile-img{
+	width: 50px;
+	height: 38px;
+	-moz-border-radius: 4px; -ms-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+	overflow: hidden;
+	float: left;
+}
+
+#profile-img{
+
+}
+
+#profile-username{
+	color: #D9AB28;
+	float: left;
+	margin: 18px 0 0 5px;
+}
+
+#container-logo{
+	width: 699px;
+	height: 70px;
+	border-left: 1px solid #BCBEC0;
+	text-align: center;
+	float: left;
+}
+#container-logo a{
+	text-decoration: none;
+	color: #1C75BE;
+}
+#logo{
+	outline: none;
+	border: none;
+	color: 1C75BE;
+}
+
+/* Content */
+
+/* Items */
+.item {
+	width: 166px;
+	margin: 0 7px;
+	float: left;
+	margin-bottom: 25px;
+}
+.container-item-img{
+	width: 166px;
+	height: 187px;
+	overflow: hidden;
+	float: left;
+	background: #FFFFFF url(../images/loading.gif) no-repeat 67px 77px;
+}
+.item-price{
+	width: 100%;
+	text-align: right;
+	float: left;
+	margin: 3px 0;
+}
+.item-brand{
+	width: 100%;
+	text-align: right;
+	float: left;
+}
+.item-brand a{
+	color: #1C75BE;
+	text-decoration: none;
+}
+
+/* Sidebar */
+#stores{
+	width: 170px;
+	float: right;
+}
+#stores h3{
+	margin-bottom: 5px;
+}
+#stores ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#stores a{
+	color: #1C75BC;
+	text-decoration: none;
+}
+
+/************/
+/* Slider	*/
+/************/
+#nav-slider{
+	z-index: 3;
+	position: absolute;
+	bottom: 0;
+	left: 350px;
+}
+#nav-slider ul{
+	padding: 0;
+}
+.nav-list li {
+	list-style:none;
+	display:inline;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.nav-list{
+	margin:0;
+}
+
+.slider-item{	
+	z-index: 1;
+}
+
+.container-slider, .slider-item
+{
+	width: 720px;
+	overflow:hidden;
+	position:relative;
+	float:left;
+}
+
+.container-slider
+{
+	clear:both;
+	float:left;
+	background: url(images/loading.gif) no-repeat 49% 49%;
+	padding-bottom: 40px;
+}
+.slider
+{
+	float:left;
+	clear:both;
+	width:100000px;
+	position: relative;
+	top: 0;
+	left:0;
+	z-index: 2;
+}

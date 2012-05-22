@@ -21,7 +21,11 @@ class Product_model extends CI_Model {
      * @return array Array of products 
      */
     function get_products_by_session($session_id) {
-        $query = $this->db->query('SELECT * FROM mbf_prodcut where session='.$session_id);
+        $sql = "select mbf_product.id, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
+                from mbf_product join mbf_store
+                on mbf_product.store = mbf_store.id
+                where session=$session_id";
+        $query = $this->db->query($sql);
         return $query->result();
     }
     
@@ -47,7 +51,7 @@ class Product_model extends CI_Model {
         $query = $this->db->query("SELECT * FROM mbf_session where user=$id_user and name='myself'");
         $row = $query->row();
         $session = $row->id;
-        return get_products_by_session($session);
+        return $this->get_products_by_session($session);
     }
     
     /**
