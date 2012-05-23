@@ -10,6 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="./js/app/ui/slider_products.js"></script>
         <script src="./js/app/ui/image_adjuster.js"></script>
+        <script src="./js/app/util/register.js"></script>
       
 
         <!-- Alto sidebar igual a content -->

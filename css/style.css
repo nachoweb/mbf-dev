@@ -9,7 +9,7 @@
 /* Structure */
 body{
 	background: #F1F0F5;
-	font-family: verdana;
+	font-family: "verdana";
 }
 #page{
 	width: 960px;
@@ -187,4 +187,81 @@ body{
 	top: 0;
 	left:0;
 	z-index: 2;
+}
+
+/************/
+/* Registro */
+/*************/
+#wellcome-content{
+    width: 720px;
+    margin: 0 auto;
+}
+#login-register{
+	width: 850px;
+	background: #D0D1D3;
+	padding-top: 65px;
+	padding-bottom: 50px;
+	color: #7F8184;
+	overflow:hidden;
+}
+#login-register h3{
+	color: #1C75BC;
+}
+#login h3{
+	text-align: right;
+}
+#login-register label {
+	color: #7F8184;
+	font-size: 14px;
+}
+#login-register input[type="text"], #login-register input[type="password"]{
+	width: 215px;
+	height: 30px;
+	padding: 0 5px;
+	clear: both;
+	margin-bottom: 15px;
+}
+#login-register input[type="radio"]{
+	margin-left: 10px;
+}
+#login-register #login{
+	width: 225px;
+	float: left;
+	padding-left: 150px;
+	padding-right: 40px;
+	
+}
+#login-register #register{
+	width: 333px;
+	float: left;
+	padding-right: 50px;
+	padding-left: 40px;
+	border-left: solid 1px #FFFFFF;
+}
+#label-sex{
+	border-right: solid 2px #FFFFFF;
+	padding-right: 12px;
+}
+#register-work{
+	margin-top: 15px;
+}
+#login-register input[type="submit"]{
+	padding: 8px 18px;
+	font-size: 15px;
+	color: white;
+	background: #7FB5E2;
+	border: none;
+	-moz-border-radius: 4px; -ms-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}
+#login-submit{
+	float: right;
+}
+
+.form-info{
+    float:right;
+    height:30px;
+    width:100px;
+    color:red;
+    font-size:12px;
+    padding-top:11px;
 }
