@@ -1,7 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Register extends CI_Controller {
-    
+    public function __construct()
+    {
+        parent::__construct();
+        // Your own constructor code
+    }
     /**
      * this controller is used to control the user registration process.
      * Example URL:
@@ -28,6 +32,8 @@ class Register extends CI_Controller {
        
     }
     
+    
+    
     public function check_mail($email){
         $email = urldecode($email);
         $this->load->model('User_model');
@@ -35,6 +41,24 @@ class Register extends CI_Controller {
             echo "fail";
         }else{
             echo "ok";
+        }
+    }
+    
+    public function check_login($email, $password){    
+        $this->load->library('session');
+        $email = urldecode($email);
+        $password = md5(urldecode($password));
+        $this->load->model('User_model');
+        $user = $this->User_model->check_login($email, $password);
+        if( $user != -1){
+            $userdata = array(
+                'user_id'  => $user->id,
+                'user_name' => $user->name
+            );
+            $this->session->set_userdata($userdata);
+            echo "ok";
+        }else{
+            echo "fail";
         }
     }
 }

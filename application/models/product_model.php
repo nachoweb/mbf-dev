@@ -49,9 +49,13 @@ class Product_model extends CI_Model {
     function get_my_products($id_user){
         //Get session user
         $query = $this->db->query("SELECT * FROM mbf_session where user=$id_user and name='myself'");
-        $row = $query->row();
-        $session = $row->id;
-        return $this->get_products_by_session($session);
+        if ($query->num_rows() > 0){
+            $row = $query->row();
+            $session = $row->id;
+            return $this->get_products_by_session($session);
+        }else{
+            return array();
+        }
     }
     
     /**

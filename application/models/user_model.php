@@ -73,16 +73,17 @@ class User_model extends CI_Model {
      * Checks if the login is correct
      * @param string $email
      * @param string $password
-     * @return boolean true if sucessfull False if not.
+     * @return int ID for successfull login, -1 if not.
      */
     
     function check_login($email, $password){
         $sql = "SELECT * from mbf_user WHERE email='$email' and password='$password'";
         $query = $query = $this->db->query($sql);
         if ($query->num_rows() > 0){
-            return true;
+            $row = $query->row();
+            return $row;
         }else{
-            return false;
+            return -1;
         }
     }
 }

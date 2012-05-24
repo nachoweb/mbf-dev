@@ -3,12 +3,11 @@
         <section id="login-register">
             <article id="login">
                 <h3>¿Eres usuario?</h3>
-                <form id="form-login" name="form-login" method="post" action="<?php echo $base_url?>/register/signup">
+                <form id="form-login" name="form-login" method="post" action="<?php echo $base_url?>/main" onSubmit="return checkLogin()">
                         <input type="text" id="login-email" name="login-email" placeholder="E-mail" />
-                        <div id="info-login-email" class="form-info-login"></div>
                         <input type="password" id="login-password" name="login-password" placeholder="contraseña" />
-                        <div id="info-login-password" class="form-info-login"></div>
                         <input type="submit" id="login-submit" name="login-submit" value="ENTRAR" />
+                        <div id="info-login-email" class="form-info-login"></div>
                 </form>
             </article>
             <article id="register">
