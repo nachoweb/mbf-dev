@@ -77,7 +77,10 @@ function form_register_validate(){
         checkUserMail();
     }
 
-    if (document.getElementById('register-password1').value != document.getElementById('register-password2').value){
+    if (document.getElementById('register-password1').value == ""){
+        jQuery("#register-info-password").text('Debes introducir una contraseña');  
+        document.getElementById('validated-register').value=false;
+    }else if (document.getElementById('register-password1').value != document.getElementById('register-password2').value){
         jQuery("#register-info-password").text('Las contraseñas no coinciden');
         console.log("contraseñas no coinciden");
         document.getElementById('register-password1').focus();			

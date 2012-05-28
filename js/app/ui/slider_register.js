@@ -14,5 +14,3 @@ $(document).ready(function(){
         $('.slider').animate({	'left' : -current_item * slider_width	});
     });
 });
-
-

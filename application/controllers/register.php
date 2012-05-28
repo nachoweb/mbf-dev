@@ -12,7 +12,7 @@ class Register extends CI_Controller {
      * @author Nacho
      * @version 0.0.0
      */
-    public function signup(){
+    public function signup(){        
         if($this->input->post('gender')=="male"){
             $gender = 1;
         }else{
@@ -27,8 +27,14 @@ class Register extends CI_Controller {
             'email'             => $this->input->post('register-email'),
             'password'          => $password
         );
+        //Register user
         $this->load->model('User_model');
-        $this->User_model->register_user($user_data);
+        $data_view['user_id'] = $this->User_model->register_user($user_data);
+        $this->load->helper('url');
+        $data_view['site_url'] = site_url();
+        
+        //Show instructions
+         $this->load->view('register_steps', $data_view);
        
     }
     
