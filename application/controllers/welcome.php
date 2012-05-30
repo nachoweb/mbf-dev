@@ -7,7 +7,7 @@ class Welcome extends CI_Controller {
             $data['base_url'] = base_url();
             $this->load->view('head');   
             $this->load->view('welcome', $data);
-            $this->load->view('footer');  
+            $this->load->view('footer'); 
     }
 }
 

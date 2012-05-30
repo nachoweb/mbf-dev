@@ -1,5 +1,9 @@
 <div id="wellcome-content">
-    <div id="content">
+        <header id="header">
+            <div id="container-logo">
+                <h1><a href="">MY BUYFRIENDS</a></h1>
+            </div>
+        </header>
         <section id="login-register">
             <article id="login">
                 <h3>¿Eres usuario?</h3>

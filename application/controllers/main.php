@@ -55,7 +55,7 @@ class Main extends CI_Controller {
 	{
 		$this->load->helper('html'); //Para usar la funcion br
 		$query = $this->db->get('product',$limit);
-
+                
 		foreach ($query->result() as $row){
                     echo $row->description.br(2);
 		}

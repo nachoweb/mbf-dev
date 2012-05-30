@@ -22,7 +22,7 @@ body{
 	width: 940px;
 	height: 70px;
 	padding-top: 40px;
-	margin: 0 10px;
+	margin-bottom: 10px;
 	border-bottom: 1px solid #BCBEC0;
 	overflow: hidden;
 }
@@ -38,6 +38,10 @@ body{
 	padding-top: 10px;
 	float: left;
 }
+
+
+
+
 
 
 
@@ -69,10 +73,14 @@ body{
 	margin: 18px 0 0 5px;
 }
 
+#wellcome-content #container-logo{
+    width: 850px;
+}
+
+
 #container-logo{
 	width: 699px;
 	height: 70px;
-	border-left: 1px solid #BCBEC0;
 	text-align: center;
 	float: left;
 }
@@ -88,12 +96,127 @@ body{
 
 /* Content */
 
+/*********/
+/* Popup */
+/*********/
+#shadow{
+	position: absolute;
+	top:0;
+	left:0;
+	display:none;
+	height:100%;
+	width:100%;
+	background:#000;
+	z-index:150;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}
+#popup{
+	width: 300px;
+	height: 150px;
+	background: #040404 url("../images/loading.gif") no-repeat 50% 50%;
+	position:fixed;
+	top:0;
+	left:0;
+	display:none;
+	/*padding: 60px 30px 35px 30px;*/
+	z-index:200;
+}
+
+#popup-content{
+	z-index: 200;
+	display:none;
+	float: left;
+	background: #040404;
+	padding: 35px 30px 25px 30px;
+	border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;
+}
+#popup-content-left{
+	float: left;
+	background: #FFFFFF;
+	padding: 5px 10px;
+	margin-right: 10px;
+}
+#popup-content-right{
+	float: right;
+	background: #FFFFFF;
+	padding: 5px 10px;
+	width: 250px;
+}
+#popup-title{
+	width: 94%;
+	float: left;
+	background: #383839;
+	margin-bottom: 5px;
+	color: #FFFFFF;
+	font-size: 12px;
+	padding: 2% 3%;
+}
+#popup-price-brand{
+	background: #E9E9EA;
+	width: 94%;
+	float: left;
+	margin-bottom: 5px;
+	padding: 2% 3%;
+}
+#popup-price{
+	width: 100%;
+}
+#popup-brand{
+	width: 100%;
+}
+#popup-price-brand a{
+	color: #1C75BE;
+	text-decoration: none;
+}
+#popup-description{
+	width: 94%;
+	min-height: 100px;
+	clear: both;
+	background: #E9E9EA;
+	margin-bottom: 10px;
+	padding: 2% 3%;
+}
+#popup-input-send{
+	width: 185px;
+	background: #383839;
+	margin-bottom: 5px;
+	color: #FFFFFF;
+	border: none;
+	padding-left: 5px;
+	margin-right: 3px;
+        height: 25px;
+}
+#popup-submit{
+	padding: 2px 5px;
+	font-size: 12px;
+        height: 25px;
+}
+#cerrarCapaEmergente{
+	position:absolute;
+	top:0px;
+	right:0px;
+	font-size:20px;
+	cursor:pointer;
+	color: #373537;
+	width: 16px;
+	height: 15px;
+}
+#popup-nav{
+	width: 100%;
+	padding: 10px 0 0;
+	margin: 0;
+	text-align: center;
+}
+
+
 /* Items */
 .item {
 	width: 166px;
 	margin: 0 7px;
 	float: left;
 	margin-bottom: 25px;
+        height: 230px;
 }
 .container-item-img{
 	width: 166px;
@@ -118,23 +241,48 @@ body{
 	text-decoration: none;
 }
 
-/* Sidebar */
+/* SIDEBAR */
+
+.widget h3{
+    margin-top: 5px;
+}
+/* -- stores -- */
 #stores{
-	width: 170px;
-	float: right;
+   width: 100%;
+   float:left;
+   text-align: center;
 }
 #stores h3{
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 #stores ul{
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#stores ul li{
+    height: 28px;
+    background: url("./images/storebox.png");
+    padding-top: 7px;
+    width: 223px;
+    margin-bottom: 2px;
 }
 #stores a{
-	color: #1C75BC;
-	text-decoration: none;
+    color: #1C75BC;
+    text-decoration: none;
 }
+
+.widget{
+    float:left;
+    width: 100%;
+}
+
+
+#stores{
+   
+}
+
 
 /************/
 /* Slider	*/
@@ -175,7 +323,6 @@ body{
 {
 	clear:both;
 	float:left;
-	background: url(images/loading.gif) no-repeat 49% 49%;
 	padding-bottom: 40px;
 }
 .slider
@@ -193,8 +340,9 @@ body{
 /* Registro */
 /*************/
 #wellcome-content{
-    width: 720px;
-    margin: 0 auto;
+    width: 850px;
+    float:left;
+    margin-left: 55px;
 }
 #login-register{
 	width: 850px;
