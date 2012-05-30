@@ -34,8 +34,7 @@ class Register extends CI_Controller {
         $data_view['site_url'] = site_url();
         
         //Show instructions
-         $this->load->view('register_steps', $data_view);
-       
+        redirect("/register/steps");
     }
     
     
@@ -66,6 +65,21 @@ class Register extends CI_Controller {
         }else{
             echo "fail";
         }
+    }
+  
+    /**
+     * Show the explication about the platform for an user
+     * @param string user_id the user_id
+     */
+    public function steps(){
+        $this->load->library('session');
+        $data_view['user_id'] = $this->session->userdata('user_id');
+        
+        $this->load->helper('url');
+        $data_view['site_url'] = site_url();
+        
+        //Show instructions
+         $this->load->view('register_steps', $data_view);
     }
 }
 ?>

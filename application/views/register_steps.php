@@ -15,15 +15,30 @@
 				var current_item = 0;
 				$('#nav-slider-register .nav-item-register').click(function (){
 					if($(this).attr('id') == 'slider-left'){
-						if (current_item > 0)
+						if (current_item > 0){
 							current_item--;
+                                                        console.log(current_item);
+                                                }
+                                                if(current_item==1){
+                                                    jQuery("#slider-right").css("display","inline");
+                                                    jQuery("#start").css("display","none");
+                                                }
 					}
 					else if($(this).attr('id') == 'slider-right'){						
-						if (current_item < $('.slider-register-item').length-1)
+						if (current_item < $('.slider-register-item').length-1){
 							current_item++;
+                                                }
+                                                if(current_item==2){
+                                                   jQuery("#slider-right").css("display","none");
+                                                   jQuery("#start").css("display","inline");
+                                                }
 					}
 					$('.slider').animate({	'left' : -current_item * slider_width	});
 				});
+                                
+                                jQuery("#start").click(function(){
+                                    document.location.href="<?php echo $site_url ?>/main";
+                                });
 			});
 		</script>
 	</head>
@@ -71,7 +86,7 @@
 										</div>
 									</div>
 									<div id="register-2-screen1">
-										<img src="<?php echo $site_url;?>/images/register/register_2_screen.jpg">
+										<img src="<?php echo $site_url;?>/images/register/imagen1.jpg">
 									</div>
 								</section>
 							</section><!-- END ITEM1 -->
@@ -90,7 +105,7 @@
 											Navega por tus tiendas como lo harías normalmente
 										</div>	
 										<div class="register-3-img">
-											<img src="<?php echo $site_url;?>/images/register/imagen2.jpg">
+											<img src="<?php echo $site_url;?>/images/register/imagen2.jpg" id="register-imagen2">
 										</div>
 									</section>
 									<section id="register-step-4">
@@ -124,7 +139,7 @@
 											La imagen del producto aparecerá resaltada, pulsa sobra la que te interese
 										</div>	
 										<div class="register-3-img">
-											<img src="<?php echo $site_url;?>/images/register/imagen4.jpg">
+											<img src="<?php echo $site_url;?>/images/register/imagen5.jpg">
 										</div>
 									</section>
 									<section id="register-step-6">
@@ -168,6 +183,7 @@
 						<ul class="nav-list">
 							<li class="nav-item-register" id="slider-left">Anterior</li>
 							<li class="nav-item-register" id="slider-right">Siguiente</li>
+                                                        <li class="nav-item-register" id="start">Empezar</li>
 						</ul>
 					</nav>
 				</div>

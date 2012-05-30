@@ -288,23 +288,27 @@ body{
 /* Slider	*/
 /************/
 #nav-slider{
-	z-index: 3;
-	position: absolute;
-	bottom: 0;
-	left: 350px;
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    left: 350px;
 }
 #nav-slider ul{
 	padding: 0;
 }
 .nav-list li {
-	list-style:none;
-	display:inline;
-	cursor: pointer;
-	margin-right: 5px;
+    list-style:none;
+    display:inline;
+    cursor: pointer;
+    margin-right: 5px;
 }
 
 .nav-list{
-	margin:0;
+    margin:0;
+}
+
+#start{
+    display: none;
 }
 
 .slider-item{	
@@ -342,7 +346,7 @@ body{
 #wellcome-content{
     width: 850px;
     float:left;
-    margin-left: 55px;
+    margin-left: 5px;
 }
 #login-register{
 	width: 850px;
@@ -433,14 +437,16 @@ body{
 	padding: 0;
 }
 .nav-list li {
-	list-style:none;
-	display:inline;
-	cursor: pointer;
-	margin-right: 5px;
+    list-style:none;
+    display:inline;
+    cursor: pointer;
+    margin-right: 5px;
 }
 
 .nav-list{
-	margin:0;
+    float: right;
+    font-size: 12px;
+    margin: 0 15px 0 0;
 }
 
 .slider-item{	
@@ -595,17 +601,20 @@ span.register-title{
 	float:left;
 	clear:both;
 	margin-bottom: 20px;
-	margin-top:20px;
-	height:195px;
+	height:205px;
 }
 
 .register-3-img{
-	width:150px;
+	width:202px;
 	margin: 0 auto;
 }
 
+#register-3  img#register-imagen2{
+   width: 164px;
+}
+
 #register-3 img{
-	width: 150px; 
+	width: 202px; 
 	margin: 0 auto;
 	margin-top: 20px;
 }
