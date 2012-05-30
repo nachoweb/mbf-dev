@@ -2,9 +2,9 @@ function checkUserMail(){
     document.getElementById('validated-register').value = true;
     var emailToCheck = jQuery('#register-email').val();
     if (emailToCheck != ''){
-        console.log("http://localhost/closure/server/dev/register/check_mail/" + encodeURIComponent(emailToCheck));
+        console.log(base_url + "register/check_mail/" + encodeURIComponent(emailToCheck));
         jQuery.ajax({
-            url: "http://localhost/closure/server/dev/register/check_mail/" + encodeURIComponent(emailToCheck),
+            url: base_url + "register/check_mail/" + encodeURIComponent(emailToCheck),
             async: false,
             success: function(respuesta){
                 respuesta = jQuery.trim(respuesta);
@@ -31,9 +31,9 @@ function checkLogin(){
     var passToCheck = jQuery('#login-password').val();
     if (emailToCheck != ''){
         if(passToCheck != ''){
-            console.log("http://localhost/closure/server/dev/register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck));
+            console.log(base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck));
             jQuery.ajax({
-                url: "http://localhost/closure/server/dev/register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck),
+                url: base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck),
                 async: false,
                 success: function(respuesta){
                     respuesta = jQuery.trim(respuesta);

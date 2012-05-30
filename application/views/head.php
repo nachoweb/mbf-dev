@@ -12,6 +12,7 @@
         <script src="./js/app/ui/image_adjuster.js"></script>
         <script src="./js/app/ui/popup.js"></script>
         <script src="./js/app/util/register.js"></script>
+        <script src="./js/config.js"></script>
         
       
 

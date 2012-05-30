@@ -85,7 +85,7 @@ function showPopupContent(){
 }
 function clearPopupContent(){
         jQuery('#popup-content').css('display', 'none');
-        jQuery('#popup').css('background-image','url(http://localhost/closure/server/dev/css/images/loading.gif)');
+        jQuery('#popup').css('background-image','url('+ base_url + 'css/images/loading.gif)');
         jQuery('#popup-content').empty();
         jQuery('#popup-content').appendTo('body');
 }
@@ -95,7 +95,7 @@ function closePopup(){
         jQuery('#popup-content').css('display', 'none');
         jQuery('#popup').width('300px');
         jQuery('#popup').height('150px');
-        jQuery('#popup').css('background-image','url(http://localhost/closure/server/dev/css/images/loading.gif)');
+        jQuery('#popup').css('background-image','url('+ base_url + 'css/images/loading.gif)');
         jQuery('#popup-content').empty();
         jQuery('#popup-content').appendTo('body');
 }
