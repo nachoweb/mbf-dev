@@ -25,6 +25,8 @@ class User_model extends CI_Model {
         $result = $query->result();
         if ($query->num_rows() > 0){
              return $result[0];
+        }else{
+            return array();
         }
     }
     
@@ -86,6 +88,17 @@ class User_model extends CI_Model {
             return -1;
         }
     }
+    
+    function get_user_id_by_category($category_id){
+        $query = $this->db->query('SELECT * FROM mbf_category where id='.$category_id);
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return $result[0];
+        }else{
+            return -1;
+        }
+    }
+    
 }
 
 ?>
