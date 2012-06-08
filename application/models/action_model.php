@@ -1,12 +1,12 @@
 <?php
 /**
- * Model: user
- * Create: 05/06/2011
+ * Model: actions
+ * Create: 06/06/2011
  * Version: 0.0
  * Author: Nacho 
  *
  */
-class Category_model extends CI_Model {
+class Action_model extends CI_Model {
 
     function __construct() {
         // Call the Model constructor
@@ -14,23 +14,7 @@ class Category_model extends CI_Model {
         $this->load->database();
     }
     
-    function get_category_my_product($user_id){
-        $query = $this->db->query("SELECT * FROM mbf_category where name='My ProDucts' and user='$user_id'");
-        $result = $query->result();
-        if ($query->num_rows() > 0){
-             return $result[0]->id;
-        }
-    }
-    
-    function get_categories_by_user($user_id){
-        $query = $this->db->query("SELECT * FROM mbf_category where user='$user_id'");
-        $result = $query->result();
-        if ($query->num_rows() > 0){
-             return $result;
-        }
-    }
-    
-    function add_category($name, $user){
+    function save_function($action, $user_id, $var1 = "", $var2 = "", $var3 = ""){
         //Insert store
         $data = array(
                 "name"  =>  $name,

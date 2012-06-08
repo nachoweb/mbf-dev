@@ -21,7 +21,7 @@ class User_model extends CI_Model {
      * @return Object user 
      */
     function get_user_by_id($user_id) {
-        $query = $this->db->query('SELECT * FROM mbf_user where id='.$user_id);
+        $query = $this->db->query("SELECT * FROM mbf_user where id=$user_id");
         $result = $query->result();
         if ($query->num_rows() > 0){
              return $result[0];
@@ -99,6 +99,15 @@ class User_model extends CI_Model {
         }
     }
     
+    function get_hex($user_id){
+        $query = $this->db->query("SELECT hex FROM mbf_user where id=$user_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return $result[0];
+        }else{
+            return -1;
+        }
+    }
 }
 
 ?>

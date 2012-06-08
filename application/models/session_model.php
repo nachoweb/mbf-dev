@@ -30,7 +30,7 @@ class Session_model extends CI_Model {
         $query = $this->db->query( "select *
                     from mbf_session_user join mbf_session join mbf_user
                     on mbf_session_user.session = mbf_session.id and mbf_session_user.user = mbf_user.id
-                    where mbf_user.id = $id_user
+                    where mbf_user.id = '$id_user'
                     order by date");
         return $query->result();
     }

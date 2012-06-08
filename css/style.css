@@ -241,81 +241,176 @@ body{
 	text-decoration: none;
 }
 
-/* SIDEBAR */
-
-.widget h3{
-    margin-top: 5px;
+.widget{
+	width: 228px;
+	margin-top: 20px;
+	margin-bottom: 40px;
 }
-/* -- stores -- */
+.widget-header{
+	width: 100%;
+	height: 15px;
+	background: url(./images/widget-bg-top.png) no-repeat;
+}
+.widget-body{
+	width: 100%;
+	background: url(./images/widget-bg-mid.png) repeat-y;
+	overflow:hidden;
+}
+.widget-footer{
+	width: 100%;
+	height: 5px;
+	background: url(./images/widget-bg-bot.png) repeat-y;
+}
+.widget-title{
+	text-align: center;
+	margin: 0;
+	position: relative;
+	top: -9px;
+}
+.widget nav{
+	width: 228px;
+}
+.widget ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.widget li{
+	height: 21px;
+	margin-top: 5px;
+	/*Si no encuentra imágenes*/
+	/* navegadores sin soporte */
+	background: #F9F9F9;
+	/* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0 0, 0 130%, from(#FFFFFF), to(#E8E9EA));
+	/* Safari 5.1+, Chrome 10+ */
+    background: -webkit-linear-gradient(top, #FFFFFF, #E8E9EA 130%);
+	/* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, #FFFFFF, #E8E9EA 130%);
+	 /* Opera 11.10+ */
+    background: -o-linear-background(top, #FFFFFF, #E8E9EA 130%);
+    /* IE 10 */
+    background: -ms-linear-background(top, #FFFFFF, #E8E9EA 130%);
+    /* estándar */
+    background: linear-background(top, #FFFFFF, #E8E9EA 130%);
+	border: solid 1px #D1D3D4;
+	-moz-border-radius: 4px; -ms-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}
+
+.widget a{
+	float: left;
+	width: 218px;
+	height: 21px;
+	padding: 7px 0 5px;
+	text-decoration: none;
+}
+
+/*** Tiendas ***/
 #stores{
-   width: 100%;
-   float:left;
-   text-align: center;
+	
 }
-#stores h3{
-    margin-bottom: 5px;
+#stores nav{
+	width: 218px;
+	margin: 0 5px;
 }
-#stores ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-#stores ul li{
-    height: 28px;
-    background: url("./images/storebox.png");
-    padding-top: 7px;
-    width: 223px;
-    margin-bottom: 2px;
+#stores li{
+	width: 218px;
+	height: 33px;
+	background: #F9F9F9 url(./images/shopbox.png) no-repeat;
+	font-size: 17px;
 }
 #stores a{
-    color: #1C75BC;
-    text-decoration: none;
+	color: #1C75BC;
 }
 
-.widget{
-    float:left;
-    width: 100%;
+#nav-stores{
+	position: relative;
+	bottom: -10px;
+}
+#nav-stores li{
+	border: none;
+	background: transparent;
+}
+#nav-stores{
+
 }
 
-
-#stores{
-   
+/*** Slider tiendas ***/
+#container-slider-stores{
+	width: 100%;
+	padding: 0;
+}
+#stores .slider-item-stores{
+	width: 228px;
 }
 
+/*** Categorías ***/
+/*** Interes ***/
+#categories li, #interes li{
+	width: 100px;
+	height: 31px;
+	float: left;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: -1.5px;
+	margin: 5px 5px 0px 5px;
+	
+}
+
+#categories a, #interes a{
+	width: 100px;
+	height: 19px;
+	color: #817974;
+	background: #F9F9F9 url(./images/button_off.png) no-repeat;
+}
+#categories a:hover, #interes a:hover{
+	background: url(./images/button_on.png) no-repeat;
+	color: #FFFFFF;
+}
+#categories a.button-img{
+	padding: 0;
+}
+#categories a#add-category{
+	clear: both;
+	font-size: 11px;
+	padding: 0;
+	margin: 7px 7px 0 7px;
+	background: none;
+}
+#categories a#add-category:hover{
+	background: none;
+	color: #817974;
+}
 
 /************/
 /* Slider	*/
 /************/
 #nav-slider{
-    z-index: 3;
-    position: absolute;
-    bottom: 0;
-    left: 350px;
+	z-index: 3;
+	position: absolute;
+	bottom: 0;
+	left: 350px;
 }
 #nav-slider ul{
 	padding: 0;
 }
 .nav-list li {
-    list-style:none;
-    display:inline;
-    cursor: pointer;
-    margin-right: 5px;
+	list-style:none;
+	display:inline;
+	cursor: pointer;
+	margin-right: 5px;
 }
 
 .nav-list{
-    margin:0;
+	margin:0;
 }
 
-#start{
-    display: none;
-}
-
-.slider-item{	
+.slider-item, .slider-item-stores{	
 	z-index: 1;
 }
 
-.container-slider, .slider-item
+.container-slider, .slider-item, .slider-item-stores
 {
 	width: 720px;
 	overflow:hidden;
@@ -327,6 +422,7 @@ body{
 {
 	clear:both;
 	float:left;
+	background: url("./images/loading.gif") no-repeat 49% 49%;
 	padding-bottom: 40px;
 }
 .slider
@@ -444,9 +540,6 @@ body{
 }
 
 .nav-list{
-    float: right;
-    font-size: 12px;
-    margin: 0 15px 0 0;
 }
 
 .slider-item{	
@@ -466,7 +559,7 @@ body{
 {
 	clear:both;
 	float:left;
-	background: url("..images/loading.gif") no-repeat 49% 49%;
+	background: url("./images/loading.gif") no-repeat 49% 49%;
 }
 
 .slider

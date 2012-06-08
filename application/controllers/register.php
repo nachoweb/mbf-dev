@@ -12,32 +12,54 @@ class Register extends CI_Controller {
      * @author Nacho
      * @version 0.0.0
      */
-    public function signup(){        
+    public function signup(){    
+        $this->load->library('session');
         if($this->input->post('gender')=="male"){
             $gender = 1;
         }else{
             $gender = 0;
         }
         $password = md5($this->input->post('register-password1'));
+        $hex = $this->rand_text(32,32);
         $user_data = array(
             'name'              => $this->input->post('register-name'),
             'surname'           => $this->input->post('register-surname'),
             'gender'            => $gender,
             'labor_situation'   => $this->input->post('register-work'),
             'email'             => $this->input->post('register-email'),
-            'password'          => $password
+            'password'          => $password,
+            'hex'               => $hex
         );
         //Register user
         $this->load->model('User_model');
-        $data_view['user_id'] = $this->User_model->register_user($user_data);
+        $user_id = $this->User_model->register_user($user_data);
         $this->load->helper('url');
         $data_view['site_url'] = site_url();
         
+        //New Session
+        $userdata = array(
+            'user_id'  => $user_id,
+            'user_name' => $this->input->post('register-name')
+        );
+        $this->session->set_userdata($userdata);
+        
+       
         //Show instructions
-        redirect("/register/steps");
+        redirect("/register/steps/$hex");
     }
     
     
+    private function rand_text($min = 10,$max = 20,$randtext = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'){
+        if($min < 1) $min=1;
+        $varlen = rand($min,$max);
+        $randtextlen = strlen($randtext);
+        $text = '';
+        for($i=0; $i < $varlen; $i++){
+            $text .= substr($randtext, rand(1, $randtextlen), 1);
+        }
+        return $text;
+    }
+
     
     public function check_mail($email){
         $email = urldecode($email);
@@ -66,13 +88,21 @@ class Register extends CI_Controller {
             echo "fail";
         }
     }
+    
+    
   
     /**
      * Show the explication about the platform for an user
      * @param string user_id the user_id
      */
-    public function steps(){
+    public function steps($hex = ""){
         $this->load->library('session');
+        if($hex == ""){
+            $this->load->model('User_model');
+            $hex = $this->User_model->get_hex($this->session->userdata('user_id'));
+        }
+        
+        $data_view['hex'] = $hex;
         $data_view['user_id'] = $this->session->userdata('user_id');
         
         $this->load->helper('url');

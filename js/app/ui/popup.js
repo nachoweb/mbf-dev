@@ -1,4 +1,4 @@
-<!-- Popup -->
+/* POPUP */
 $(document).ready(function(){
         var item_numbers = $('.item').length;
         var item_index = 0;

@@ -15,17 +15,38 @@ class Category extends CI_Controller {
     }
     
     
+    public function get_current_user_categories(){
+        $this->load->library('session');
+        $current_user_id    = $this->session->userdata('user_id');
+        return $this->get_categories_by_user($current_user_id);
+    }
+    
+    private function get_categories_by_user($user_id){
+        $categories = $this->Category_model->get_categories_by_user($user_id);
+        return $categories;
+    }
+    
     public function add($name, $user){
         $name = trim(strip_tags($name));
         $user = trim(strip_tags($user));
         $this->Category_model->add_category($name, $user);
     }
     
-    public function rename_category($category_id, $new_name){
+    public function rename_category($category_id, $new_name, $echo = false ){
         $this->load->library('session');
         $current_user_id    = $this->session->userdata('user_id');
-        if($this->check_user_has_category){
-            $this->Category_model->rename_category($category_id, $new_name);
+        if($this->check_user_has_category($current_user_id, $category_id)){
+            $this->Category_model->remove_category($category_id);
+            if ($echo)  { echo "ok"; return true; }
+        }else{
+            if ($echo)  { echo "fail"; return false; }
+        }
+    }
+    
+    public function remove_category($category_id, $echo = false ){
+        $this->load->model('User_model');
+        $user_has_category  = $this->User_model->get_user_id_by_category($category_id);
+        if($user_has_category == $user_id){
             return true;
         }else{
             return false;
@@ -35,14 +56,11 @@ class Category extends CI_Controller {
     private function check_user_has_category($user_id, $category_id){
         $this->load->model('User_model');
         $user_has_category  = $this->User_model->get_user_id_by_category($category_id);
-        if($user_has_category == $category_id){
+        if($user_has_category == $user_id){
             return true;
         }else{
             return false;
         }
-        
     }
-    
-    
 }
 ?>

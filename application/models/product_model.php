@@ -30,6 +30,16 @@ class Product_model extends CI_Model {
     }
     
     
+    
+    function get_products_by_category($category_id){
+        $sql = "SELECT *
+                FROM mbf_product join mbf_product_category join mbf_category
+                on mbf_product.id = mbf_product_category.product and mbf_product_category.category = mbf_category.id
+                and mbf_category.id = $category_id";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+    
     /**
      * Get product object by id
      * @param int $id the product id
@@ -48,7 +58,7 @@ class Product_model extends CI_Model {
     
     function get_my_products($id_user){
         //Get session user
-        $query = $this->db->query("SELECT * FROM mbf_session where user=$id_user and name='myself'");
+        $query = $this->db->query("SELECT * FROM mbf_session where user='$id_user' and name='myself'");
         if ($query->num_rows() > 0){
             $row = $query->row();
             $session = $row->id;
@@ -72,13 +82,20 @@ class Product_model extends CI_Model {
      * @param string    $status  public or private
      */
     
-    function save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
+    function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
         
+        //User_id
+        $query = $this->db->query("SELECT id FROM mbf_user where hex=$hex");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+            $user_id = $result[0]['id'];
+        }else{
+            return -1;
+        }
         //$user_id = $this->session->userdata('user_id');
-        $user_id = 1;
             
         //Get session user
-        $query = $this->db->query("SELECT * FROM mbf_session where user=$user and name='myself'");
+        $query = $this->db->query("SELECT * FROM mbf_session where user='$user_id' and name='myself'");
         $row = $query->row();
         $session = $row->id;
         
@@ -89,10 +106,10 @@ class Product_model extends CI_Model {
             $store = $row->id;
         
             //Check user-store
-            $query = $this->db->query("SELECT * FROM mbf_user_store where store=$store AND user=$user_id");
+            $query = $this->db->query("SELECT * FROM mbf_user_store where store=$store AND user='$user_id'");
             if ($query->num_rows() == 0){
                 //Insert User Store
-                $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, $user_id)");
+                $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, '$user_id')");
             }            
         }else{
             //Insert store
@@ -103,24 +120,34 @@ class Product_model extends CI_Model {
             $this->db->insert('mbf_store', $data); 
             $store = $this->db->insert_id();
             //Insert User Store
-            $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, $user_id)");
+            $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, '$user_id')");
         }
 
         //Insert product
         $data = array(
-                'title'         => $title,
-                'image'         => $image,
-                'price'         => $price,
-                'description'   => $description,
-                'url'           => $url,
-                'store'         => $store,
-                'browser'       => $browser,
-                'session'       => $session,
-                'date'          => date('Y-m-d H:i:s'),
-                'status'        => $status
-            );
+            'title'         => $title,
+            'image'         => $image,
+            'price'         => $price,
+            'description'   => $description,
+            'url'           => $url,
+            'store'         => $store,
+            'browser'       => $browser,
+            'session'       => $session,
+            'date'          => date('Y-m-d H:i:s'),
+            'status'        => $status
+        );
         $this->db->insert('mbf_product', $data); 
         $product = $this->db->insert_id();
+        
+        //Category-product
+        $ci =& get_instance();
+        $ci->load->model('Category_model');
+        $my_products = $ci->Category_model->get_category_my_product($user_id);
+        $data = array(
+            'product'         => $title,
+            'category'        => $image
+        );
+        $query = $this->db->query("insert into mbf_product_category(product, category) values ($product, $my_products)");
     }
 }
 

@@ -25,7 +25,7 @@ class Store_model extends CI_Model {
                     "select *
                     from mbf_user_store join mbf_user join mbf_store
                     on mbf_user_store.user = mbf_user.id and mbf_user_store.store = mbf_store.id
-                    where mbf_user.id = $id_user");
+                    where mbf_user.id = '$id_user'");
         return $query->result();
     }
    

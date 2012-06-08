@@ -27,6 +27,7 @@ class Main extends CI_Controller {
 
             $this->load->model('Product_model');
             $this->load->model('Store_model');
+            $this->load->model('Category_model');
 
             //Products
             $data_products['products']=$this->Product_model->get_my_products($user_id);
@@ -37,8 +38,17 @@ class Main extends CI_Controller {
             /************/
             //Stores
             $data_stores['stores']=$this->Store_model->get_stores_by_user($user_id);
-            $sidebar['widgets']['stores'] = $this->load->view('my_stores',$data_stores, true);
+            $sidebar['widgets']['stores']['id']="stores";
+            $sidebar['widgets']['stores']['html'] = $this->load->view('my_stores',$data_stores, true);
+            
+            //Categories
+           // $data_categories['categories']= $this->Category_model->get_categories_by_user($user_id);
+            /* CARGAR VISTA DE LAS CATEGORIAS */
 
+            //Interests
+            $sidebar['widgets']['interest']['id']="interes";
+            $sidebar['widgets']['interest']['html'] = $this->load->view('my_interests', '', true);
+            
             $this->load->view('head');
             $this->load->view('header', $user_data);
             $this->load->view('sidebar', $sidebar);
