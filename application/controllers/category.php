@@ -26,10 +26,12 @@ class Category extends CI_Controller {
         return $categories;
     }
     
-    public function add($name, $user){
+    public function add($name){
+        $this->load->library('session');
+        $user_id = $this->session->userdata('user_id');
         $name = trim(strip_tags($name));
-        $user = trim(strip_tags($user));
-        $this->Category_model->add_category($name, $user);
+        $category_id = $this->Category_model->add_category($name, $user_id);
+        echo $category_id;
     }
     
     public function rename_category($category_id, $new_name, $echo = false ){
@@ -62,5 +64,10 @@ class Category extends CI_Controller {
             return false;
         }
     }
+    
+    
+    public function add_product_category($product_id, $category_id){
+        $this->Category_model->add_category_product($product_id, $category_id);
+    } 
 }
 ?>

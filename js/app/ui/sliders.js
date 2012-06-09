@@ -1,4 +1,5 @@
-/* Slider productos */				
+/* Script Slider productos */		
+
 $(document).ready(function(){
     var slider_width = $('#container-slider-products').width();
     var current_item = 0;
@@ -17,9 +18,9 @@ $(document).ready(function(){
         });
     });
 });
+
 		
-		
-/* Script Slider tiendas */	
+/* Script Slider tiendas */
 
 $(document).ready(function(){
     var slider_stores_width = $('#container-slider-stores').width();
@@ -40,3 +41,27 @@ $(document).ready(function(){
     });
 });
 
+		
+
+
+/* Script Slider categorias */
+		
+$(document).ready(function(){
+    var slider_stores_width = $('#container-slider-categories').width();
+    var current_stores_item = 0;
+    $('#nav-categories .nav-item').click(function (){
+            if($(this).attr('id') == 'slider-categories-left'){
+                if (current_stores_item > 0)
+                        current_stores_item--;
+            }
+            else if($(this).attr('id') == 'slider-categories-right'){						
+                if (current_stores_item < $('.slider-item-categories').length-1)
+                        current_stores_item++;
+            }
+            $('#slider-categories').stop().animate({	'left' : -current_stores_item * slider_stores_width	},{
+                duration: 1200,
+                easing: 'easeInCubic'
+            });
+    });
+});
+	

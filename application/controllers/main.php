@@ -42,7 +42,9 @@ class Main extends CI_Controller {
             $sidebar['widgets']['stores']['html'] = $this->load->view('my_stores',$data_stores, true);
             
             //Categories
-           // $data_categories['categories']= $this->Category_model->get_categories_by_user($user_id);
+            $data_categories['categories']= $this->Category_model->get_categories_by_user($user_id);
+            $sidebar['widgets']['categories']['id']="categories";
+            $sidebar['widgets']['categories']['html'] = $this->load->view('my_categories',$data_categories, true);
             /* CARGAR VISTA DE LAS CATEGORIAS */
 
             //Interests

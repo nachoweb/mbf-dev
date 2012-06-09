@@ -35,7 +35,7 @@ class Category_model extends CI_Model {
         $data = array(
                 "name"  =>  $name,
                 "user"  =>  $user,
-                "item"  =>  '0'
+                "items"  =>  '0'
         );
         $this->db->insert('mbf_category', $data); 
         $category = $this->db->insert_id();
@@ -51,6 +51,14 @@ class Category_model extends CI_Model {
     function rename_category($id, $new_name){
         $sql = "UPDATE mytable set name = '$new_name' where id=$id";
         $query = $this->db->query($sql);
+    }
+    
+    function add_category_product($product_id, $category_id){
+         $data = array(
+                "product"  =>  $product_id,
+                "category" =>  $category_id
+        );
+        @$this->db->insert('mbf_product_category', $data);
     }
     
 }
