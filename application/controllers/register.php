@@ -87,7 +87,7 @@ class Register extends CI_Controller {
         $password = md5(urldecode($password));
         $this->load->model('User_model');
         $user = $this->User_model->check_login($email, $password);
-        if( $user != -1){
+        if( !is_numeric($user)){
             $userdata = array(
                 'user_id'  => $user->id,
                 'user_name' => $user->name
