@@ -17,9 +17,9 @@
             <?php } ?>
             <?php 
                 $id = $products[$i]->id;
-                $image = rawurldecode($products[$i]->image);
+                $image = $base_url_image."/".$products[$i]->image;
                 $price = rawurldecode($products[$i]->price);
-                $price == "NS" ? $price = "" : $price = $price + " €";
+                $price == "NS" ? $price = "" : $price = $price." €";
                 $store_name = rawurldecode($products[$i]->store_name);
                 $description = rawurldecode($products[$i]->description); 
                 $description == "NS" ? $description = "" : $description = $description;
@@ -37,7 +37,7 @@
                     </div>
                     <span class="item-price">
                     <?php if($products[$i]->price != "NS"){ ?>
-                    <?php echo $products[$i]->price ?>
+                    <?php echo $products[$i]->price." €" ?>
                     <?php  }  ?>
                     </span>
 

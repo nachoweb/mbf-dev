@@ -116,23 +116,24 @@ function click_category_filters(){
     $('#filters a').click(function(){
         var selector = $(this).attr('data-filter');
         $('.slider-item').isotope({filter: selector});
-        if($(".isotope-item:not(.isotope-hidden)").length < 12){
-            $("#nav-slider").fadeTo('fast', 0 );
-        }else{
-            $("#nav-slider").fadeTo('fast', 1 );
-        }
+        check_row_slider_products();
         return false;
     });
 }
+
+
 /* Drag and drop */
 $(document).ready(function(){
     $( ".item" ).draggable({
         appendTo: "body",
         helper: "clone",
-        revert: true,
+        revert: "invalid",
         cursorAt: {left: 75 , top: 116},
         start: function(event, ui){
            ui.helper.fadeTo('fast', 0.5 );
+        },
+        stop: function(event, ui){  
+          
         }
     });
     
@@ -142,11 +143,10 @@ $(document).ready(function(){
         drop: function( event, ui ) {
             var product_id = ui.draggable.data("id");
             var category_id = $( this ).data("categoryid");
-            console.log(product_id + "-" + category_id);
             if(add_product_category(product_id , category_id)){
                 ui.draggable.addClass(category_id + '');
             }
-            $(this).effect("highlight", {}, 3000);
+            ui.helper.effect("size", { to: {width: 0,height: 0} }, 1000);
             $( this ).removeClass("readyDrop");
             return false;
         }

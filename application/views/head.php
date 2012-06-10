@@ -9,9 +9,9 @@
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>-->
-        <script src="./js/app/ui/sliders.js"></script>
-        <script src="./js/app/ui/image_adjuster.js"></script>
         <script src="./js/app/ui/popup.js"></script>
+        <script src="./js/app/ui/sliders.js"></script>
+        <script src="./js/app/ui/image_adjuster.js"></script>        
         <script src="./js/app/util/register.js"></script>
         <script src="./js/config.js"></script>
         <script src="./js/app/util/ajax.js"></script>

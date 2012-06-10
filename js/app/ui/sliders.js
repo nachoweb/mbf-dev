@@ -17,29 +17,41 @@ $(document).ready(function(){
             easing: 'easeInCubic'
         });
     });
+  //show or hide arrows
+  check_row_slider_products();
 });
 
-		
-/* Script Slider tiendas */
+//show or hide arrows slider products
+function check_row_slider_products(){
 
+if($(".isotope-item:not(.isotope-hidden)").length < 12){
+    $("#nav-slider").fadeTo('fast', 0 );
+}else{
+    $("#nav-slider").fadeTo('fast', 1 );
+}
+};
+		
+/* Script Slider tiendas */	
+		
 $(document).ready(function(){
     var slider_stores_width = $('#container-slider-stores').width();
     var current_stores_item = 0;
     $('#nav-stores .nav-item').click(function (){
-        if($(this).attr('id') == 'slider-stores-left'){
-            if (current_stores_item > 0)
-                    current_stores_item--;
-        }
-        else if($(this).attr('id') == 'slider-stores-right'){						
-            if (current_stores_item < $('.slider-item-stores').length-1)
-                    current_stores_item++;
-        }
-        $('#slider-stores').stop().animate({	'left' : -current_stores_item * slider_stores_width	},{
-            duration: 1200,
-            easing: 'easeInCubic'
-        });
+            if($(this).attr('id') == 'slider-stores-left'){
+                    if (current_stores_item > 0)
+                            current_stores_item--;
+            }
+            else if($(this).attr('id') == 'slider-stores-right'){						
+                    if (current_stores_item < $('.slider-item-stores').length-1)
+                            current_stores_item++;
+            }
+            $('#slider-stores').stop().animate({	'left' : -current_stores_item * slider_stores_width	},{
+                    duration: 1200,
+                    easing: 'easeInCubic'
+            });
     });
 });
+		
 
 		
 

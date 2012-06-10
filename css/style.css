@@ -184,6 +184,7 @@ body{
 	width: 100%;
 	background: url(./images/widget-bg-mid.png) repeat-y;
 	overflow:hidden;
+        min-height: 64px;
 }
 .widget-footer{
 	width: 100%;

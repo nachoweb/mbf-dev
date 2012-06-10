@@ -29,7 +29,7 @@ class Category extends CI_Controller {
     public function add($name){
         $this->load->library('session');
         $user_id = $this->session->userdata('user_id');
-        $name = trim(strip_tags($name));
+        $name = trim(strip_tags(urldecode($name)));
         $category_id = $this->Category_model->add_category($name, $user_id);
         echo $category_id;
     }

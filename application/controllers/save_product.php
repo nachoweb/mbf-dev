@@ -12,7 +12,129 @@ class Save_product extends CI_Controller {
      */
     public function save($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
         $this->load->model('Product_model');
-        $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status);
+        //data = array($product_id , $user_id);
+        $data =  $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status);      
+        $this->save_img($image, $data['user_id'], $data['product_id']);
     }
+    
+    private function save_img($image, $dir, $file_new_name) { 
+        $image = urldecode($image);
+        $img_file = file_get_contents($image); 
+        $image_path = parse_url($image);
+        
+        $img_path_parts = pathinfo($image_path['path']); 
+
+        $filename = $img_path_parts['filename'];
+        $img_ext = $img_path_parts['extension']; 
+        //echo "---------USER ID: $user_id <br/>";
+        $aux = "./images/products/".$dir."/";
+        //echo $aux."<br/>";
+        $path = realpath($aux);
+        //echo "PATH: $path <br/>";
+        $filex = $path ."\\". $file_new_name . "." .$img_ext; 
+        //echo $filex;
+        $fh = fopen($filex, 'w'); 
+        fputs($fh, $img_file); 
+        fclose($fh); 
+        $this->resize($filex,$path );
+        $this->create_thumb($filex , $path, $file_new_name , $img_ext);
+        return filesize($filex); 
+    }
+    
+    private function resize($image, $path){
+        $file_data = getimagesize($image);
+        $params = array('name' => $image);
+        echo "$image <br/>";
+        $this->load->library('Image', $params, "resize");
+        $width = $file_data[0];
+        $height = $file_data[1];
+       
+        //Redimensionar original
+        if($width > 400 || $height > 400){
+            if($width > $height){
+                if($width/$height >= 2){
+                    $new_height = 300;
+                }else{
+                    $new_height = 400;
+                }
+                $this->resize->height($new_height);
+            }else{
+                if($height/$width >= 2){
+                    $new_width = 300;
+                }else{
+                    $new_width = 400;
+                }
+                $this->resize->width($new_width);
+            }
+            $this->resize->save();
+        }
+    }
+    
+    private function create_thumb($image, $path, $filename, $extension){
+        $x = 0; $y = 0;
+        $params = array('name' => $image);
+        $this->load->library('Image', $params, "thumb");
+        $file_data = getimagesize($image);
+        $width = $file_data[0];
+        $height = $file_data[1];
+         $this->thumb->name("thumbs/$filename");
+         //Para posible crop
+        if($width >= $height){
+            //Redimensionamos
+            $this->thumb->height(187);
+            $this->thumb->save();
+            //Crop
+            $params = array('name' => "$path/thumbs/$filename.$extension");
+            $this->load->library('Image', $params, "crop");
+            $file_data = getimagesize($params['name']);
+            $width = $file_data[0];
+            $height = $file_data[1];
+            $x =(int) (($width - 166) / 2);
+            $x > 0 ? $x : 0;
+            $this->crop->crop((int) $x,0);
+            $this->crop->width(166);
+            $this->crop->height(187);
+            $this->crop->save();
+        }else{
+            //Redimensionamos
+            $this->thumb->width(166);
+            $this->thumb->save();
+            //Crop
+            $params = array('name' => "$path/thumbs/$filename.$extension");
+            $this->load->library('Image', $params, "crop");
+            $file_data = getimagesize($params['name']);
+            $width = $file_data[0];
+            $height = $file_data[1];
+            $y = (int)(($height - 187) / 2);
+            $y > 0 ? $y : 0;
+            $this->crop->crop( 0 , $y);
+            $this->crop->width(166);
+            $this->crop->height(187);
+            $this->crop->save();
+        }
+      /*  $x = 0;
+        $y = 0;
+        if( $width > 166)   {  $x = ($width - 166) / 2;      }
+        if( $height > 187)  {  $y = ($height - 187) / 2;     }
+        $this->image->crop($x,0);
+        $this->image->height(187);
+        $this->image->width(166);
+        $this->image->name("thumbs/$filename");
+        $this->image->save();*/
+    }
+    
+    /*private function crop($params, $width = ""){
+        $this->load->library('Image', $params, "crop");
+        $file_data = getimagesize($params['name']);
+        $width = $file_data[0];
+        $height = $file_data[1];
+        $x = ($width - 166) / 2;
+        $this->crop->crop(($width/2)-80,0);
+        $this->crop->width(166);
+        $this->crop->height(187);
+        $this->crop->save();
+    }*/
+    
+    
 }
 ?>

@@ -67,17 +67,14 @@ function saveCategory(){
 function add_product_category(product_id, category_id){    
     var success = true;
     url = base_url + "category/add_product_category/" + product_id + "/" +category_id;
-    console.log(url)
     jQuery.ajax({
         url: url,
         async: false,
         complete: function(objeto, exito){
-            console.log("completo");			
             if(exito=="success"){
             }
         },
         error: function(objeto, quepaso, otroobj){
-            console.log("error");
             success =  false;
         }
     });	
@@ -87,4 +84,9 @@ function add_product_category(product_id, category_id){
 /* Insert html to content*/
 function insert_content(url){
     url = base_url + url;
+    var miAjax = new Ajax(
+        url,
+        { method: 'get', update: $('#content') }
+    );
+    miAjax.request();
 }

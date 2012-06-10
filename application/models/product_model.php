@@ -25,7 +25,7 @@ class Product_model extends CI_Model {
             from mbf_product join mbf_store join mbf_product_category
             on mbf_product.store = mbf_store.id and mbf_product.id = mbf_product_category.product
             where session=$session_id
-            order by mbf_product.id";
+            order by mbf_product.id asc";
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -111,10 +111,10 @@ class Product_model extends CI_Model {
     function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
         
         //User_id
-        $query = $this->db->query("SELECT id FROM mbf_user where hex=$hex");
+        $query = $this->db->query("SELECT id FROM mbf_user where hex='$hex'");
         $result = $query->result();
         if ($query->num_rows() > 0){
-            $user_id = $result[0]['id'];
+            $user_id = $result[0]->id;
         }else{
             return -1;
         }
@@ -148,7 +148,29 @@ class Product_model extends CI_Model {
             //Insert User Store
             $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, '$user_id')");
         }
-
+        
+        //imagen
+        //ID
+        $next_id = "";
+        $query = $this->db->query("SHOW TABLE STATUS");
+        $result = $query->result();
+        $i=0;
+        while($next_id == ""){
+            if($result[$i]->Name == "mbf_product"){
+                $next_id = $result[$i]->Auto_increment;
+            }
+            $i++;
+        }
+        //EXTENSION
+        $image = urldecode($image);
+        $image_path = parse_url($image);
+        $img_path_parts = pathinfo($image_path['path']); 
+        $img_file = file_get_contents($image); 
+        $filename = $img_path_parts['filename'];
+        $img_ext = $img_path_parts['extension']; 
+        
+        $image = $next_id.".".$img_ext;
+        
         //Insert product
         $data = array(
             'title'         => $title,
@@ -171,9 +193,12 @@ class Product_model extends CI_Model {
         $my_products = $ci->Category_model->get_category_my_product($user_id);
         $data = array(
             'product'         => $title,
-            'category'        => $image
+            'category'        => $my_products
         );
         $query = $this->db->query("insert into mbf_product_category(product, category) values ($product, $my_products)");
+        $data["user_id"] = $user_id;
+        $data["product_id"] = $product;
+        return $data;
     }
 }
 

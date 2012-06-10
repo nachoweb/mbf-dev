@@ -36,10 +36,20 @@ class Register extends CI_Controller {
         $this->load->helper('url');
         $data_view['site_url'] = site_url();
         
+        //Categoría
+        $this->load->model('Category_model');
+        $this->Category_model->add_category("Mis productos", $user_id); 
+            
+        
+        //Make dirs
+        $path = realpath("./images/products");
+        mkdir( $path."/$user_id", "0775");
+        mkdir( $path."/$user_id/thumbs", "0775");
+        
         //New Session
         $userdata = array(
             'user_id'  => $user_id,
-            'user_name' => $this->input->post('register-name')
+            'user_name'=> $this->input->post('register-name')
         );
         $this->session->set_userdata($userdata);
         

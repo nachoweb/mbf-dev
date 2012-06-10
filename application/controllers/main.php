@@ -30,6 +30,8 @@ class Main extends CI_Controller {
             $this->load->model('Category_model');
 
             //Products
+            $this->load->helper('url');
+            $data_products['base_url_image'] = site_url("/images/products/$user_id");
             $data_products['products']=$this->Product_model->get_my_products($user_id);
             $content['content'] = $this->load->view('my_products',$data_products, true);
 
@@ -45,12 +47,13 @@ class Main extends CI_Controller {
             $data_categories['categories']= $this->Category_model->get_categories_by_user($user_id);
             $sidebar['widgets']['categories']['id']="categories";
             $sidebar['widgets']['categories']['html'] = $this->load->view('my_categories',$data_categories, true);
+           
             /* CARGAR VISTA DE LAS CATEGORIAS */
 
             //Interests
             $sidebar['widgets']['interest']['id']="interes";
             $sidebar['widgets']['interest']['html'] = $this->load->view('my_interests', '', true);
-            
+          
             $this->load->view('head');
             $this->load->view('header', $user_data);
             $this->load->view('sidebar', $sidebar);

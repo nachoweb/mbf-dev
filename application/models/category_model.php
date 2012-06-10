@@ -15,10 +15,12 @@ class Category_model extends CI_Model {
     }
     
     function get_category_my_product($user_id){
-        $query = $this->db->query("SELECT * FROM mbf_category where name='My ProDucts' and user='$user_id'");
+        $query = $this->db->query("SELECT * FROM mbf_category where name='Mis productos' and user='$user_id'");
         $result = $query->result();
         if ($query->num_rows() > 0){
              return $result[0]->id;
+        }else{
+            return -1;
         }
     }
     
@@ -27,6 +29,8 @@ class Category_model extends CI_Model {
         $result = $query->result();
         if ($query->num_rows() > 0){
              return $result;
+        }else{
+            return array();
         }
     }
     
