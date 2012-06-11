@@ -18,6 +18,7 @@
             <?php 
                 $id = $products[$i]->id;
                 $image = $base_url_image."/".$products[$i]->image;
+                $thumb = $base_url_image."/thumbs/".$products[$i]->image;
                 $price = rawurldecode($products[$i]->price);
                 $price == "NS" ? $price = "" : $price = $price." €";
                 $store_name = rawurldecode($products[$i]->store_name);
@@ -33,7 +34,7 @@
 
             <article class="item <?php echo $cat_class; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>">
                     <div class="container-item-img">
-                            <img class="item-img image-fit" src="<?php echo $image ?>" onload="fit($(this))" />
+                            <img class="item-img image-fit" src="<?php echo $thumb ?>" onload="fit($(this))" />
                     </div>
                     <span class="item-price">
                     <?php if($products[$i]->price != "NS"){ ?>

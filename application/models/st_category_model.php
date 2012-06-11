@@ -23,7 +23,6 @@ class St_category_model extends CI_Model {
         }else{
             return array();
         }
-        
     }
     
 }
