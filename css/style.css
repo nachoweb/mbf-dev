@@ -6,7 +6,24 @@
         Purpose of the stylesheet follows.
 */
 
-/* Structure */
+/* Fonts */
+
+/* Intenet explorer */
+@font-face{
+ font-family: "blanch_caps";
+ src: url(fonts/blanch_caps.eot);
+ font-weight: normal;
+ font-style: normal;
+}
+
+/* Otros navegadores */
+@font-face{
+ font-family: "blanch_caps";
+ src: url(fonts/blanch_caps.ttf);
+ font-weight: normal;
+ font-style: normal; 
+}
+
 /* Structure */
 body{
 	background: #F1F0F5;
@@ -169,6 +186,26 @@ body{
 }
 
 
+/* My Stores content */
+.my-stores{
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.store{
+	width: 166px;
+	height: 100px;
+	background: url(./images/logo_box.png) no-repeat;
+	float: left;
+	margin: 0 6px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.store img{
+	max-width: 150px;
+	max-height: 35px;
+	margin-top: 23px;
+	
+}
 /* Sidebar */
 .widget{
 	width: 228px;
@@ -184,7 +221,6 @@ body{
 	width: 100%;
 	background: url(./images/widget-bg-mid.png) repeat-y;
 	overflow:hidden;
-        min-height: 64px;
 }
 .widget-footer{
 	width: 100%;
@@ -229,47 +265,54 @@ body{
 }
 
 .widget a{
-    float: left;
-    width: 218px;
-    height: 21px;
-    padding: 7px 0 5px;
-    text-decoration: none;
+	float: left;
+	text-decoration: none;
 }
+
 
 /*** Tiendas ***/
 #stores{
 	
 }
-#stores nav{
-    width: 218px;
-    margin: 0 5px;
+#stores .widget-body li{
+	width: 100px;
+	height: 31px;
+	float: left;
+	margin: 5px 5px 0px 5px;
 }
-#stores li{
-    width: 218px;
-    height: 33px;
-    background: #F9F9F9 url(./images/shopbox.png) no-repeat;
-    font-size: 17px;
+
+#stores a#add-category-store{
+	color: #817974;
+	clear: both;
+	font-size: 11px;
+	padding: 0;
+	margin: 7px 7px 0 7px;
+	background: none;
 }
-#stores a{
-    color: #1C75BC;
+#stores a#add-category-store:hover{
+	background: none;
+	color: #817974;
 }
 
 #nav-stores,#nav-categories{
-    position: relative;
-    bottom: -10px;
+	position: relative;
+	bottom: -10px;
 }
 #nav-stores li, #nav-categories li{
-    border: none;
-    background: transparent;
+	border: none;
+	background: transparent;
 }
 
 /*** Slider tiendas ***/
 #container-slider-stores{
-    width: 100%;
-    padding: 0;
+	width: 100%;
+	padding: 0;
 }
 #stores .slider-item-stores{
-    width: 228px;
+	width: 228px;
+}
+#nav-stores{
+	display: none;
 }
 
 /*** Categorías ***/
@@ -301,6 +344,14 @@ body{
 }
 
 #filters a.dropping{
+    background: red;
+}
+
+#filters-stores a.readyDrop{
+     background: yellow;
+}
+
+#filters-stores a.dropping{
     background: red;
 }
 
@@ -465,7 +516,7 @@ body{
 #popup{
 	width: 300px;
 	height: 150px;
-	background: #040404 url("./images/loading.gif") no-repeat 50% 50%;
+	background: #040404 url("../images/loading.gif") no-repeat 50% 50%;
 	position:fixed;
 	top:0;
 	left:0;
@@ -565,14 +616,14 @@ body{
 /**************************/
 /* Popup añadir categoria */
 /**************************/
-#form-add-new-category{
+.form-add-new-category{
 	width: 250px;
 	background: #E9E9EA;
 	border: 10px solid #FFFFFF;
 	padding: 15px;
 	font-size: 14px;
 }
-#input-new-category{
+.input-new-category{
 	width: 100%;
 	margin: 15px 0px;
 }
@@ -584,13 +635,15 @@ body{
 .button{
 	width: 100px;
 	height: 31px;
-	background: url(./images/button_off.png) no-repeat;
+	background: #F9F9F9 url(../images/button_off.png) no-repeat;
 	border: none;
-	font-size: 12px;
-	color: #817974;
+	font-family: "blanch_caps";
+	font-size: 19px;
+	color: #96989B;
+        text-transform: lowercase;
 }
 .button:hover{
-	background: url(./images/button_on.png) no-repeat;
+	background: url(../images/button_on.png) no-repeat;
 	color: #FFFFFF;
 	cursor: pointer;
 }
@@ -602,6 +655,14 @@ a{
 a img{
 	border:none;
 }
+
+/* Ajax loaders */
+#ajax-loader-content{
+    position: relative;
+    top: 260px;
+    left: 376px;
+    display:none;
+}
 /************/
 /* Registro */
 /*************/
@@ -610,14 +671,16 @@ a img{
     float:left;
     margin-left: 5px;
 }
+
 #login-register{
-	width: 850px;
-	background: #D0D1D3;
-	padding-top: 65px;
-	padding-bottom: 50px;
-	color: #7F8184;
-	overflow:hidden;
+    width: 850px;
+    background: #D0D1D3;
+    padding-top: 65px;
+    padding-bottom: 50px;
+    color: #7F8184;
+    overflow:hidden;
 }
+
 #login-register h3{
 	color: #1C75BC;
 }
@@ -949,4 +1012,14 @@ span.register-title{
 	text-align:center;
 	float:left;
 	margin-top: 30px;
+}
+
+
+/************/
+/* Papelera */
+/************/
+#container-trash{
+	width: 228px;
+	text-align: right;
+	margin-top: -25px;
 }

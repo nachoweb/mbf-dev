@@ -100,30 +100,79 @@ function closePopup(){
     jQuery('#popup-content').appendTo('body');
 }
 
-
+/***********/
 /* ISOTOPE */
+/***********/
+
+
 $(document).ready(function(){
-    $('.slider-item').isotope({
+    // filter items when filter link is clicked
+     $('.slider-item').isotope({
         // options
         itemSelector : '.item',
         layoutMode : 'fitRows'
     });
-    // filter items when filter link is clicked
     click_category_filters();
+    click_st_category_filters();
 });
 
+/* Products */
 function click_category_filters(){
-    $('#filters a').click(function(){
-        var selector = $(this).attr('data-filter');
-        $('.slider-item').isotope({filter: selector});
-        check_row_slider_products();
-        return false;
+    $('#filters a').click(function(){ 
+        console.log(content_control);
+        if(content_control == "products"){
+            var selector = $(this).attr('data-filter');
+            $('.slider-item').isotope({filter: selector});
+            return false;
+        }else{
+            content_control = "products";
+            url = base_url + "main/products";
+            var selector = $(this).attr('data-filter');
+            insert_content(url);
+            var a = $(this);
+            $('#fade').animate({opacity: 1}, 400, function(){                
+                active_drag_drop_products();
+                a.click();
+            });
+        }
     });
 }
 
+/* Stores */
 
+function click_st_category_filters(){
+    $('#filters-stores a').click(function(){ 
+         if(content_control == "stores"){
+            var selector = $(this).attr('data-filter');
+            $('.my-stores').isotope({filter: selector});
+            return false;
+        }else{
+            content_control = "stores";
+            var selector = $(this).attr('data-filter');
+            url = base_url + "main/stores";
+            insert_content(url);
+            $('#fade').animate({opacity: 1}, 400, function(){ 
+                 $('.my-stores').isotope({
+                    // options
+                    itemSelector : '.store',
+                    layoutMode : 'fitRows'
+                });  
+                $('.my-stores').isotope({filter: selector}); 
+                active_drag_drop_stores();
+            });
+        }
+    });
+}
+
+/*****************/
 /* Drag and drop */
+/*****************/
+
 $(document).ready(function(){
+    active_drag_drop_products();
+});
+
+function active_drag_drop_products(){
     $( ".item" ).draggable({
         appendTo: "body",
         helper: "clone",
@@ -140,18 +189,48 @@ $(document).ready(function(){
     $( "#filters li a" ).droppable({
         activeClass: "readyDrop",
         hoverClass: "dropping",
+        accept: ".item",
         drop: function( event, ui ) {
             var product_id = ui.draggable.data("id");
             var category_id = $( this ).data("categoryid");
             if(add_product_category(product_id , category_id)){
                 ui.draggable.addClass(category_id + '');
             }
-            ui.helper.effect("size", { to: {width: 0,height: 0} }, 1000);
+            ui.helper.effect("size", {to: {width: 0,height: 0}}, 1000);
             $( this ).removeClass("readyDrop");
             return false;
         }
     });
-});
+    
+}
 
-
-
+function active_drag_drop_stores(){
+     $( ".store" ).draggable({
+        appendTo: "body",
+        helper: "clone",
+        revert: "invalid",
+        cursorAt: {left: 74 , top: 50},
+        start: function(event, ui){
+           ui.helper.fadeTo('fast', 0.5 );
+        },
+        stop: function(event, ui){  
+          
+        }
+    });
+  
+    $( "#filters-stores li a" ).droppable({
+        activeClass: "readyDrop",
+        hoverClass: "dropping",
+        accept: ".store",
+        drop: function( event, ui ) {
+            var store = ui.draggable.data("id");
+            var category_id = $( this ).data("categoryid");
+            if(add_store_to_StCategory(store , category_id)){
+                ui.draggable.addClass(category_id + '');
+            }
+            ui.helper.effect("size", {to: {width: 0,height: 0}}, 1000);
+            $( this ).removeClass("readyDrop");
+            return false;
+        }
+    });
+}

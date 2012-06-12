@@ -1,42 +1,22 @@
-<header class="widget-header">
-    <h3 class="widget-title"><img src="images/mistiendas.png" alt="tiendas" /></h3>
-</header>
-<section class="widget-body">
-    <!-- Slider stores -->
-    <div class="container-slider" id="container-slider-stores">
-        <section class="slider" id="slider-stores">
-        <?php
-        if( count($stores)>0){
-            for($i=0; $i < count ($stores) ; $i++){
-                if($i%4 == 0){ ?>
-                    <div id="slider-store-item-<?php echo $i+1 ?>" class="slider-item-stores">
-                        <nav>
-                            <ul>
-        <?php }  ?>
-                                <li><a href="<?php echo $stores[$i]->url; ?>" target="blank"><?php echo $stores[$i]->name;?></a></li>
-        <?php    if(($i%4) + 1 == 0){ ?>              
-                            </ul>
-                        </nav>
-                    </div>
-        <?php } /* END IF */ ?>
-        <?php }/* END FOR */ ?>  
-        <?php    if(($i%4) + 1 != 0){ ?>              
-                            </ul>
-                        </nav>
-                    </div>
-        <?php } /* END IF */ ?>
-        <?php }else{ /* ENF IF count(stres) */ ?>
-             <div id="slider-store-item-0" class="slider-item-stores">
-              </div>
-        <?php } /* END ELSE */?>
-        </section>
-    </div>
+<section class="my-stores">
+    <?php for($i=0; $i< count($stores); $i++){?>
+    <?php
+    $logo = $stores[$i]->logo == ""? $image_no_logo : $base_url_image."/".$stores[$i]->logo;
+    
+    $store_class = "";
+    foreach($stores[$i]->st_categories as $cat){
+        $store_class .= " $cat";
+    }
+    ?>
+    <article class="store <?php echo $store_class; ?>" data-id="<?php echo $stores[$i]->id?>">
+        <a href="#">
+            <div>
+                <img src="<?php echo $logo ?>" />
+            </div>
+        </a>
+        <div class="store-link">
+            <a href="<?php echo $stores[$i]->url ?>" target="blank_"><?php echo $stores[$i]->name ?></a>
+        </div>
+    </article>
+    <?php } ?>
 </section>
-<footer class="widget-footer">
-    <nav id="nav-stores">	 	
-            <ul class="nav-list">
-                <li class="nav-item" id="slider-stores-left"><img src="images/left_small.png"></li>
-                <li class="nav-item" id="slider-stores-right"><img src="images/right_small.png"></li>
-            </ul>
-    </nav>
-</footer>

@@ -83,7 +83,6 @@ class Product_model extends CI_Model {
                 }
                 $k++;
             }
-           
             return $products;
             
         }else{
