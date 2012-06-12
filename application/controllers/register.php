@@ -50,7 +50,7 @@ class Register extends CI_Controller {
         
         //Make dirs
         $path = realpath("./images/products");
-        echo $path;
+        echo $path."/$user_id";
         mkdir( $path."/$user_id", "0775");
         mkdir( $path."/$user_id/thumbs", "0775");
         
