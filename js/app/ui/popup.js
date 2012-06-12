@@ -73,7 +73,7 @@ function showPopupContent(){
     'width': jQuery('#popup-content').outerWidth(),
     'height': jQuery('#popup-content').outerHeight() + jQuery('#popup-nav').outerHeight(),
     'left': (jQuery(window).outerWidth() - (jQuery('#popup').outerWidth() - jQuery('#popup').width() + jQuery('#popup-content').outerWidth())) / 2.0,
-    'top': (window.innerHeight - (jQuery('#popup').outerHeight() - jQuery('#popup').height() + jQuery('#popup-content').outerHeight())) / 3.0,
+    'top': (window.innerHeight - (jQuery('#popup').outerHeight() - jQuery('#popup').height() + jQuery('#popup-content').outerHeight())) / 3.0
     }, function(){						
             jQuery('#popup-content').prependTo('#popup');
             jQuery('#popup').css('background-image','none');
@@ -158,7 +158,7 @@ function click_st_category_filters(){
                     layoutMode : 'fitRows'
                 });  
                 $('.my-stores').isotope({filter: selector}); 
-                active_drag_drop_stores();
+                active_drag_store();
             });
         }
     });
@@ -170,10 +170,23 @@ function click_st_category_filters(){
 
 $(document).ready(function(){
     active_drag_drop_products();
+    active_drop_stores();
+    
 });
 
 function active_drag_drop_products(){
-    $( ".item" ).draggable({
+    active_drag_products();
+    active_drop_products();
+}
+
+function active_drag_drop_stores(){
+    active_drag_store();
+    active_drop_stores();
+}
+
+function active_drag_products(){
+    
+     $( ".item" ).draggable({
         appendTo: "body",
         helper: "clone",
         revert: "invalid",
@@ -185,7 +198,9 @@ function active_drag_drop_products(){
           
         }
     });
-    
+}
+
+function active_drop_products(){
     $( "#filters li a" ).droppable({
         activeClass: "readyDrop",
         hoverClass: "dropping",
@@ -201,10 +216,11 @@ function active_drag_drop_products(){
             return false;
         }
     });
-    
 }
 
-function active_drag_drop_stores(){
+
+
+function active_drag_store(){
      $( ".store" ).draggable({
         appendTo: "body",
         helper: "clone",
@@ -213,11 +229,12 @@ function active_drag_drop_stores(){
         start: function(event, ui){
            ui.helper.fadeTo('fast', 0.5 );
         },
-        stop: function(event, ui){  
-          
+        stop: function(event, ui){ 
         }
     });
-  
+}
+
+function active_drop_stores(){
     $( "#filters-stores li a" ).droppable({
         activeClass: "readyDrop",
         hoverClass: "dropping",
@@ -234,3 +251,4 @@ function active_drag_drop_stores(){
         }
     });
 }
+

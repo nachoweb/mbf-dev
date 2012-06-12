@@ -43,6 +43,7 @@ class Store_model extends CI_Model {
     }
     
     function get_my_stores($id_user){
+        $my_stores = array();
         $stores = $this->get_stores_by_user($id_user);
         //k: Index of new array; $i: Index of the products_cats; $j:Index for check same product, more than cats
         $k=0;
@@ -73,8 +74,6 @@ class Store_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
-    
-   
 }
 
 ?>

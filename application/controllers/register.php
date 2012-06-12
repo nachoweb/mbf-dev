@@ -39,7 +39,14 @@ class Register extends CI_Controller {
         //Categoría
         $this->load->model('Category_model');
         $this->Category_model->add_category("Mis productos", $user_id); 
-            
+        
+        //St_categories
+        $this->load->model('St_category_model');
+        $this->St_category_model->add_st_category("todas", $user_id);
+        
+        //User Sessions
+        $this->load->model('Session_model');
+        $this->Session_model->add_session("myself", $user_id);
         
         //Make dirs
         $path = realpath("./images/products");
@@ -117,6 +124,8 @@ class Register extends CI_Controller {
         
         $this->load->helper('url');
         $data_view['site_url'] = site_url();
+        
+        $data_view['script_bm'] =$this->config->item('bm_script');
         
         //Show instructions
          $this->load->view('register_steps', $data_view);

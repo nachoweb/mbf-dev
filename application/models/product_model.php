@@ -59,6 +59,7 @@ class Product_model extends CI_Model {
     
     function get_my_products($id_user){
         //Get session user
+        $products = array();
         $query = $this->db->query("SELECT * FROM mbf_session where user='$id_user' and name='myself'");
         if ($query->num_rows() > 0){
             $row = $query->row();
@@ -126,28 +127,42 @@ class Product_model extends CI_Model {
         $row = $query->row();
         $session = $row->id;
         
+        //Get the user st_category TODAS 
+        $query = $this->db->query("SELECT * FROM mbf_st_category where name='todas' and user=$user_id");
+        $row = $query->row();
+        $st_cat = $row->id;
+        
         //Store
-        $query = $this->db->query("SELECT * FROM mbf_store where url='$store_url'");
+        $query = $this->db->query("SELECT * FROM mbf_store where url='http://$store_url'");
         if ($query->num_rows() > 0){
             $row = $query->row();
             $store = $row->id;
         
-            //Check user-store
-            $query = $this->db->query("SELECT * FROM mbf_user_store where store=$store AND user='$user_id'");
+            //Check user-store            
+            //Check user-cat-myself vs store
+            $query = $this->db->query("SELECT * FROM mbf_st_category_store where st_category=$st_cat and store=$store");
             if ($query->num_rows() == 0){
                 //Insert User Store
-                $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, '$user_id')");
+                $data = array(
+                    "st_category"   =>  $st_cat,
+                    "store"         =>  $store
+                );
+                $this->db->insert('mbf_st_category_store', $data); 
             }            
         }else{
             //Insert store
             $data = array(
-                    "url"   =>  $store_url,
+                    "url"   =>  "http://".$store_url,
                     "name"  =>  $store_name
             );
             $this->db->insert('mbf_store', $data); 
             $store = $this->db->insert_id();
             //Insert User Store
-            $query = $this->db->query("insert into mbf_user_store(store, user) values ($store, '$user_id')");
+            $data = array(
+                "st_category"   =>  $st_cat,
+                "store"         =>  $store
+            );
+            $this->db->insert('mbf_st_category_store', $data); 
         }
         
         //imagen

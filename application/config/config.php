@@ -15,6 +15,7 @@
 |
 */
 $config['base_url']	= 'http://localhost/closure/server/dev';
+$config['bm_script']	= 'http://localhost:9810/compile?id=popup';
 
 /*
 |--------------------------------------------------------------------------

@@ -46,13 +46,14 @@ function addCategory(new_category, new_category_id){
                     jQuery('#slider-categories').append(new_html_slide);
             }
             else{
-                    jQuery('#categories #container-slider-categories ul:last').append('<li><a class="button" href="#" data-categoryid="'+ new_category_id +'" data-filter=".'+ new_category_id +'">'+new_category+'</a></li>');
+                    jQuery('#categories #container-slider-categories ul:last').append('<li><a class="button" href="#'+new_category+'" data-categoryid="'+ new_category_id +'" data-filter=".'+ new_category_id +'">'+new_category+'</a></li>');
             }
             jQuery('#slider-categories-right').click();
             jQuery('#categories #container-slider-categories ul:last li:last').css('display','none');
             jQuery('#categories #container-slider-categories ul:last li:last').fadeIn('slow');
     }
     closePopup();
+    active_drop_products();
     click_category_filters();
 }
 
@@ -136,9 +137,11 @@ function addCategoryStore(new_st_category_name, new_st_category_id){
         }
         jQuery('#stores #container-slider-stores ul:last li:last').css('display','none');
         jQuery('#stores #container-slider-stores ul:last li:last').fadeIn('slow');
+        active_drop_stores();
         jQuery('#slider-stores-right').click();
     }
     closePopup();
+    click_st_category_filters();
 }
 
 function saveStCategory(){
@@ -207,3 +210,16 @@ function insert_content(url){
     return success;
    
 }
+
+
+/****************************************************/
+/* Show nav widgets st_cat and product categories   */
+/****************************************************/
+ $(document).ready(function(){
+   if(jQuery('.slider-item-stores li').size() > 6){
+       jQuery('#nav-stores').fadeIn('normal');
+   }
+   if(jQuery('.slider-item-categories li').size() > 6){
+       jQuery('#nav-categories').fadeIn('normal');
+   }
+});

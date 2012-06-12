@@ -55,6 +55,7 @@ body{
 	width: 720px;
 	padding-top: 10px;
 	float: left;
+        min-height: 600px;
 }
 
 
@@ -103,7 +104,7 @@ body{
 #logo{
 	outline: none;
 	border: none;
-	color: 1C75BE;
+	color: #1C75BE;
 }
 
 /* Content */
@@ -165,7 +166,7 @@ body{
 	height: 187px;
 	overflow: hidden;
 	float: left;
-	background: #FFFFFF url(./images/loading.gif) no-repeat 67px 77px;
+	background: #FFFFFF url('./images/loading.gif') no-repeat 67px 77px;
 	cursor: pointer;
 }
 .item-price{
@@ -194,7 +195,7 @@ body{
 .store{
 	width: 166px;
 	height: 100px;
-	background: url(./images/logo_box.png) no-repeat;
+	background: url('./images/logo_box.png') no-repeat;
 	float: left;
 	margin: 0 6px;
 	text-align: center;
@@ -215,17 +216,17 @@ body{
 .widget-header{
 	width: 100%;
 	height: 15px;
-	background: url(./images/widget-bg-top.png) no-repeat;
+	background: url('./images/widget-bg-top.png') no-repeat;
 }
 .widget-body{
 	width: 100%;
-	background: url(./images/widget-bg-mid.png) repeat-y;
+	background: url('./images/widget-bg-mid.png') repeat-y;
 	overflow:hidden;
 }
 .widget-footer{
 	width: 100%;
 	height: 5px;
-	background: url(./images/widget-bg-bot.png) repeat-y;
+	background: url('./images/widget-bg-bot.png') repeat-y;
 }
 .widget-title{
 	text-align: center;
@@ -330,11 +331,16 @@ body{
 
 #categories a, #interes a{
     width: 100px;
-    height: 19px;
+    height: 31px;
     color: #817974;
     background: #F9F9F9 url(./images/button_off.png) no-repeat;
 }
-#categories a:hover, #interes a:hover{
+#categories a:hover, #interes a:hover,  #categories a:active, #interes a:active{
+    background: url(./images/button_on.png) no-repeat;
+    color: #FFFFFF;
+}
+
+.button-active{
     background: url(./images/button_on.png) no-repeat;
     color: #FFFFFF;
 }
@@ -364,6 +370,8 @@ body{
 	padding: 0;
 	margin: 7px 7px 0 7px;
 	background: none;
+        width:110px;
+        height: 13px;
 }
 #categories a#add-category:hover{
 	background: none;
@@ -635,7 +643,7 @@ body{
 .button{
 	width: 100px;
 	height: 31px;
-	background: #F9F9F9 url(../images/button_off.png) no-repeat;
+	background: #F9F9F9 url('./images/button_off.png') no-repeat;
 	border: none;
 	font-family: "blanch_caps";
 	font-size: 19px;
@@ -643,7 +651,7 @@ body{
         text-transform: lowercase;
 }
 .button:hover{
-	background: url(../images/button_on.png) no-repeat;
+	background: url('./images/button_on.png') no-repeat;
 	color: #FFFFFF;
 	cursor: pointer;
 }
