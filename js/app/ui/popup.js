@@ -1,7 +1,8 @@
 /* PopUp */
+	
 $(document).ready(function(){
     var current_item;
-    $('.container-item-img').click(function(){
+    $('.container-item-img').live('click', function(){
             current_item = $(this).parent('.item');
             innerContent(current_item);
             loadPopup();
@@ -9,18 +10,19 @@ $(document).ready(function(){
     $('#shadow').click(function(){
             closePopup();
     });
+
     $('#popup-next').live('click', function(){
             clearPopupContent();
             innerContent(current_item.next('.item'));
             current_item = current_item.next('.item');
-            showPopupContent();
+            //showPopupContent();
 
     });
     $('#popup-prev').live('click', function(){
             clearPopupContent();
             innerContent(current_item.prev('.item'));
             current_item = current_item.prev('.item');
-            showPopupContent();
+           // showPopupContent();
     });
 });
 
@@ -30,8 +32,8 @@ function innerContent(item){
     var price = item.data("price");
     var brand = item.data("brand");
     var description = item.data("description");
-    var popup_content = '<div id="popup-content-left">';
-    popup_content += '		<img id="popup-img" src="'+img+'" />';
+    var popup_content = '<div id="popup-content-left" >';
+    popup_content += '		<img id="popup-img" src="'+img+'" onload="showPopupContent();"/>';
     popup_content += '	</div>';
     popup_content += '	<div id="popup-content-right">';
     popup_content += '		<span id="popup-title">título</span>';
@@ -56,6 +58,12 @@ function innerContent(item){
 }
 
 function loadPopup(event){
+    //Add events
+    $(document).bind('keypress', function(e) {
+                if (e.keyCode == 27) { closePopup();}   // esc
+                if (e.keyCode == 37) { jQuery('#popup-prev').click();}   // left
+                if (e.keyCode == 39) { jQuery('#popup-next').click();}   // right
+    });
     jQuery('#shadow').css('width','100%');
     jQuery('#shadow').css('height', jQuery(document).height());
     var left = (jQuery(window).outerWidth() - jQuery('#popup').outerWidth()) / 2.0;
@@ -67,29 +75,31 @@ function loadPopup(event){
                 showPopupContent();
     });
 }
-
 function showPopupContent(){
-    jQuery('#popup').animate({
-    'width': jQuery('#popup-content').outerWidth(),
-    'height': jQuery('#popup-content').outerHeight() + jQuery('#popup-nav').outerHeight(),
-    'left': (jQuery(window).outerWidth() - (jQuery('#popup').outerWidth() - jQuery('#popup').width() + jQuery('#popup-content').outerWidth())) / 2.0,
-    'top': (window.innerHeight - (jQuery('#popup').outerHeight() - jQuery('#popup').height() + jQuery('#popup-content').outerHeight())) / 3.0
-    }, function(){						
-            jQuery('#popup-content').prependTo('#popup');
-            jQuery('#popup').css('background-image','none');
-            jQuery('#popup-content').fadeIn('normal');
-            jQuery('#input-new-category').focus();
-    });
+   
+        jQuery('#popup').animate({
+        'width': jQuery('#popup-content').outerWidth(),
+        'height': jQuery('#popup-content').outerHeight() + jQuery('#popup-nav').outerHeight(),
+        'left': (jQuery(window).outerWidth() - (jQuery('#popup').outerWidth() - jQuery('#popup').width() + jQuery('#popup-content').outerWidth())) / 2.0,
+        'top': (window.innerHeight - (jQuery('#popup').outerHeight() - jQuery('#popup').height() + jQuery('#popup-content').outerHeight())) / 3.0,
+        }, function(){						
+                jQuery('#popup-content').prependTo('#popup');
+                jQuery('#popup').css('background-image','none');
+                jQuery('#popup-content').fadeIn('normal');
+                jQuery('#input-new-category').focus();
+                jQuery('#input-new-category-store').focus();
+        });
+   
 }
-
 function clearPopupContent(){
     jQuery('#popup-content').css('display', 'none');
     jQuery('#popup').css('background-image','url(images/loading.gif');
     jQuery('#popup-content').empty();
     jQuery('#popup-content').appendTo('body');
 }
-
 function closePopup(){
+    //Remove events
+    $(document).unbind('keypress');
     jQuery('#shadow').css('display', 'none');
     jQuery('#popup').css('display', 'none');
     jQuery('#popup-content').css('display', 'none');
@@ -99,6 +109,7 @@ function closePopup(){
     jQuery('#popup-content').empty();
     jQuery('#popup-content').appendTo('body');
 }
+
 
 /***********/
 /* ISOTOPE */

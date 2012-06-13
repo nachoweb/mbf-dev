@@ -20,9 +20,9 @@ $(document).ready(function(){
 function innerContentAddCategory(){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
-    popup_content += '<form id="form-add-new-category" name="form-add-new-category" method="post">';
+    popup_content += '<form id="form-add-new-category" name="form-add-new-category" class="form-add-new-category" method="post">';
     popup_content += '		<label>Añadir una nueva categoría</label>';
-    popup_content += '		<input type="text" id="input-new-category" name="input-new-category" />';
+    popup_content += '		<input type="text" id="input-new-category" name="input-new-category" class="input-new-category"/>';
     popup_content += '		<input type="button" id="accept-new-category" name="accept-new-category" class="button" value="Añadir" onClick="saveCategory()" />';
     popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="Cancelar" onClick="closePopup()" />';
     popup_content += '	</form>';

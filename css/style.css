@@ -222,6 +222,7 @@ body{
 	width: 100%;
 	background: url('./images/widget-bg-mid.png') repeat-y;
 	overflow:hidden;
+        font-family: "blanch_caps";
 }
 .widget-footer{
 	width: 100%;
@@ -285,7 +286,7 @@ body{
 #stores a#add-category-store{
 	color: #817974;
 	clear: both;
-	font-size: 11px;
+	font-size: 17px;
 	padding: 0;
 	margin: 7px 7px 0 7px;
 	background: none;
@@ -323,7 +324,6 @@ body{
     height: 31px;
     float: left;
     font-size: 12px;
-    font-weight: bold;
     letter-spacing: -1.5px;
     margin: 5px 5px 0px 5px;
 	
@@ -331,7 +331,7 @@ body{
 
 #categories a, #interes a{
     width: 100px;
-    height: 31px;
+    height: 25px;
     color: #817974;
     background: #F9F9F9 url(./images/button_off.png) no-repeat;
 }
@@ -346,19 +346,23 @@ body{
 }
 
 #filters a.readyDrop{
-     background: yellow;
+    background: url(./images/button_drag.png) no-repeat;
+    color: #2ea593;
 }
 
 #filters a.dropping{
-    background: red;
+    background: url(./images/button_on.png) no-repeat;
+    color: #FFFFFF;
 }
 
 #filters-stores a.readyDrop{
-     background: yellow;
+    background: url(./images/button_drag.png) no-repeat;
+    color: #2ea593;
 }
 
 #filters-stores a.dropping{
-    background: red;
+    background: url(./images/button_on.png) no-repeat;
+    color: #FFFFFF;
 }
 
 #categories a.button-img{
@@ -366,7 +370,7 @@ body{
 }
 #categories a#add-category{
 	clear: both;
-	font-size: 11px;
+	font-size: 17px;
 	padding: 0;
 	margin: 7px 7px 0 7px;
 	background: none;
@@ -379,6 +383,7 @@ body{
 }
 
 /*** Slider categorias ***/
+
 #container-slider-categories{
 	width: 100%;
 	padding: 0;
@@ -642,14 +647,20 @@ body{
 /********/
 .button{
 	width: 100px;
-	height: 31px;
+	height: 25px;
+        padding-top: 6px;
 	background: #F9F9F9 url('./images/button_off.png') no-repeat;
 	border: none;
 	font-family: "blanch_caps";
 	font-size: 19px;
-	color: #96989B;
+	color: #817974;
         text-transform: lowercase;
 }
+input[type="button"].button{
+	height: 31px;
+	padding-top: 0px
+}
+
 .button:hover{
 	background: url('./images/button_on.png') no-repeat;
 	color: #FFFFFF;

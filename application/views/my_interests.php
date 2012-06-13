@@ -4,11 +4,11 @@
 <section class="widget-body">
     <nav>
         <ul>
-            <li><a href="#">ROPA</a></li>
-            <li><a href="#">OUTLETS</a></li>
-            <li><a href="#">OCIO</a></li>
-            <li><a href="#">VIAJE</a></li>
-            <li><a href="#">CUPONES</a></li>
+            <li><a href="#" class="button">ROPA</a></li>
+            <li><a href="#" class="button">OUTLETS</a></li>
+            <li><a href="#" class="button">OCIO</a></li>
+            <li><a href="#" class="button">VIAJE</a></li>
+            <li><a href="#" class="button">CUPONES</a></li>
         </ul>
     </nav>
 </section>
