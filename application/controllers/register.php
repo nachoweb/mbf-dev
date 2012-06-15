@@ -49,10 +49,10 @@ class Register extends CI_Controller {
         $this->Session_model->add_session("myself", $user_id);
         
         //Make dirs
-        $aux = "/images/products/".$dir."/";
+        $aux = "/images/products/";
+        //echo $aux."<br/>";
         $path = $this->config->item('real_path').$aux;
-      
-        echo $path."/".$user_id;
+        
         mkdir( $path."/".$user_id, "0775");
         mkdir( $path."/$user_id/thumbs", "0775");
         
@@ -65,7 +65,7 @@ class Register extends CI_Controller {
         
        
         //Show instructions
-        //edirect("/register/steps/$hex");
+        //redirect("/register/steps/$hex");
     }
     
     
