@@ -10,7 +10,7 @@ class Save_product extends CI_Controller {
      * @author Nacho
      * @version 0.0.0
      */
-    public function save($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
+    public function save($user = "",$image = "",$price = "",$title = "",$description = "", $url = "", $store_url = "",$store_name = "", $browser = "", $status = ""){
         $this->load->model('Product_model');
         //data = array($product_id , $user_id);
         $data =  $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status);      
@@ -122,6 +122,10 @@ class Save_product extends CI_Controller {
         $this->image->width(166);
         $this->image->name("thumbs/$filename");
         $this->image->save();*/
+    }
+    
+    public function hola(){
+        echo "HOLA";
     }
     
     /*private function crop($params, $width = ""){

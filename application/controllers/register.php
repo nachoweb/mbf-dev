@@ -51,7 +51,7 @@ class Register extends CI_Controller {
         //Make dirs
         $aux = "/images/products/";
         //echo $aux."<br/>";
-        $path = $this->config->item('real_path').$aux;
+        $path = ".";
         echo $path;
         
         mkdir( $path."/".$user_id, "0775");
