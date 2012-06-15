@@ -52,7 +52,7 @@ class Register extends CI_Controller {
         $aux = "/images/products/".$dir."/";
         $path = $this->config->item('real_path').$aux;
       
-        
+        echo $path."/".$user_id;
         mkdir( $path."/".$user_id, "0775");
         mkdir( $path."/$user_id/thumbs", "0775");
         
@@ -65,7 +65,7 @@ class Register extends CI_Controller {
         
        
         //Show instructions
-        redirect("/register/steps/$hex");
+        //edirect("/register/steps/$hex");
     }
     
     
