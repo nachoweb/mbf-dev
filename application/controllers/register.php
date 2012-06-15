@@ -49,7 +49,9 @@ class Register extends CI_Controller {
         $this->Session_model->add_session("myself", $user_id);
         
         //Make dirs
-        $path = "/../../images/products";
+        $aux = "/images/products/".$dir."/";
+        $path = $this->config->item('real_path').$aux;
+      
         
         mkdir( $path."/".$user_id, "0775");
         mkdir( $path."/$user_id/thumbs", "0775");

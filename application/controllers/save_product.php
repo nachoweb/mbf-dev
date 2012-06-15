@@ -27,16 +27,17 @@ class Save_product extends CI_Controller {
         $filename = $img_path_parts['filename'];
         $img_ext = $img_path_parts['extension']; 
         //echo "---------USER ID: $user_id <br/>";
-        $aux = "./images/products/".$dir."/";
+        $aux = "/images/products/".$dir."/";
         //echo $aux."<br/>";
-        $path = realpath($aux);
+        $path = $this->config->item('real_path').$aux;
         //echo "PATH: $path <br/>";
-        $filex = $path ."\\". $file_new_name . "." .$img_ext; 
+        $filex = $path ."/". $file_new_name . "." .$img_ext; 
         //echo $filex;
         $fh = fopen($filex, 'w'); 
         fputs($fh, $img_file); 
         fclose($fh); 
         $this->resize($filex,$path );
+        echo $path;
         $this->create_thumb($filex , $path, $file_new_name , $img_ext);
         return filesize($filex); 
     }

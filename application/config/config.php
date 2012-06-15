@@ -16,7 +16,9 @@
 */
 $config['base_url']	= 'http://localhost/closure/server/dev';
 $config['bm_script']	= 'http://localhost:9810/compile?id=popup';
+$config['real_path']    = 'c:\wamp\www\closure\server\dev';
 
+//$config['real_path']    = '/home/mbf/public_html/dev';
 /*
 |--------------------------------------------------------------------------
 | Index File
