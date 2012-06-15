@@ -125,7 +125,7 @@ class Save_product extends CI_Controller {
     }
     
     public function hola(){
-        echo "HOLA"
+        echo "HOLA";
     }
     
     /*private function crop($params, $width = ""){
