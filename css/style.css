@@ -324,7 +324,6 @@ body{
     height: 31px;
     float: left;
     font-size: 12px;
-    letter-spacing: -1.5px;
     margin: 5px 5px 0px 5px;
 	
 }
@@ -1041,4 +1040,21 @@ span.register-title{
 	width: 228px;
 	text-align: right;
 	margin-top: -25px;
+}
+
+/********/
+/* Ocio */
+/********/
+.section-interes{
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.article-interes{	
+	background: url('./images/logo_box.png') no-repeat;
+}
+.article-interes img{
+	max-width: 150px;
+	max-height: 35px;
+	margin-top: 23px;
+	
 }

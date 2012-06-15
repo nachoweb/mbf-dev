@@ -1,7 +1,7 @@
 <section class="my-stores">
     <?php for($i=0; $i< count($stores); $i++){?>
     <?php
-    $logo = $stores[$i]->logo == ""? $image_no_logo : $base_url_image."/".$stores[$i]->logo;
+    $logo = $stores[$i]->logo == ""? $image_no_logo : $base_url_image."/stores/".$stores[$i]->logo;
     
     $store_class = "";
     foreach($stores[$i]->st_categories as $cat){

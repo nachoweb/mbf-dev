@@ -5,15 +5,15 @@
  * and open the template in the editor.
  */
 ?>
-<div class="container-slider"  id="container-slider-products">
-    <section class="slider" id="slider-products">
+<!--  <div class="container-slider"  id="container-slider-products"> -->
+ <!--    <section class="slider" id="slider-products"> -->
             <?php
             for($i=0; $i < count($products); $i++){
             ?>
 
             <?php if(($i)%12 == 0){  ?>
             <!-- Slider item <?php echo ($i)/3 ?> -->
-            <div id="slider-item-<?php echo ($i)/3 ?>" class="slider-item">	
+ <!--           <div id="slider-item-<?php echo ($i)/3 ?>" class="slider-item">	 -->
             <?php } ?>
             <?php 
                 $id = $products[$i]->id;
@@ -21,6 +21,7 @@
                 $thumb = $base_url_image."/thumbs/".$products[$i]->image;
                 $price = rawurldecode($products[$i]->price);
                 $price == "NS" ? $price = "" : $price = $price." €";
+                $product_url = rawurldecode($products[$i]->url);
                 $store_name = rawurldecode($products[$i]->store_name);
                 $description = rawurldecode($products[$i]->description); 
                 $description == "NS" ? $description = "" : $description = $description;
@@ -32,7 +33,7 @@
                 }
             ?>
 
-            <article class="item <?php echo $cat_class; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>">
+            <article class="item <?php echo $cat_class; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>">
                     <div class="container-item-img">
                             <img class="item-img image-fit" src="<?php echo $thumb ?>" onload="fit($(this))" />
                     </div>
@@ -45,12 +46,12 @@
                     <span class="item-brand"><a href="<?php echo $products[$i]->store_url; ?>"><?php echo $products[$i]->store_name; ?></a></span>
             </article>
             <?php if(($i+1)%12 == 0){ ?>
-                </div> <!-- end slider item <?php echo ($i+1)/3 ?> -->
+        <!--        </div> <!-- end slider item <?php echo ($i+1)/3 ?> -->
             <?php } ?>
             <?php 
             }
             ?>
-    </section>
+   <!-- </section>
     <nav id="nav-slider">	 	
             <ul class="nav-list">
                     <li class="nav-item" id="slider-left"><img src="images/left.png"></li>

@@ -25,7 +25,7 @@ class Product_model extends CI_Model {
             from mbf_product join mbf_store join mbf_product_category
             on mbf_product.store = mbf_store.id and mbf_product.id = mbf_product_category.product
             where session=$session_id
-            order by mbf_product.id asc";
+            order by mbf_product.id desc";
         $query = $this->db->query($sql);
         return $query->result();
     }

@@ -223,3 +223,30 @@ function insert_content(url){
        jQuery('#nav-categories').fadeIn('normal');
    }
 });
+
+
+/***************/
+/* Interests   */
+/***************/
+function active_drag_drop_interest(){
+    
+}
+function insert_interest(st_category_id){
+    
+}
+
+
+ $(document).ready(function(){
+    jQuery('#interest a').click(function(){
+        var st_cat =  $(this).data('stcategory');
+        console.log(st_cat);
+        url = base_url +  "main/stores_category/" + st_cat;
+        insert_content(url);
+        $('#fade').queue(function(){
+            $(this).animate({opacity: 1}, 400);
+            active_drag_drop_stores();
+            $(this).dequeue();
+        });
+    });
+ });
+ 

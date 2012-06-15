@@ -32,8 +32,9 @@ function innerContent(item){
     var price = item.data("price");
     var brand = item.data("brand");
     var description = item.data("description");
+    var link = item.data("producturl");
     var popup_content = '<div id="popup-content-left" >';
-    popup_content += '		<img id="popup-img" src="'+img+'" onload="showPopupContent();"/>';
+    popup_content += '		<a href="'+link+'" target="_blank"><img id="popup-img" src="'+img+'" onload="showPopupContent();"/></a>';
     popup_content += '	</div>';
     popup_content += '	<div id="popup-content-right">';
     popup_content += '		<span id="popup-title">título</span>';
@@ -118,7 +119,7 @@ function closePopup(){
 
 $(document).ready(function(){
     // filter items when filter link is clicked
-     $('.slider-item').isotope({
+     $('#content').isotope({
         // options
         itemSelector : '.item',
         layoutMode : 'fitRows'
@@ -130,10 +131,9 @@ $(document).ready(function(){
 /* Products */
 function click_category_filters(){
     $('#filters a').click(function(){ 
-        console.log(content_control);
         if(content_control == "products"){
             var selector = $(this).attr('data-filter');
-            $('.slider-item').isotope({filter: selector});
+            $('#fade').isotope({filter: selector});
             return false;
         }else{
             content_control = "products";
@@ -143,8 +143,12 @@ function click_category_filters(){
             var a = $(this);
             $('#fade').animate({opacity: 1}, 400, function(){                
                 active_drag_drop_products();
-                a.click();
+                 var selector = $(this).attr('data-filter');
+                $('#fade').isotope({filter: selector});
+                return false;
+              //  a.click();
             });
+           
         }
     });
 }
@@ -153,12 +157,14 @@ function click_category_filters(){
 
 function click_st_category_filters(){
     $('#filters-stores a').click(function(){ 
+         
          if(content_control == "stores"){
             var selector = $(this).attr('data-filter');
             $('.my-stores').isotope({filter: selector});
             return false;
         }else{
             content_control = "stores";
+            console.log(content_control);
             var selector = $(this).attr('data-filter');
             url = base_url + "main/stores";
             insert_content(url);
@@ -171,6 +177,7 @@ function click_st_category_filters(){
                 $('.my-stores').isotope({filter: selector}); 
                 active_drag_store();
             });
+           
         }
     });
 }
@@ -232,6 +239,7 @@ function active_drop_products(){
 
 
 function active_drag_store(){
+    console.log("ieee");
      $( ".store" ).draggable({
         appendTo: "body",
         helper: "clone",
@@ -243,6 +251,7 @@ function active_drag_store(){
         stop: function(event, ui){ 
         }
     });
+    console.log("IAAAAaa");
 }
 
 function active_drop_stores(){

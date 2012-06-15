@@ -101,9 +101,21 @@ class Main extends CI_Controller {
             $this->load->model('Store_model');
             $this->load->helper('url');
             
+            $data_stores['base_url_image'] = site_url("/images/stores/"); 
+            $data_stores['image_no_logo'] = site_url("/images/stores/no_logo.png");
+            $data_stores['stores']=$this->Store_model->get_my_stores($user_id);
+            $this->load->view('my_stores', $data_stores);
+        }
+        
+        public function stores_category($st_category = 28){
+            //Loader
+            $this->load->model('Store_model');
+            $this->load->helper('url');
+            
+            
+            $data_stores['stores'] = $this->Store_model->get_interest($st_category);
             $data_stores['base_url_image'] = site_url("/images"); 
             $data_stores['image_no_logo'] = site_url("/images/no_logo.png");
-            $data_stores['stores']=$this->Store_model->get_my_stores($user_id);
             $this->load->view('my_stores', $data_stores);
         }
 }
