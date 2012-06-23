@@ -1,4 +1,4 @@
-<section class="my-stores">
+<!-- <section class="my-stores"> -->
     <?php for($i=0; $i< count($stores); $i++){?>
     <?php
     $logo = $stores[$i]->logo == ""? $image_no_logo : $base_url_image."/stores/".$stores[$i]->logo;
@@ -8,7 +8,7 @@
         $store_class .= " $cat";
     }
     ?>
-    <article class="store <?php echo $store_class; ?>" data-id="<?php echo $stores[$i]->id?>">
+    <article class="store <?php echo $store_class; ?>" data-id="<?php echo $stores[$i]->id?> isotope">
         <a href="#">
             <div>
                 <img src="<?php echo $logo ?>" />
@@ -19,4 +19,4 @@
         </div>
     </article>
     <?php } ?>
-</section>
+<!-- </section> -->

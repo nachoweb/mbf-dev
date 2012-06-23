@@ -47,8 +47,19 @@ class Product_model extends CI_Model {
      * @return object product 
      */
     function get_product_by_id($id){
-        $query = $this->db->query('SELECT * FROM mbf_prodcut where id='.$id);
-        return $query->result();
+        $query = $this->db->query('SELECT * FROM mbf_product where id='.$id);
+        return  $query->row();
+    }
+    
+    function get_product_category_user($product_id){
+        $sql = "select mbf_product.id as 'product', mbf_category.user as 'user', mbf_category.id as 'category'
+                from mbf_product join mbf_category join mbf_product_category
+                on mbf_product.id = mbf_product_category.product and mbf_product_category.category = mbf_category.id
+                where mbf_product.id = $product_id";
+        $query = $this->db->query($sql);
+        $row = $query->row();
+        return $row;
+        
     }
     
     /**
@@ -109,7 +120,7 @@ class Product_model extends CI_Model {
      * @param string    $browser User browser
      * @param string    $status  public or private
      */
-    
+    /*
     function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status){
         
         //User_id
@@ -216,6 +227,152 @@ class Product_model extends CI_Model {
         $data["product_id"] = $product;
         return $data;
     }
+    
+   */
+       function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status, $session = ""){
+        
+        //User_id
+        $query = $this->db->query("SELECT id FROM mbf_user where hex='$hex'");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+            $user_id = $result[0]->id;
+        }else{
+            return -1;
+        }
+        //$user_id = $this->session->userdata('user_id');
+            
+        //Get session user
+        $query = $this->db->query("SELECT * FROM mbf_session where user='$user_id' and name='myself'");
+        $row = $query->row();
+        $session = $row->id;
+        
+        //Get the user st_category TODAS 
+        $query = $this->db->query("SELECT * FROM mbf_st_category where name='todas' and user=$user_id");
+        $row = $query->row();
+        $st_cat = $row->id;
+        
+        //Store
+        $query = $this->db->query("SELECT * FROM mbf_store where url='http://$store_url'");
+        if ($query->num_rows() > 0){
+            $row = $query->row();
+            $store = $row->id;
+        
+            //Check user-store            
+            //Check user-cat-myself vs store
+            $query = $this->db->query("SELECT * FROM mbf_st_category_store where st_category=$st_cat and store=$store");
+            if ($query->num_rows() == 0){
+                //Insert User Store
+                $data = array(
+                    "st_category"   =>  $st_cat,
+                    "store"         =>  $store
+                );
+                $this->db->insert('mbf_st_category_store', $data); 
+            }            
+        }else{
+            //Insert store
+            $data = array(
+                    "url"   =>  "http://".$store_url,
+                    "name"  =>  $store_name
+            );
+            $this->db->insert('mbf_store', $data); 
+            $store = $this->db->insert_id();
+            //Insert User Store
+            $data = array(
+                "st_category"   =>  $st_cat,
+                "store"         =>  $store
+            );
+            $this->db->insert('mbf_st_category_store', $data); 
+        }
+        
+        //imagen
+        //ID
+        $next_id = "";
+        $query = $this->db->query("SHOW TABLE STATUS");
+        $result = $query->result();
+        $i=0;
+        while($next_id == ""){
+            if($result[$i]->Name == "mbf_product"){
+                $next_id = $result[$i]->Auto_increment;
+            }
+            $i++;
+        }
+        //EXTENSION
+        $image = urldecode($image);
+        $image_path = parse_url($image);
+        $img_path_parts = pathinfo($image_path['path']); 
+        $img_file = file_get_contents($image); 
+        $filename = $img_path_parts['filename'];
+        $img_ext = $img_path_parts['extension']; 
+        
+        $image = $next_id.".".$img_ext;
+        
+        //Insert product
+        $data = array(
+            'title'         => $title,
+            'image'         => $image,
+            'price'         => $price,
+            'description'   => $description,
+            'url'           => $url,
+            'store'         => $store,
+            'browser'       => $browser,
+            'session'       => $session,
+            'date'          => date('Y-m-d H:i:s'),
+            'status'        => $status
+        );
+        $this->db->insert('mbf_product', $data); 
+        $product = $this->db->insert_id();
+        
+        //Category-product
+        $ci =& get_instance();
+        $ci->load->model('Category_model');
+        $my_products = $ci->Category_model->get_category_my_product($user_id);
+        $data = array(
+            'product'         => $title,
+            'category'        => $my_products
+        );
+        $query = $this->db->query("insert into mbf_product_category(product, category) values ($product, $my_products)");
+        $data["user_id"] = $user_id;
+        $data["product_id"] = $product;
+        return $data;
+    }
+    /**
+     * 
+     * @return int $produc_id product idx 
+     */
+    function add_product_session($product_id, $session_id){
+        $product = $this->get_product_by_id($product_id);
+        print_r($product);
+         $data = array(
+            'title'         => $product->title,
+            'image'         => $product->image,
+            'price'         => $product->price,
+            'description'   => $product->description,
+            'url'           => $product->url,
+            'store'         => $product->store,
+            'browser'       => $product->browser,
+            'session'       => $session_id,
+            'date'          => date('Y-m-d H:i:s'),
+            'status'        => $product->status
+        );
+        $this->db->insert('mbf_product', $data); 
+        $product_id = $this->db->insert_id();
+        return $product_id;
+    }
+    
+    function remove_product_category($product_id, $category_id){
+        $sql = "delete from mbf_product_category where product = $product_id and category= $category_id";
+        $query = $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+    
+    
+    function remove_product($product_id){
+        $sql = "delete from mbf_product where id=$product_id";
+        $query = $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+    
+    
 }
 
 ?>

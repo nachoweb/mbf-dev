@@ -33,7 +33,7 @@
                 }
             ?>
 
-            <article class="item <?php echo $cat_class; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>">
+            <article class="item <?php echo $cat_class; ?> isotope" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>">
                     <div class="container-item-img">
                             <img class="item-img image-fit" src="<?php echo $thumb ?>" onload="fit($(this))" />
                     </div>

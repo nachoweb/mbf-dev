@@ -212,6 +212,24 @@ function insert_content(url){
 }
 
 
+/* Get HTML Template */
+function get_temaplate(url){
+    console.log(url);
+    var HTML = '';    
+    //$("#ajax-loader-content").fadeIn("fast", function(){});
+    jQuery.ajax({
+        url: url,
+        async: false,
+        success: function(respuesta){
+           HTML = respuesta;
+        },	
+        error: function(objeto, quepaso, otroobj){
+            success =  false;
+        }
+    });	 
+    return HTML;
+}
+
 /****************************************************/
 /* Show nav widgets st_cat and product categories   */
 /****************************************************/

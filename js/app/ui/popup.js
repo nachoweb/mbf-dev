@@ -82,7 +82,7 @@ function showPopupContent(){
         'width': jQuery('#popup-content').outerWidth(),
         'height': jQuery('#popup-content').outerHeight() + jQuery('#popup-nav').outerHeight(),
         'left': (jQuery(window).outerWidth() - (jQuery('#popup').outerWidth() - jQuery('#popup').width() + jQuery('#popup-content').outerWidth())) / 2.0,
-        'top': (window.innerHeight - (jQuery('#popup').outerHeight() - jQuery('#popup').height() + jQuery('#popup-content').outerHeight())) / 3.0,
+        'top': (window.innerHeight - (jQuery('#popup').outerHeight() - jQuery('#popup').height() + jQuery('#popup-content').outerHeight())) / 3.0
         }, function(){						
                 jQuery('#popup-content').prependTo('#popup');
                 jQuery('#popup').css('background-image','none');
@@ -121,7 +121,7 @@ $(document).ready(function(){
     // filter items when filter link is clicked
      $('#content').isotope({
         // options
-        itemSelector : '.item',
+        itemSelector : '.isotope',
         layoutMode : 'fitRows'
     });
     click_category_filters();
@@ -133,10 +133,10 @@ function click_category_filters(){
     $('#filters a').click(function(){ 
         if(content_control == "products"){
             var selector = $(this).attr('data-filter');
-            $('#fade').isotope({filter: selector});
+            $('#content').isotope({filter: selector});
             return false;
         }else{
-            content_control = "products";
+           /* content_control = "products";
             url = base_url + "main/products";
             var selector = $(this).attr('data-filter');
             insert_content(url);
@@ -147,6 +147,15 @@ function click_category_filters(){
                 $('#fade').isotope({filter: selector});
                 return false;
               //  a.click();
+            });*/
+            content_control = "products";
+            var url = base_url + "main/products";
+            var html = get_temaplate(url);
+            var $new_items = $(html);
+           
+            var $remove_items = jQuery(".store");
+            $('#content').isotope( 'remove', $remove_items, function(){
+            $('#content').isotope('insert', $new_items);
             });
            
         }
@@ -159,11 +168,13 @@ function click_st_category_filters(){
     $('#filters-stores a').click(function(){ 
          
          if(content_control == "stores"){
-            var selector = $(this).attr('data-filter');
-            $('.my-stores').isotope({filter: selector});
+           var selector = $(this).attr('data-filter');
+            $('#content').isotope({filter: selector});
+            console.log(selector);
             return false;
+            
         }else{
-            content_control = "stores";
+        /*    content_control = "stores";
             console.log(content_control);
             var selector = $(this).attr('data-filter');
             url = base_url + "main/stores";
@@ -176,8 +187,17 @@ function click_st_category_filters(){
                 });  
                 $('.my-stores').isotope({filter: selector}); 
                 active_drag_store();
-            });
-           
+            });*/
+            content_control = "stores";
+            var url = base_url + "main/products";
+           var html = get_temaplate(url);
+           $new_items = $(html);
+           var $newItems = $('<div class="isotope" > HOLA </div>');
+           var $remove_items = jQuery(".item");
+           $('#content').isotope( 'remove', $remove_items, function(){
+              //  $('#content').isotope('insert', $new_items);
+             $('#content').isotope('insert', $new_items);
+           });
         }
     });
 }

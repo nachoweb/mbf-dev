@@ -66,13 +66,28 @@ class Session_model extends CI_Model {
         }
     }
     
-    function add_session($name, $user){
+    function add_session_with_store($name, $user, $store){
         $date = date("Y-n-d H:i:s");
          $data = array(
             "date"      =>  $date,
             "user"      =>  $user,
             "items"     =>  0,
-            "name"      =>  $name
+            "name"      =>  $name,
+            "store"     =>  $store
+        );
+        $this->db->insert('mbf_session', $data); 
+        $session = $this->db->insert_id();
+        return $session;
+    }
+    
+     function add_session($name, $user){
+        $date = date("Y-n-d H:i:s");
+         $data = array(
+            "date"      =>  $date,
+            "user"      =>  $user,
+            "items"     =>  0,
+            "name"      =>  $name,
+            "store"     =>  $store
         );
         $this->db->insert('mbf_session', $data); 
         $session = $this->db->insert_id();

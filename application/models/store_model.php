@@ -30,7 +30,7 @@ class Store_model extends CI_Model {
     }*/
     
     function get_stores_by_user($id_user){
-        $sql = "SELECT mbf_store.id, mbf_store.name, mbf_store.url, mbf_store.logo, mbf_st_category_store.st_category
+        $sql = "SELECT mbf_store.id, mbf_store.star, mbf_store.description, mbf_store.member, mbf_store.name, mbf_store.url, mbf_store.logo, mbf_st_category_store.st_category
                 FROM mbf_store join mbf_st_category_store join mbf_st_category
                 on mbf_store.id = mbf_st_category_store.store and mbf_st_category_store.st_category = mbf_st_category.id
                 and mbf_st_category.user = $id_user
@@ -80,6 +80,14 @@ class Store_model extends CI_Model {
             $k++;
         }
         return $my_stores;
+    }
+    
+    function get_members_stores(){
+        $query = $this->db->query("SELECT * FROM mbf_store where member = 1");
+        if ($query->num_rows() > 0){
+            return $query->result();
+        }
+        return array();
     }
     
     function get_interest($st_category){
