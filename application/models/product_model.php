@@ -229,7 +229,7 @@ class Product_model extends CI_Model {
     }
     
    */
-       function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status, $session = ""){
+       function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status, $session_item = "", $myself = ""){
         
         //User_id
         $query = $this->db->query("SELECT id FROM mbf_user where hex='$hex'");
@@ -242,9 +242,7 @@ class Product_model extends CI_Model {
         //$user_id = $this->session->userdata('user_id');
             
         //Get session user
-        $query = $this->db->query("SELECT * FROM mbf_session where user='$user_id' and name='myself'");
-        $row = $query->row();
-        $session = $row->id;
+        $session = $myself;
         
         //Get the user st_category TODAS 
         $query = $this->db->query("SELECT * FROM mbf_st_category where name='todas' and user=$user_id");
@@ -322,6 +320,11 @@ class Product_model extends CI_Model {
         $this->db->insert('mbf_product', $data); 
         $product = $this->db->insert_id();
         
+        //Other sessions
+        if($session_item != $myself){
+            $this->add_product_session($product, $session_item);
+        }
+        
         //Category-product
         $ci =& get_instance();
         $ci->load->model('Category_model');
@@ -341,7 +344,6 @@ class Product_model extends CI_Model {
      */
     function add_product_session($product_id, $session_id){
         $product = $this->get_product_by_id($product_id);
-        print_r($product);
          $data = array(
             'title'         => $product->title,
             'image'         => $product->image,

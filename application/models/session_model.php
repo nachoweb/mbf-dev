@@ -22,12 +22,12 @@ class Session_model extends CI_Model {
      */
     function get_sessions_by_user($user){
         $id_user = "";
-        if(is_int($user)){
+        if(is_numeric($user)){
             $id_user = $user;
         }else{
             $id_user = $user->id;
         }
-        $query = $this->db->query( "select *
+        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user
                     from mbf_session_user join mbf_session join mbf_user
                     on mbf_session_user.session = mbf_session.id and mbf_session_user.user = mbf_user.id
                     where mbf_user.id = '$id_user'
