@@ -48,6 +48,11 @@ class Register extends CI_Controller {
         $this->load->model('Session_model');
         $this->Session_model->add_session("myself", $user_id);
         
+        //Invitation
+        if($this->input->post('invitation')!= ""){
+            $this->Session_model->add_session_user_by_hex($user_id,$this->input->post('invitation'));
+        }
+        
         //Make dirs
         $aux = "/images/products/";
         //echo $aux."<br/>";
@@ -92,18 +97,26 @@ class Register extends CI_Controller {
         }
     }
     
-    public function check_login($email, $password){    
+    public function check_login($email, $password, $invitation = ""){    
         $this->load->library('session');
         $email = urldecode($email);
         $password = md5(urldecode($password));
         $this->load->model('User_model');
         $user = $this->User_model->check_login($email, $password);
+        
+        //Session
         if( !is_numeric($user)){
             $userdata = array(
                 'user_id'  => $user->id,
                 'user_name' => $user->name
             );
             $this->session->set_userdata($userdata);
+            
+            //Invitation
+            if($invitation != ""){
+                $this->load->model('Session_model');
+                $this->Session_model->add_session_user_by_hex($user->id,$invitation);
+            }            
             echo "ok";
         }else{
             echo "fail";

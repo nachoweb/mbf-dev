@@ -29,11 +29,13 @@ function checkLogin(){
     var success = true; 
     var emailToCheck = jQuery('#login-email').val();
     var passToCheck = jQuery('#login-password').val();
+    var invitation = jQuery('#invitation').val();
+    console.log("INVITATION" + invitation);
     if (emailToCheck != ''){
         if(passToCheck != ''){
-            console.log(base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck));
+            console.log(base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck) + "/" + invitation);
             jQuery.ajax({
-                url: base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck),
+                url: base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck) + "/" + invitation,
                 async: false,
                 success: function(respuesta){
                     respuesta = jQuery.trim(respuesta);

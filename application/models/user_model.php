@@ -108,6 +108,14 @@ class User_model extends CI_Model {
             return -1;
         }
     }
+    
+    function refresh_last_visit($user_id, $date){
+        $data = array(
+                'last_visit' => $date
+        );
+        $this->db->where('id', $user_id);
+        $this->db->update('mbf_user', $data); 
+    }
 }
 
 ?>

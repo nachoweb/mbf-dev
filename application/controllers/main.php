@@ -13,8 +13,16 @@ class Main extends CI_Controller {
 	 */
 	public function index(){
             if(!$this->session->userdata('user_id')){
+                /*$this->load->helper('url');
+                redirect('/welcome', 'location');*/
                 $this->load->helper('url');
-                redirect('/welcome', 'location');
+                
+                $data['base_url'] = base_url();
+                $data['invitation'] = $this->input->get('invitation');
+                
+                $this->load->view('head');   
+                $this->load->view('welcome', $data);
+                $this->load->view('footer'); 
             }else{
                 $this->home();
             }
@@ -24,6 +32,16 @@ class Main extends CI_Controller {
             //USER
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
+            
+            //Actualize last visit
+             $this->load->model('User_model');
+             $this->User_model->refresh_last_visit($user_id, date('Y-m-d H:i:s')); 
+                     
+            //Add posible session
+           if($this->input->get('invitation')!= ""){
+                $this->load->model('Session_model');
+                $this->Session_model->add_session_user_by_hex($user_id,$this->input->get('invitation'));
+            }
 
             $this->load->model('Product_model');
             $this->load->model('St_category_model');
