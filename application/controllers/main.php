@@ -38,44 +38,38 @@ class Main extends CI_Controller {
              $this->User_model->refresh_last_visit($user_id, date('Y-m-d H:i:s')); 
                      
             //Add posible session
-           if($this->input->get('invitation')!= ""){
+            if($this->input->get('invitation')!= ""){
                 $this->load->model('Session_model');
                 $this->Session_model->add_session_user_by_hex($user_id,$this->input->get('invitation'));
             }
 
-            $this->load->model('Product_model');
-            $this->load->model('St_category_model');
-            $this->load->model('Category_model');
+                
+           
+          
 
             //Products
+            $this->load->model('Product_model');        
             $this->load->helper('url');
+            $this->load->model('Category_model');
             $data_products['base_url_image'] = site_url("/images/products/$user_id");
             $data_products['products']=$this->Product_model->get_my_products($user_id);
-            $content['content'] = $this->load->view('my_products',$data_products, true);
+            $data_products['categories'] = $this->Category_model->get_categories_by_user($user_id);
+            $content['content'] = $this->load->view('my_products', $data_products , true);
             $content['base_url'] = site_url();
-
-            /************/
-            /* Widgets  */
-            /************/
-            //Stores categories
-            $data_categories_stores['st_categories']=$this->St_category_model->get_st_categories_by_user($user_id);
-            $sidebar['widgets']['stores']['id']="stores";
-            $sidebar['widgets']['stores']['html'] = $this->load->view('my_st_categories',$data_categories_stores, true);
-            
-            //Product categories
-            $data_categories['categories']= $this->Category_model->get_categories_by_user($user_id);
-            $sidebar['widgets']['categories']['id']="categories";
-            $sidebar['widgets']['categories']['html'] = $this->load->view('my_categories',$data_categories, true);
+          
+            //Stores
+            $this->load->model('Store_model');
+            $data_stores['members'] = $this->Store_model->get_members_stores();
+            $data_stores['my_stores'] = $this->Store_model->get_stores_by_user($user_id);
+            $data_stores['base_url_image'] = site_url("/images/stores/"); 
+            $data_stores['image_no_logo'] = site_url("/images/stores/no_logo.png");
+            //$content['content'] = $this->load->view('my_stores',$data_stores, true);
            
-            /* CARGAR VISTA DE LAS CATEGORIAS */
-
-            //Interests
-            $sidebar['widgets']['interest']['id']="interes";
-            $sidebar['widgets']['interest']['html'] = $this->load->view('my_interests', '', true);
+            /* CARGAR VISTAS */
           
             $this->load->view('head');
-            $this->load->view('header', $user_data);
-            $this->load->view('sidebar', $sidebar);
+            $this->load->view('header');
+            $this->load->view('sidebar');
             $this->load->view('content', $content);
             $this->load->view('footer');
         }

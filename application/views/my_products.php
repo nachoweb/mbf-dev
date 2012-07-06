@@ -1,61 +1,69 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<!--  <div class="container-slider"  id="container-slider-products"> -->
- <!--    <section class="slider" id="slider-products"> -->
-            <?php
-            for($i=0; $i < count($products); $i++){
-            ?>
-
-            <?php if(($i)%12 == 0){  ?>
-            <!-- Slider item <?php echo ($i)/3 ?> -->
- <!--           <div id="slider-item-<?php echo ($i)/3 ?>" class="slider-item">	 -->
-            <?php } ?>
-            <?php 
-                $id = $products[$i]->id;
-                $image = $base_url_image."/".$products[$i]->image;
-                $thumb = $base_url_image."/thumbs/".$products[$i]->image;
-                $price = rawurldecode($products[$i]->price);
-                $price == "NS" ? $price = "" : $price = $price." €";
-                $product_url = rawurldecode($products[$i]->url);
-                $store_name = rawurldecode($products[$i]->store_name);
-                $description = rawurldecode($products[$i]->description); 
-                $description == "NS" ? $description = "" : $description = $description;
-                $store_url = rawurldecode($products[$i]->store_url); 
-                //Cat-class for isotope
-                $cat_class = "";
-                foreach($products[$i]->categories as $cat){
-                    $cat_class .= " $cat";
-                }
-            ?>
-
-            <article class="item <?php echo $cat_class; ?> isotope" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>">
-                    <div class="container-item-img">
-                            <img class="item-img image-fit" src="<?php echo $thumb ?>" onload="fit($(this))" />
-                    </div>
-                    <span class="item-price">
-                    <?php if($products[$i]->price != "NS"){ ?>
-                    <?php echo $products[$i]->price." €" ?>
-                    <?php  }  ?>
-                    </span>
-
-                    <span class="item-brand"><a href="<?php echo $products[$i]->store_url; ?>"><?php echo $products[$i]->store_name; ?></a></span>
-            </article>
-            <?php if(($i+1)%12 == 0){ ?>
-        <!--        </div> <!-- end slider item <?php echo ($i+1)/3 ?> -->
-            <?php } ?>
-            <?php 
-            }
-            ?>
-   <!-- </section>
-    <nav id="nav-slider">	 	
-            <ul class="nav-list">
-                    <li class="nav-item" id="slider-left"><img src="images/left.png"></li>
-                    <li class="nav-item" id="slider-right"><img src="images/right.png"></li>
+<div id="menu-productos">
+    <nav>
+            <ul id="product_filters">
+                <?php   foreach($categories as $category){ ?>
+                  <li><a class="button" href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>"><?php echo $category->name ?></a></li>
+               <?php  } ?>
             </ul>
     </nav>
-</div>	<!-- END SLIDER -->
+    <div class="bg-botonera">
+            <div class="bg-botonera-left">						
+            </div>
+            <div class="bg-botonera-mid">							
+            </div>
+            <div class="bg-botonera-right">							
+            </div>
+    </div>
+</div>
+<div id="container-productos">
+    <section id="productos-1">
+        <?php
+        foreach ($products as $product){
+            $id = $product->id;
+            $image = $base_url_image."/".$product->image;
+            $thumb = $base_url_image."/thumbs/".$product->image;
+            $price = rawurldecode($product->price);
+            $price == "NS" ? $price = "" : $price = $price." €";
+            $product_url = rawurldecode($product->url);
+            $store_name = rawurldecode($product->store_name);
+            $description = rawurldecode($product->description); 
+            $description == "NS" ? $description = "" : $description = $description;
+            $store_url = rawurldecode($product->store_url); 
+            //Cat-class for isotope
+            $cat_class = "";
+            foreach($product->categories as $cat){
+                $cat_class .= " $cat";
+            }
+        ?>
+            <article class="producto <?php echo $cat_class; ?>" >
+                    <div class="options-producto">
+                            <a href="" class="producto-sesion"><div></div></a>
+                            <a href="" class="producto-carpeta"><div></div></a>
+                            <div class="tooltip-producto-sesion"></div>
+                            <div class="tooltip-producto-carpeta">
+                                <div id="menu-tooltip-producto">
+                                    <nav>
+                                        <ul>
+                                            <?php   foreach($categories as $category){ ?>
+                                             <li><a  href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick="add_product_category(<?php echo "$id, $category->id"; ?>)"><?php echo $category->name ?></a></li>
+                                            <?php } ?>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="container-img-producto">
+                            <img src="<?php echo $thumb ?>" />
+                    </div>
+                    <div class="container-info-producto">
+                            <div class="title-producto">sin titulo</div>
+                            <div class="price-brand-producto">
+                                    <span class="price-producto">60 €</span>
+                                    <span class="brand-producto"><a href="#">adidas.com</a></span>
+                            </div>
+                    </div>
+            </article>
+        <?php   } /* END FOREACH */  ?> 
+           
+    </section>
+</div>
