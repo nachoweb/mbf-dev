@@ -13,7 +13,6 @@ class Register extends CI_Controller {
         $successfull = $this->User_model->check_login($this->input->post('email'), md5($this->input->post('password')));
         if($sucessfull){
             if($this->input->post('invitation')!= ""){
-                echo "que pasa aqui";
                 $this->load->model('Session_model');
                 $this->Session_model->add_session_user_by_hex($this->session->userdata('user_id'),$this->input->get('invitation'));
             }

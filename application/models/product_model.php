@@ -20,15 +20,25 @@ class Product_model extends CI_Model {
      * @param int $session_id Session id
      * @return array Array of products 
      */
-    function get_products_by_session($session_id) {
+    function get_products_by_session($session_id, $categories = true) {
         $sql = "select mbf_product.id, mbf_product_category.category, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
             from mbf_product join mbf_store join mbf_product_category
             on mbf_product.store = mbf_store.id and mbf_product.id = mbf_product_category.product
             where session=$session_id
             order by mbf_product.id desc";
+        if($categories == false){
+            $sql = "select mbf_product.id,  mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
+            from mbf_product join mbf_store
+            on  mbf_product.store = mbf_store.id
+            where session=$session_id
+            order by mbf_product.id asc";
+        }
         $query = $this->db->query($sql);
         return $query->result();
     }
+    
+    
+  
     
     
     

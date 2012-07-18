@@ -6,15 +6,8 @@
                <?php  } ?>
             </ul>
     </nav>
-    <div class="bg-botonera">
-            <div class="bg-botonera-left">						
-            </div>
-            <div class="bg-botonera-mid">							
-            </div>
-            <div class="bg-botonera-right">							
-            </div>
-    </div>
 </div>
+<div id="add-category-div"><a href="#" id="add-category"> + añadir  </a></div>
 <div id="container-productos">
     <section id="productos-1">
         <?php
@@ -29,39 +22,42 @@
             $description = rawurldecode($product->description); 
             $description == "NS" ? $description = "" : $description = $description;
             $store_url = rawurldecode($product->store_url); 
+            $title = rawurldecode($product->title);
+            $title == "NS" ? $title = "" : $title = $title;
             //Cat-class for isotope
             $cat_class = "";
             foreach($product->categories as $cat){
                 $cat_class .= " $cat";
             }
+           
         ?>
-            <article class="producto <?php echo $cat_class; ?>" >
-                    <div class="options-producto">
-                            <a href="" class="producto-sesion"><div></div></a>
-                            <a href="" class="producto-carpeta"><div></div></a>
-                            <div class="tooltip-producto-sesion"></div>
-                            <div class="tooltip-producto-carpeta">
-                                <div id="menu-tooltip-producto">
-                                    <nav>
-                                        <ul>
-                                            <?php   foreach($categories as $category){ ?>
-                                             <li><a  href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick="add_product_category(<?php echo "$id, $category->id"; ?>)"><?php echo $category->name ?></a></li>
-                                            <?php } ?>
-                                        </ul>
-                                    </nav>
-                                </div>
+            <article id="product_<?php echo $id ?>" class="producto <?php echo $cat_class; ?>" >
+                <div class="options-producto">
+                        <a href="" class="producto-sesion"><div></div></a>
+                        <a href="" class="producto-carpeta"><div></div></a>
+                        <div class="tooltip-producto-sesion"></div>
+                        <div class="tooltip-producto-carpeta">
+                            <div id="menu-tooltip-producto">
+                                <nav>
+                                    <ul>
+                                        <?php   foreach($categories as $category){ ?>
+                                            <li><a  href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick="add_product_category(<?php echo "$id, $category->id"; ?>)"><?php echo $category->name ?></a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </nav>
                             </div>
-                    </div>
-                    <div class="container-img-producto">
-                            <img src="<?php echo $thumb ?>" />
-                    </div>
-                    <div class="container-info-producto">
-                            <div class="title-producto">sin titulo</div>
-                            <div class="price-brand-producto">
-                                    <span class="price-producto">60 €</span>
-                                    <span class="brand-producto"><a href="#">adidas.com</a></span>
-                            </div>
-                    </div>
+                        </div>
+                </div>
+                <div class="container-img-producto">
+                        <img src="<?php echo $thumb ?>" />
+                </div>
+                <div class="container-info-producto">
+                        <div class="title-producto"><?php  echo $title ?></div>
+                        <div class="price-brand-producto">
+                                <span class="price-producto"><?php echo $price ?></span>
+                                <span class="brand-producto"><a href="<?php echo $store_url ?>" target="_blank"><?php echo $store_name ?></a></span>
+                        </div>
+                </div>
             </article>
         <?php   } /* END FOREACH */  ?> 
            

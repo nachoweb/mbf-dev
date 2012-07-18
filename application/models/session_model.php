@@ -27,11 +27,11 @@ class Session_model extends CI_Model {
         }else{
             $id_user = $user->id;
         }
-        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user
-                    from mbf_session_user join mbf_session join mbf_user
-                    on mbf_session_user.session = mbf_session.id and mbf_session_user.user = mbf_user.id
-                    where mbf_user.id = '$id_user'
-                    order by date");
+        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user, mbf_store.url, mbf_store.logo, date_format(mbf_session.date,'%e-%M-%Y') as 'date'
+                                    from mbf_session_user join mbf_session join mbf_user join mbf_store
+                                    on mbf_session_user.session = mbf_session.id and mbf_session_user.user = mbf_user.id and mbf_session.store = mbf_store.id
+                                    where mbf_user.id =$id_user
+                                    order by mbf_session.date");
         return $query->result();
     }
     
@@ -107,13 +107,58 @@ class Session_model extends CI_Model {
     
     function get_session_by_hex($hex){
         $query = $this->db->query("SELECT * FROM mbf_session where hex='$hex'");
-        echo "SELECT * FROM mbf_session where hex='$hex'";
         $result = $query->result();
         print_r($result);
         if ($query->num_rows() > 0){
              return $result[0];
         }else{
             return array();
+        }
+    }
+    
+     function get_session_by_id($session_id){
+        $query = $this->db->query("SELECT * FROM mbf_session where id=$session_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return $result[0];
+        }else{
+            return array();
+        }
+    }
+    
+    function get_session_and_store($session_id){
+        $query = $this->db->query(" SELECT mbf_session.id, mbf_session.date, mbf_session.user, mbf_session.name, mbf_session.store, mbf_store.logo, mbf_store.url
+                                    FROM mbf_session join mbf_store
+                                    on mbf_store.id = mbf_session.store
+                                    where mbf_session.id = $session_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return $result[0];
+        }else{
+            return array();
+        }
+    }
+    
+    function check_user_session($user_id, $session_id){
+        $query = $this->db->query("SELECT * FROM mbf_session_user where session = $session_id and user = $user_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return true;
+        }else{
+            return false;
+        }
+    }
+    
+    function get_users($session_id){
+        $query = $this->db->query( "SELECT * 
+                                    FROM mbf_session_user join mbf_user
+                                    on mbf_session_user.user = mbf_user.id
+                                    where session = $session_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return array();
+        }else{
+            return $result;
         }
     }
     

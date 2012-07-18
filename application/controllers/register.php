@@ -107,8 +107,9 @@ class Register extends CI_Controller {
         //Session
         if( !is_numeric($user)){
             $userdata = array(
-                'user_id'  => $user->id,
-                'user_name' => $user->name
+                'user_id'   => $user->id,
+                'user_name' => $user->name,
+                'user_nick' => $user->nick
             );
             $this->session->set_userdata($userdata);
             

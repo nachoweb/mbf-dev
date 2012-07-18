@@ -5,7 +5,8 @@ class Welcome extends CI_Controller {
             $this->load->helper('url');
             $data['base_url'] = base_url();
             $data['invitation'] = $this->input->get('invitation');
-            $this->load->view('head');   
+            $this->load->view('head');  
+            $this->load->view('header'); 
             $this->load->view('welcome', $data);
             $this->load->view('footer'); 
     }

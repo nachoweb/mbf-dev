@@ -20,7 +20,10 @@ class Main extends CI_Controller {
                 $data['base_url'] = base_url();
                 $data['invitation'] = $this->input->get('invitation');
                 
+                $data_header['close_session'] = false;
+                
                 $this->load->view('head');   
+                $this->load->view('header', $data_header); 
                 $this->load->view('welcome', $data);
                 $this->load->view('footer'); 
             }else{
@@ -43,10 +46,6 @@ class Main extends CI_Controller {
                 $this->Session_model->add_session_user_by_hex($user_id,$this->input->get('invitation'));
             }
 
-                
-           
-          
-
             //Products
             $this->load->model('Product_model');        
             $this->load->helper('url');
@@ -54,8 +53,8 @@ class Main extends CI_Controller {
             $data_products['base_url_image'] = site_url("/images/products/$user_id");
             $data_products['products']=$this->Product_model->get_my_products($user_id);
             $data_products['categories'] = $this->Category_model->get_categories_by_user($user_id);
-            $content['content'] = $this->load->view('my_products', $data_products , true);
-            $content['base_url'] = site_url();
+            //$content['content'] = $this->load->view('my_products', $data_products , true);
+            //$content['base_url'] = site_url();
           
             //Stores
             $this->load->model('Store_model');
@@ -65,10 +64,15 @@ class Main extends CI_Controller {
             $data_stores['image_no_logo'] = site_url("/images/stores/no_logo.png");
             //$content['content'] = $this->load->view('my_stores',$data_stores, true);
            
+            
+            //Index content
+            $content['content'] = $this->load->view('inicio', '' , true);
+             $data_header['close_session'] = true;
+            
             /* CARGAR VISTAS */
           
             $this->load->view('head');
-            $this->load->view('header');
+            $this->load->view('header', $data_header);
             $this->load->view('sidebar');
             $this->load->view('content', $content);
             $this->load->view('footer');
@@ -89,19 +93,25 @@ class Main extends CI_Controller {
 		}
 	}
         
+        public function inicio(){
+            $this->load->view('inicio');
+        }
+        
         public function products(){
             //USER
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
             
             //Loader
-            $this->load->model('Product_model');
+            $this->load->model('Product_model'); 
+            $this->load->model('Category_model');
             $this->load->helper('url');
            
-            //Products             
+            //Products & categories           
             $data_products['base_url_image'] = site_url("/images/products/$user_id");
             $data_products['products']=$this->Product_model->get_my_products($user_id);
-            $this->load->view('my_products',$data_products);
+            $data_products['categories'] = $this->Category_model->get_categories_by_user($user_id);
+            $this->load->view('my_products', $data_products);
         }
         
         public function stores(){
@@ -113,10 +123,12 @@ class Main extends CI_Controller {
             $this->load->model('Store_model');
             $this->load->helper('url');
             
+            $data_stores['members'] = $this->Store_model->get_members_stores();
+            $data_stores['my_stores'] = $this->Store_model->get_stores_by_user($user_id);
             $data_stores['base_url_image'] = site_url("/images/stores/"); 
             $data_stores['image_no_logo'] = site_url("/images/stores/no_logo.png");
-            $data_stores['stores']=$this->Store_model->get_my_stores($user_id);
             $this->load->view('my_stores', $data_stores);
+            
         }
         
         public function stores_category($st_category = 28){
@@ -124,11 +136,83 @@ class Main extends CI_Controller {
             $this->load->model('Store_model');
             $this->load->helper('url');
             
-            
+            //Data
             $data_stores['stores'] = $this->Store_model->get_interest($st_category);
             $data_stores['base_url_image'] = site_url("/images"); 
             $data_stores['image_no_logo'] = site_url("/images/no_logo.png");
+            
+            //View
             $this->load->view('my_stores', $data_stores);
+        }
+        
+        public function my_sessions(){
+             //USER
+            $user_id = $this->session->userdata('user_id');
+            $user_data['name'] = $this->session->userdata('user_name');
+            
+            //Loader
+            $this->load->model('Session_model');
+            $this->load->helper('url');
+            
+            //Data
+            $data_sessions['sessions'] = $this->Session_model->get_sessions_by_user($user_id);
+            $data_sessions['base_url_image'] = site_url("/images"); 
+            
+            //View
+            $this->load->view('my_sessions', $data_sessions);
+        }
+        
+        public function session($session_id){
+            //USER
+            $user_id = $this->session->userdata('user_id');
+            $user_data->name = $this->session->userdata('user_name');
+            $user_data->nick = $this->session->userdata("user_nick");
+            
+            //Loader
+            $this->load->model('Session_model');
+            $this->load->model('Product_model');
+            $this->load->model('Store_model');
+            $this->load->model('Message_model');
+            $this->load->helper('url');
+            
+            if($this->Session_model->check_user_session($user_id, $session_id)){
+                //Data               
+                $data_session["session"]        = $this->Session_model->get_session_and_store($session_id);
+                $data_session["messages"]       = $this->Message_model->get_messages_by_session($session_id);
+                if(count($data_session["messages"]) > 0){
+                    $data_session["last_message"] = $data_session["messages"][count($data_session["messages"])-1]->id;
+                }else{
+                    $data_session["last_message"] = 0;
+                }
+                $data_session["users"]          = $this->Session_model->get_users($session_id);
+                $data_session["products"]       = $this->Product_model->get_products_by_session($session_id, false);
+                $data_session['user']           = $user_data;
+                $data_session['base_url_image_store'] = site_url("/images/stores");
+                $data_session['base_url_image_product'] = site_url("/images/products/$user_id");
+
+                //View
+                $this->load->view('session', $data_session);
+            }else{
+                echo "No tienes permisos para entrar en esta sesión.";
+            }
+        }
+        
+        
+        public function messages($session_id, $last = 0){
+            $this->load->model('Message_model');
+            $data["messages"]  = $this->Message_model->get_messages_by_session($session_id, $last);
+            if(count($data["messages"]) > 0){
+                $data["last_message"] = $data["messages"][count($data["messages"])-1]->id;
+            }else{
+                $data["last_message"] = 0;
+            }
+            echo json_encode($data);
+        }
+        
+        public function close_session(){
+            $this->session->unset_userdata('user_id');
+            $this->session->unset_userdata('user_name');
+            $this->session->unset_userdata('user_nick');
         }
 }
 

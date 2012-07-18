@@ -1,8 +1,18 @@
 <div id="bg-header">
     <header id="header">
         <div id="container-logo">
-             <h1><a href=""><img id="logo" src="images/logotipo.png" alt="Mybuyfriends" /></a></h1>
+            <h1><a href=""><img id="logo" src="images/logotipo.png" alt="Mybuyfriends" /></a></h1>
+            <?php 
+                if($close_session){
+            ?>
+            <div id="close-session">
+                <a href="#" onClick="close_session()" > Cerrar sesión </a>
+            </div>
+            <?php
+                }
+            ?>
         </div>
+       
     </header>
 </div>
  <div id="page">

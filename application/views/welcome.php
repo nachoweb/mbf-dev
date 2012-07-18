@@ -1,9 +1,4 @@
 <div id="wellcome-content">
-        <header id="header">
-            <div id="container-logo">
-                <h1><a href="">MY BUYFRIENDS</a></h1>
-            </div>
-        </header>
         <section id="login-register">
             <article id="login">
                 <h3>¿Eres usuario?</h3>
@@ -13,7 +8,8 @@
                         <?php
                             echo "<input type='hidden' name='invitation' id='invitation' value='$invitation' />";
                         ?>
-                        <input type="submit" id="login-submit" name="login-submit" value="ENTRAR" />
+                        <br/>
+                        <input type="submit" class="button" id="login-submit" name="login-submit" value="ENTRAR" />
                         <div id="info-login-email" class="form-info-login"></div>
                 </form>
             </article>
@@ -33,7 +29,7 @@
                         <?php 
                             echo "<input type='hidden' name='invitation' id='invitation' value='$invitation' />";
                         ?>
-                        <input type="submit" id="register-submit" name="register-submit" value="ACEPTAR" />
+                        <input type="submit" class="button" id="register-submit" name="register-submit" value="ACEPTAR" />
                 </form>
             </article>
         </section>

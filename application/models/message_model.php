@@ -29,14 +29,18 @@ class Message_model extends CI_Model {
         return $message_id;
     }
     
-    function get_messages_by_session($session_id){
-        $sql = "select mbf_message.id, mbf_message.text, mbf_message.user, mbf_message.session, mbf_message.date, mbf_user.nick
+    function get_messages_by_session($session_id, $last = 0){
+        $sql = "select mbf_message.id, mbf_message.text, mbf_message.user, mbf_message.session, date_format(mbf_message.date, '%k:%i') as 'date', mbf_user.nick
                 from mbf_user join mbf_message on mbf_user.id = mbf_message.user
                 where mbf_message.session = $session_id";
+        if ($last != 0){
+            $sql .= " and mbf_message.id > $last";
+        }
         $query = $this->db->query($sql);
         $result = $query->result();
         return $result;
     }
+    
 }
 
 ?>

@@ -84,7 +84,7 @@ class Save_product extends CI_Controller {
          //Para posible crop
         if($width >= $height){
             //Redimensionamos
-            $this->thumb->height(187);
+            $this->thumb->height(145);
             $this->thumb->save();
             //Crop
             $params = array('name' => "$path/thumbs/$filename.$extension");
@@ -92,15 +92,15 @@ class Save_product extends CI_Controller {
             $file_data = getimagesize($params['name']);
             $width = $file_data[0];
             $height = $file_data[1];
-            $x =(int) (($width - 166) / 2);
+            $x =(int) (($width - 129) / 2);
             $x > 0 ? $x : 0;
             $this->crop->crop((int) $x,0);
-            $this->crop->width(166);
-            $this->crop->height(187);
+            $this->crop->width(129);
+            $this->crop->height(145);
             $this->crop->save();
         }else{
             //Redimensionamos
-            $this->thumb->width(166);
+            $this->thumb->width(129);
             $this->thumb->save();
             //Crop
             $params = array('name' => "$path/thumbs/$filename.$extension");
@@ -108,11 +108,11 @@ class Save_product extends CI_Controller {
             $file_data = getimagesize($params['name']);
             $width = $file_data[0];
             $height = $file_data[1];
-            $y = (int)(($height - 187) / 2);
+            $y = (int)(($height - 145) / 2);
             $y > 0 ? $y : 0;
             $this->crop->crop( 0 , $y);
-            $this->crop->width(166);
-            $this->crop->height(187);
+            $this->crop->width(129);
+            $this->crop->height(145);
             $this->crop->save();
         }
       /*  $x = 0;
