@@ -27,10 +27,10 @@ class Session_model extends CI_Model {
         }else{
             $id_user = $user->id;
         }
-        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user, mbf_store.url, mbf_store.logo, date_format(mbf_session.date,'%e-%M-%Y') as 'date'
-                                    from mbf_session_user join mbf_session join mbf_user join mbf_store
-                                    on mbf_session_user.session = mbf_session.id and mbf_session_user.user = mbf_user.id and mbf_session.store = mbf_store.id
-                                    where mbf_user.id =$id_user
+        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user, date_format(mbf_session.date,'%e-%M-%Y') as 'date'
+                                    from mbf_session_user join mbf_session
+                                    on mbf_session_user.session = mbf_session.id
+                                    where mbf_session_user.user =$id_user
                                     order by mbf_session.date");
         return $query->result();
     }
@@ -80,6 +80,7 @@ class Session_model extends CI_Model {
         return $session;
     }
     
+    
      function add_session($name, $user){
         $date = date("Y-n-d H:i:s");
         $hex = $this->rand_text(32,32);
@@ -91,8 +92,18 @@ class Session_model extends CI_Model {
             "hex"       =>  $hex
         );
         $this->db->insert('mbf_session', $data); 
-        $session = $this->db->insert_id();
-        return $session;
+        $session_id = $this->db->insert_id();
+        $data['id'] = $session_id;
+        return $data;
+    }
+    
+    
+    function add_session_user($session_id, $user_id){
+        $data = array(
+            "session"   =>  $session_id,
+            "user"      =>  $user_id,
+        );
+        @$this->db->insert('mbf_session_user', $data);
     }
     
     function add_session_user_by_hex($user, $hex){
@@ -108,7 +119,6 @@ class Session_model extends CI_Model {
     function get_session_by_hex($hex){
         $query = $this->db->query("SELECT * FROM mbf_session where hex='$hex'");
         $result = $query->result();
-        print_r($result);
         if ($query->num_rows() > 0){
              return $result[0];
         }else{
@@ -118,6 +128,17 @@ class Session_model extends CI_Model {
     
      function get_session_by_id($session_id){
         $query = $this->db->query("SELECT * FROM mbf_session where id=$session_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return $result[0];
+        }else{
+            return array();
+        }
+    }
+    function get_session($session_id){
+        $query = $this->db->query(" SELECT mbf_session.id, mbf_session.date, mbf_session.user, mbf_session.name, mbf_session.store
+                                    FROM mbf_session
+                                    where mbf_session.id = $session_id");
         $result = $query->result();
         if ($query->num_rows() > 0){
              return $result[0];
@@ -138,6 +159,8 @@ class Session_model extends CI_Model {
             return array();
         }
     }
+    
+    
     
     function check_user_session($user_id, $session_id){
         $query = $this->db->query("SELECT * FROM mbf_session_user where session = $session_id and user = $user_id");

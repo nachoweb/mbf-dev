@@ -2,10 +2,6 @@
     <section id="sesion-info">
             <!--<div id="sesion-creator">Sesión con <span>Rufino</span></div>-->
             <div id="sesion-title">Título: <span><?php echo $session->name; ?></span></div>
-            <div id="container-sesion-brand">
-                    <img src="<?php echo $base_url_image_store."/".$session->logo ?>" />
-            </div>
-            <a href="<?php echo $session->url ?>" target="_blank" id="link-brand">ir a la tienda</a>
             <div id="sesion-date">Creada el <span><?php echo $session->date ?></span></div>
     </section>
     <section id="sesion-chat">

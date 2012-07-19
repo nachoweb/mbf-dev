@@ -211,8 +211,9 @@ function add_store_user(store_id){
 
 $(document).ready(function(){
     var current_item;
-    $('.container-item-img').live('click', function(){
-            current_item = $(this).parent('.item');
+    $('.container-img-producto').live('click', function(){
+            current_item = $(this).parent('.producto');
+            console.log(current_item);
             innerContent(current_item);
             loadPopup();
     });
@@ -222,15 +223,21 @@ $(document).ready(function(){
 
     $('#popup-next').live('click', function(){
             clearPopupContent();
-            innerContent(current_item.next('.item'));
-            current_item = current_item.next('.item');
+            innerContent(current_item.next('.producto'));
+            current_item = current_item.next('.producto');
             //showPopupContent();
 
     });
     $('#popup-prev').live('click', function(){
             clearPopupContent();
-            innerContent(current_item.prev('.item'));
-            current_item = current_item.prev('.item');
+            innerContent(current_item.prev('.producto'));
+            current_item = current_item.prev('.producto');
+           // showPopupContent();
+    });
+    
+    
+      $('#input-link').live('click', function(){
+            $(this).select();        
            // showPopupContent();
     });
 });
@@ -242,11 +249,12 @@ function innerContent(item){
     var brand = item.data("brand");
     var description = item.data("description");
     var link = item.data("producturl");
+    var title = item.data("title");
     var popup_content = '<div id="popup-content-left" >';
     popup_content += '		<a href="'+link+'" target="_blank"><img id="popup-img" src="'+img+'" onload="showPopupContent();"/></a>';
     popup_content += '	</div>';
     popup_content += '	<div id="popup-content-right">';
-    popup_content += '		<span id="popup-title">título</span>';
+    popup_content += '		<span id="popup-title">'+ title +'</span>';
     popup_content += '		<div id="popup-price-brand">';
     popup_content += '			<span id="popup-price">'+price+'</span><br />';
     popup_content += '			<span id="popup-brand"><a href="#">'+brand+'</a></span>';
@@ -272,12 +280,35 @@ function innerContentAddCategory(){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
     popup_content += '<form id="form-add-new-category" name="form-add-new-category" class="form-add-new-category" method="post">';
-    popup_content += '		<label>Añadir una nueva categoría</label>';
+    popup_content += '		<label>Nombre de la sesión:</label>';
     popup_content += '		<input type="text" id="input-new-category" name="input-new-category" class="input-new-category"/>';
-    popup_content += '		<input type="button" id="accept-new-category" name="accept-new-category" class="button" value="Añadir" onClick="saveCategory()" />';
+    popup_content += '		<input type="button" id="accept-new-category" name="accept-new-category" class="button" value="Añadir" onClick="saveSession()" />';
     popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="Cancelar" onClick="closePopup()" />';
     popup_content += '	</form>';
     popup_content += '	</div>';
+    $('#popup-content').append(popup_content);
+}
+
+function innerContentAddSession(){
+    jQuery('#popup-content').empty();
+    var popup_content = '<div>';
+    popup_content += '<form id="form-add-new-session" name="form-add-new-session" class="form-add-new-category" method="post">';
+    popup_content += '		<label>Crear sesión</label>';
+    popup_content += '		<input type="text" id="input-new-session" name="input-new-session" class="input-new-category"/>';
+    popup_content += '		<input type="button" id="accept-new-session" name="accept-new-session" class="button" value="Añadir" onClick="saveSession()" />';
+    popup_content += '		<input type="button" id="cancel-new-session" name="cancel-new-session" class="button" value="Cancelar" onClick="closePopup()" />';
+    popup_content += '	</form>';
+    popup_content += '	</div>';
+    $('#popup-content').append(popup_content);
+}
+
+function innerContentHex(hex){
+    jQuery('#popup-content').empty();
+    var popup_content = '<div class="form-add-new-category">';
+    popup_content += "<p>Para invitar un amigo, copia y envía este link a un amigo: </p>";   
+    popup_content += "<input type='text' id='input-link' value='" + base_url + "?invitation=" + hex + "'><br/>";    
+    popup_content += "<input type='button' class='button' value='Ok' onClick='closePopup()'>";   
+    popup_content += "</div>";    
     $('#popup-content').append(popup_content);
 }
 
@@ -350,7 +381,7 @@ $(document).ready(function(){
 function saveCategory(){
     var new_category = jQuery('#input-new-category').val();
     jQuery.ajax({
-        url: base_url+ "category/add/" +new_category,
+        url: base_url+ "category/add/" + new_category,
         async: false,
             success: function(respuesta){										
                 addCategory(new_category, respuesta);
@@ -392,6 +423,61 @@ function add_product_category(product_id, category_id){
     $('.producto').children('.options-producto').fadeOut('normal');
     return success;
 }
+
+/* Add product-sesion */
+function add_product_sesion(product_id, sesion_id){    
+    var success = true;
+    url = base_url + "product/add_product_session/" + product_id + "/" +sesion_id;
+    jQuery.ajax({
+        url: url,
+        async: false,
+        complete: function(objeto, exito){
+            if(exito=="success"){
+            }
+        },
+        error: function(objeto, quepaso, otroobj){
+            success =  false;
+        }
+    });
+    $('.producto').children('.options-producto').fadeOut('normal');
+    return success;
+}
+/****************/
+/* Session      */
+/****************/
+
+	
+$(document).ready(function(){
+    jQuery('#add_session').live("click",function(){
+            innerContentAddSession();
+            loadPopup();
+            jQuery('#input-new-session').focus();
+    });
+});
+
+
+function saveSession(){
+    var session_name = jQuery('#input-new-session').val();
+    var url = base_url + "/session/add/" + encodeURIComponent(session_name);   
+    var new_session = get_by_ajax(url, "json");
+    innerContentHex(new_session.hex);
+    addSession(new_session);
+}
+
+/* Add new DOM Session */
+function addSession(session){
+    console.log(jQuery('#container-sesiones'));
+    jQuery('#container-sesiones').append(' <article class="sesion" onClick="prepare_session(' + session.id + ')"> 	<span class="sesion-title">' + session.name + '</span> 	<div class="container-avatar-sesion"> 			<img src="' + base_url + 'images/avatar_sesion.jpg" /> 	</div> 	<span class="date-sesion">'+ session.date +'</span> </article> ');
+  /*  jQuery('#product_filters li:last').css('display','none');
+    jQuery('#product_filters li:last').fadeIn('slow');
+    closePopup();
+    jQuery('#product_filters li:last a').click(function(){ 
+            var selector = $(this).attr('data-filter');
+            $('#container-productos').isotope({filter: selector});
+            return false;
+    });*/
+}
+
 
 /***********/
 /* ISOTOPE */
@@ -556,6 +642,25 @@ function load_product_options(){
             }
     );
     $('.tooltip-producto-carpeta').hover(
+            function(){
+                    $(this).stop().fadeIn('normal')
+            },
+            function(){
+                    $(this).fadeOut('fast')
+            }
+    );
+        
+    /* Tooltip Session */
+    
+     $('.producto-sesion').hover(
+            function(){
+                    $(this).parent().children('.tooltip-producto-sesion').stop().fadeIn('fast')
+            },
+            function(){
+                    $(this).parent().children('.tooltip-producto-sesion').fadeOut('fast')
+            }
+    );
+    $('.tooltip-producto-sesion').hover(
             function(){
                     $(this).stop().fadeIn('normal')
             },

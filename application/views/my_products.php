@@ -31,11 +31,21 @@
             }
            
         ?>
-            <article id="product_<?php echo $id ?>" class="producto <?php echo $cat_class; ?>" >
+            <article id="product_<?php echo $id ?>" class="producto <?php echo $cat_class; ?>" data-title="<?php echo $title; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>" >
                 <div class="options-producto">
                         <a href="" class="producto-sesion"><div></div></a>
                         <a href="" class="producto-carpeta"><div></div></a>
-                        <div class="tooltip-producto-sesion"></div>
+                        <div class="tooltip-producto-sesion">
+                            <div id="menu-tooltip-producto">
+                                <nav>
+                                    <ul>
+                                        <?php   foreach($sessions as $session){ ?>
+                                            <li><a  onClick="add_product_sesion(<?php echo $id ?>, <?php echo $session->id ?>)" href="#<?php echo $session->name; ?>" data-sesionid="<?php echo $session->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick=""><?php echo $session->name ?></a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                         <div class="tooltip-producto-carpeta">
                             <div id="menu-tooltip-producto">
                                 <nav>

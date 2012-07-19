@@ -105,9 +105,11 @@ class Main extends CI_Controller {
             //Loader
             $this->load->model('Product_model'); 
             $this->load->model('Category_model');
+            $this->load->model('Session_model');
             $this->load->helper('url');
            
-            //Products & categories           
+            //Products & categories          
+            $data_products['sessions'] = $this->Session_model->get_sessions_by_user($user_id);
             $data_products['base_url_image'] = site_url("/images/products/$user_id");
             $data_products['products']=$this->Product_model->get_my_products($user_id);
             $data_products['categories'] = $this->Category_model->get_categories_by_user($user_id);
@@ -171,13 +173,12 @@ class Main extends CI_Controller {
             //Loader
             $this->load->model('Session_model');
             $this->load->model('Product_model');
-            $this->load->model('Store_model');
             $this->load->model('Message_model');
             $this->load->helper('url');
             
             if($this->Session_model->check_user_session($user_id, $session_id)){
                 //Data               
-                $data_session["session"]        = $this->Session_model->get_session_and_store($session_id);
+                $data_session["session"]        = $this->Session_model->get_session($session_id);
                 $data_session["messages"]       = $this->Message_model->get_messages_by_session($session_id);
                 if(count($data_session["messages"]) > 0){
                     $data_session["last_message"] = $data_session["messages"][count($data_session["messages"])-1]->id;
