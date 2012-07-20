@@ -295,7 +295,7 @@ function innerContentAddSession(){
     popup_content += '<form id="form-add-new-session" name="form-add-new-session" class="form-add-new-category" method="post">';
     popup_content += '		<label>Crear sesión</label>';
     popup_content += '		<input type="text" id="input-new-session" name="input-new-session" class="input-new-category"/>';
-    popup_content += '		<input type="button" id="accept-new-session" name="accept-new-session" class="button" value="Añadir" onClick="saveSession()" />';
+    popup_content += '		<input type="button" id="accept-new-category" name="accept-new-session" class="button" value="Añadir" onClick="saveSession()" />';
     popup_content += '		<input type="button" id="cancel-new-session" name="cancel-new-session" class="button" value="Cancelar" onClick="closePopup()" />';
     popup_content += '	</form>';
     popup_content += '	</div>';
@@ -316,8 +316,10 @@ function loadPopup(event){
     //Add events
     $(document).bind('keypress', function(e) {
                 if (e.keyCode == 27) {closePopup();}   // esc
-                if (e.keyCode == 37) {jQuery('#popup-prev').click();}   // left
-                if (e.keyCode == 39) {jQuery('#popup-next').click();}   // right
+                if (e.keyCode == 37) {jQuery('#popup-prev').click();}           // left
+                if (e.keyCode == 39) {jQuery('#popup-next').click();}           // right
+                if (e.keyCode == 13) {jQuery('#accept-new-category').click();}   // enter
+                
     });
     jQuery('#shadow').css('width','100%');
     jQuery('#shadow').css('height', jQuery(document).height());
