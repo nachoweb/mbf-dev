@@ -318,7 +318,7 @@ function loadPopup(event){
                 if (e.keyCode == 27) {closePopup();}   // esc
                 if (e.keyCode == 37) {jQuery('#popup-prev').click();}           // left
                 if (e.keyCode == 39) {jQuery('#popup-next').click();}           // right
-                if (e.keyCode == 13) {jQuery('#accept-new-category').click();}   // enter
+                if (e.keyCode == 13) {jQuery('#accept-new-category').click(); e.preventDefault();}   // enter
                 
     });
     jQuery('#shadow').css('width','100%');
