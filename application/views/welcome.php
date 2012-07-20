@@ -22,7 +22,7 @@
                         <label id="label-sex">sexo</label>
                         <input type="radio" name="gender" value="male" checked="checked"/><label>hombre</label>
                         <input type="radio" name="gender" value="female" /><label>mujer</label>
-                        <input type="text" id="register-work" name="register-work" placeholder="elije una situación laboral" /><div id="info-register-work" class="form-info"></div>
+                        <input type="text" id="nick" name="nick" placeholder="Nick" /><div id="info-nick" class="form-info"></div>
                         <input type="text" id="register-email" name="register-email" placeholder="E-mail"/><div id="register-info-email" class="form-info"></div>
                         <input type="password" id="register-password1" name="register-password1" placeholder="contraseña" /><div id="register-info-password" class="form-info"></div>
                         <input type="password" id="register-password2" name="register-password2" placeholder="repetir contraseña" /><br/>

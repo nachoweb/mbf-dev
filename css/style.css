@@ -74,7 +74,7 @@
     width:100px;
     color:red;
     font-size:12px;
-    padding-top:11px;
+    padding-top:3px;
 }
 
 #info-login-email{
@@ -989,6 +989,12 @@ a img{
     text-align: center;
     margin-top:20px;
 }
+#nav-slider-register ul{
+    width: 181px;
+    text-align: left;
+    margin: 0 auto;
+}
+
 #nav-slider ul{
 	padding: 0;
 }
@@ -1252,4 +1258,8 @@ span.register-title{
 
 #start{
     display: none;
+}
+
+#slider-right{
+    width:75px;
 }

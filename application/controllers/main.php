@@ -66,8 +66,17 @@ class Main extends CI_Controller {
            
             
             //Index content
-            $content['content'] = $this->load->view('inicio', '' , true);
-             $data_header['close_session'] = true;
+            $hex = $this->session->userdata('user_hex');
+
+            $data_view['hex'] = $hex;
+            $data_view['user_id'] = $this->session->userdata('user_id');
+            $this->load->helper('url');
+            $data_view['site_url'] = site_url();
+            $data_view['script_bm'] =$this->config->item('bm_script');
+
+            //Show instructions¡
+            $content['content'] = $this->load->view('steps_inside', $data_view, true);
+            $data_header['close_session'] = true;
             
             /* CARGAR VISTAS */
           
@@ -196,6 +205,23 @@ class Main extends CI_Controller {
             }else{
                 echo "No tienes permisos para entrar en esta sesión.";
             }
+        }
+        
+        public function steps(){
+            $this->load->library('session');
+            $hex = $this->session->userdata('user_hex');
+
+            $data_view['hex'] = $hex;
+            $data_view['user_id'] = $this->session->userdata('user_id');
+
+            $this->load->helper('url');
+            $data_view['site_url'] = site_url();
+
+            $data_view['script_bm'] =$this->config->item('bm_script');
+
+            //Show instructions¡
+            $this->load->view('steps_inside', $data_view);
+           
         }
         
         

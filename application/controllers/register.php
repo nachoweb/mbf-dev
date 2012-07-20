@@ -28,7 +28,8 @@ class Register extends CI_Controller {
             'labor_situation'   => $this->input->post('register-work'),
             'email'             => $this->input->post('register-email'),
             'password'          => $password,
-            'hex'               => $hex
+            'hex'               => $hex,
+            'nick'              => $this->input->post('nick')
         );
         //Register user
         $this->load->model('User_model');
@@ -67,9 +68,11 @@ class Register extends CI_Controller {
         
         //New Session
         $userdata = array(
-            'user_id'  => $user_id,
-            'user_name'=> $this->input->post('register-name')
-        );
+                'user_id'   => $user->id,
+                'user_name' => $this->input->post('register-name'),
+                'user_nick' => $this->input->post('nick'),
+                'user_hex'       => $hex
+            );
         $this->session->set_userdata($userdata);
         
        
@@ -112,7 +115,8 @@ class Register extends CI_Controller {
             $userdata = array(
                 'user_id'   => $user->id,
                 'user_name' => $user->name,
-                'user_nick' => $user->nick
+                'user_nick' => $user->nick,
+                'user_hex'       => $user->hex
             );
             $this->session->set_userdata($userdata);
             
@@ -136,8 +140,7 @@ class Register extends CI_Controller {
     public function steps($hex = ""){
         $this->load->library('session');
         if($hex == ""){
-            $this->load->model('User_model');
-            $hex = $this->User_model->get_hex($this->session->userdata('user_id'));
+            $hex = $this->session->userdata('user_hex');
         }
         
         $data_view['hex'] = $hex;
@@ -148,8 +151,8 @@ class Register extends CI_Controller {
         
         $data_view['script_bm'] =$this->config->item('bm_script');
         
-        //Show instructions
-         $this->load->view('register_steps', $data_view);
+        //Show instructions¡
+        $this->load->view('register_steps', $data_view);
     }
 }
 ?>

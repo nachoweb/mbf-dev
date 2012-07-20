@@ -25,12 +25,13 @@ function get_by_ajax(url, type){
 
 /* Event click menu */
 $(document).ready(function(){
-    
+    activar_slider_explicacion();
     $("#menu_inicio").click(function(){
         options = {"section" : "home"};
         refresh_content(options);
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
+        activar_slider_explicacion();
     });
     
     $("#menu_tiendas").click(function(){
@@ -61,7 +62,8 @@ function refresh_content(options){
     
     if(options.section == "home"){
         document.getElementById("content").innerHTML = "";
-        content = get_by_ajax(base_url + "main/inicio", "text");
+        content = get_by_ajax(base_url + "main/steps", "text");
+        console.log(base_url + "main/steps");
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);
     }else if(options.section == "products"){
@@ -92,6 +94,32 @@ function refresh_content(options){
         console.log(inter);
     }   
 }
+
+/* Slider explicación */
+function activar_slider_explicacion(){
+var slider_width = $('.slider-register-container').width();
+var current_item = 0;
+$('#nav-slider-register .nav-item-register').click(function (){
+        if($(this).attr('id') == 'slider-left'){
+                if (current_item > 0){
+                        current_item--;
+                }
+                if(current_item==1){
+                    jQuery("#slider-right").text("Siguiente")
+                }
+        }
+        else if($(this).attr('id') == 'slider-right'){						
+                if (current_item < $('.slider-register-item').length-1){
+                        current_item++;
+                }
+                if(current_item==2){
+                    jQuery("#slider-right").text("")
+                }
+        }
+        $('.slider').animate({'left' : -current_item * slider_width});
+    });
+}
+
 
 function prepare_session(session_id){
     option = {
@@ -318,7 +346,7 @@ function loadPopup(event){
                 if (e.keyCode == 27) {closePopup();}   // esc
                 if (e.keyCode == 37) {jQuery('#popup-prev').click();}           // left
                 if (e.keyCode == 39) {jQuery('#popup-next').click();}           // right
-                if (e.keyCode == 13) {jQuery('#accept-new-category').click(); e.preventDefault();}   // enter
+                if (e.keyCode == 13) {jQuery('#accept-new-category').click();e.preventDefault();}   // enter
                 
     });
     jQuery('#shadow').css('width','100%');
