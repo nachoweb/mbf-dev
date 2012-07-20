@@ -587,6 +587,17 @@ body{
 #add-category-div a{
     color: #818385;
  }
+ 
+ #add_session_div{
+     float: left;
+    margin-top: 10px;
+    margin-left: 7px;
+    font-size: 13px;
+ }
+ 
+ #add_session_div a{
+    color: #818385;
+ }
     
 #container-productos{
 	width: 100%;
