@@ -46,7 +46,8 @@ class Register extends CI_Controller {
         
         //User Sessions
         $this->load->model('Session_model');
-        $this->Session_model->add_session("myself", $user_id);
+        $new_session = $this->Session_model->add_session("myself", $user_id);
+        $this->Session_model->add_session_user($new_session['id'], $user_id);
         
         //Invitation
         if($this->input->post('invitation')!= ""){
