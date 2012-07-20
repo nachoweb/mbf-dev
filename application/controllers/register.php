@@ -56,11 +56,13 @@ class Register extends CI_Controller {
         //Make dirs
         $aux = "/images/products/";
         //echo $aux."<br/>";
-        $path = ".";
-        echo $path;
         
-        mkdir( $path."/images/products/".$user_id, "0777");
-        mkdir( $path."/images/products/$user_id/thumbs", "0777");
+        
+        $path = ".";   
+        mkdir( $path."/images/products/".$user_id, 0777);
+        
+        mkdir( $path."/images/products/$user_id/thumbs", 0777);
+       
         
         //New Session
         $userdata = array(
