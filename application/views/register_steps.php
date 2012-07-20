@@ -43,16 +43,30 @@
 		</script>
 	</head>
 	<body>
-		<div id="page-register">
-				<header id="header">
-					<div id="container-logo">
-						<h1><a href="">MY BUYFRIENDS</a></h1>
-					</div>
-				</header>
+		
+				<div id="bg-header">
+                                    <header id="header">
+                                        <div id="container-logo">
+                                            <h1><a href=""><img id="logo" src="<?php echo $site_url ?>images/logotipo.png" alt="Mybuyfriends" /></a></h1>
+                                            <?php 
+                                                if($close_session){
+                                            ?>
+                                            <div id="close-session">
+                                                <a href="#" onClick="close_session()" > Cerrar sesión </a>
+                                            </div>
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
+
+                                    </header>
+                                </div>
+            <div id="page">
 				<div id="content-register">
 					<section class="slider-register-container">
 						<section class="slider">
 						<section id="register-2"  class="slider-register-item">
+                                                    <div id="register-2-center">
 								<section id="what-is">
 									<header class="register-title">
 										<span class="register-step">
@@ -89,6 +103,7 @@
 										<img src="<?php echo $site_url;?>/images/register/imagen1.jpg">
 									</div>
 								</section>
+                                                    </div> <!-- END REGISTER-2-CENTER -->
 							</section><!-- END ITEM1 -->
 							<section id="register-3"  class="slider-register-item">
 								<div id="register-3-top">

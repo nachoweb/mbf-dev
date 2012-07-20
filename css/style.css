@@ -1,17 +1,25 @@
 /************/
 /* Registro */
 /************/
-#login-register{
-	width: 710px;
-	padding-bottom: 50px;
-	overflow:hidden;
+#wellcome-content{
+    width: 850px;
+    float:left;
+    margin-left: 5px;
 }
+
+#login-register{
+    width: 850px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    color: #7F8184;
+    overflow:hidden;
+}
+
 #login-register h3{
-	font-size:15px;
+	color: #1C75BC;
 }
 #login h3{
 	text-align: right;
-        
 }
 #login-register label {
 	color: #7F8184;
@@ -30,13 +38,14 @@
 #login-register #login{
 	width: 225px;
 	float: left;
+	padding-left: 150px;
 	padding-right: 40px;
 	
 }
 #login-register #register{
-	width: 225px;
+	width: 333px;
 	float: left;
-	padding-right: 85px;
+	padding-right: 50px;
 	padding-left: 40px;
 	border-left: solid 1px #FFFFFF;
 }
@@ -57,6 +66,21 @@
 }
 #login-submit{
 	float: right;
+}
+
+.form-info{
+    float:right;
+    height:30px;
+    width:100px;
+    color:red;
+    font-size:12px;
+    padding-top:11px;
+}
+
+#info-login-email{
+    width:100%;
+    font-size: 12px;
+    color: red;
 }
 
 /*********/
@@ -934,4 +958,287 @@ a img{
 
 #form-add-new-category .button{
     height:30px;
+}
+
+
+
+/********************/
+/* Slider register	*/
+/********************/
+#nav-slider{
+	z-index: 3;
+	position: absolute;
+	bottom: 0;
+	left: 350px;
+}
+
+#nav-slider-register{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top:20px;
+}
+#nav-slider ul{
+	padding: 0;
+}
+.nav-list li {
+    list-style:none;
+    display:inline;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.nav-list{
+}
+
+.slider-item{	
+	z-index: 1;
+}
+
+.slider-register-container, .slider-register-item
+{
+	width: 710px;
+	overflow:hidden;
+	position:relative;
+	float:left;
+	height: 461px;
+}
+
+.slider-register-container
+{
+	clear:both;
+	float:left;
+	
+}
+
+.slider
+{
+	float:left;
+	clear:both;
+	width:100000px;
+	position: relative;
+	top: 0;
+	left:0;
+	z-index: 2;
+}
+
+#content-register{
+	width: 720px;
+	padding-top: 10px;
+	float: left;
+}
+
+/**************/
+/* Registro-2 */
+/**************/
+
+#page-register{
+	width: 710px;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+#register-2 section{
+	margin-left: 50px;
+}
+
+#register-2-center{
+    float: left;
+    margin-left: 65px;
+}
+
+#what-is{
+	margin-bottom: 20px;
+}
+
+#how-works{
+	float:left;
+	margin-top:25px;
+	padding-top: 15px;
+	border-top: 2px solid #E4E5E7;
+}
+
+.slider-register{
+	width: 710px;
+	background: #D0D1D3;
+	padding-top: 20px;
+	padding-bottom: 50px;
+	color: #7F8184;
+	overflow:hidden;
+}
+
+#register-2-description{
+	width:380px;
+	float:left;
+}
+
+#register-2-button{
+	float:left;
+	width: 130px;
+}
+
+#register-bookmarklet{
+	float: right;
+	text-align:center;
+	padding-top: 3px;
+	margin-left: 10px;
+	background: #F1592A;
+	width: 60px;
+	height: 30px;
+	color:white;
+	font-size: 18px;
+	font-weight: bold;
+	-moz-border-radius: 4px; -ms-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}	
+
+#register-bookmarklet a{
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+#register-2-button img{
+	float:left;
+	width:50px;
+	margin-top: 8px;
+}	
+
+header.register-title{
+	float:left;
+	width:100%;
+	clear:both;
+	margin-bottom:5px;
+}
+span.register-title{
+	color:#1475BC;
+	font-size:19px;
+	float:left;
+	margin-top: 7px;
+	width: 295px;
+	font-family: Arial, Helvetica,sans-serif; 
+}
+
+.register-description{
+	font-size: 12px;
+	color: black;
+	float:left;
+}
+
+.register-step{
+	color:#1475BC;
+	font-size:24px;
+	float:left;
+}
+
+#register-2-screen1{
+	margin-top: 20px;
+	float:left;
+}
+
+
+/***************/
+/* Registro 3  */
+/***************/
+
+
+#register-3-top{
+	width:100%;
+	float:left;
+	clear:both;
+	margin-bottom: 20px;
+	height:205px;
+}
+
+.register-3-img{
+	width:202px;
+	margin: 0 auto;
+}
+
+#register-3  img#register-imagen2{
+   width: 164px;
+}
+
+#register-3 img{
+	width: 202px; 
+	margin: 0 auto;
+	margin-top: 20px;
+}
+#register-step-3{
+	width:330px;
+	float:left;
+	margin-left:15px;
+	border-bottom:2px solid #F1F0F5;
+	border-right:2px solid #F1F0F5;
+	padding-bottom: 15px;
+	padding-right:10px;
+	height: 200px;
+}
+
+
+#register-step-4{
+	width:320px;
+	float:left;
+	border-bottom: 2px solid #F1F0F5;
+	height: 215px;
+	padding-left: 17px;
+}
+
+#register-step-5{
+	width:330px;
+	float:left;
+	margin-left:15px;
+	border-right:2px solid #F1F0F5;
+	padding-bottom: 15px;
+	padding-right:10px;
+	height: 200px;
+}
+
+#register-3-bottom{
+	width:100%;
+	float:left;
+	clear:both;
+}
+
+#register-3-bottom  header.register-title{
+	margin-top: 10px;
+}
+
+#register-step-6{
+	width:320px;
+	float:left;
+	height: 215px;
+	padding-left: 17px;
+}
+
+/**************/
+/* Register 4 */
+/**************/
+#register-4 img{
+	width: 600px;
+	margin-top:20px;
+}	
+
+#register-4 span.register-title{
+	width:580px;
+}
+
+#register-4{
+	text-align:center;
+}
+
+#register-4 header.register-title{
+	margin-left: 55px;
+}
+
+#last-menssage{
+	margin-left: 55px;
+	text-align:center;
+	float:left;
+	margin-top: 30px;
+}
+
+
+#start{
+    display: none;
 }
