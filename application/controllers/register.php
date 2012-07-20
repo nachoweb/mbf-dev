@@ -60,9 +60,9 @@ class Register extends CI_Controller {
         
         $path = ".";   
         mkdir( $path."/images/products/".$user_id, 0777);
-        
+        chmod( $path."/images/products/".$user_id, 0777);
         mkdir( $path."/images/products/$user_id/thumbs", 0777);
-       
+        chmod( $path."/images/products/".$user_id, 0777);
         
         //New Session
         $userdata = array(
