@@ -983,9 +983,9 @@ a img{
 	left: 350px;
 }
 
-#nav-slider-register{
-    float: left;
+#nav-slider-register{ 
     width: 100%;
+    float: left;    
     text-align: center;
     margin-top:20px;
 }
