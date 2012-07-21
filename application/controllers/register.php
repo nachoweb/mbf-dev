@@ -68,10 +68,10 @@ class Register extends CI_Controller {
         
         //New Session
         $userdata = array(
-                'user_id'   => $user->id,
+                'user_id'   => $user_id,
                 'user_name' => $this->input->post('register-name'),
                 'user_nick' => $this->input->post('nick'),
-                'user_hex'       => $hex
+                'user_hex'  => $hex
             );
         $this->session->set_userdata($userdata);
         
