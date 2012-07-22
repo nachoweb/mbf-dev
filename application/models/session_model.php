@@ -92,6 +92,7 @@ class Session_model extends CI_Model {
             "hex"       =>  $hex
         );
         $this->db->insert('mbf_session', $data); 
+        $data['date'] = date('d - F - Y');
         $session_id = $this->db->insert_id();
         $data['id'] = $session_id;
         return $data;

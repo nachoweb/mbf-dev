@@ -704,7 +704,7 @@ body{
 	display: none;
 }
 
-#menu-tooltip-producto{
+.menu-tooltip-producto{
 	width: 100px;
 	float: left;
 	padding: 5px;
@@ -713,23 +713,23 @@ body{
 	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y;
 }
 
-#menu-tooltip-producto ul{
+.menu-tooltip-producto ul{
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	text-align: center;	
 }
-#menu-tooltip-producto li{
+.menu-tooltip-producto li{
 	height: 21px;
 	margin-top: 5px;
 	text-align: center;
 }
 
-#menu-tooltip-producto a{
+.menu-tooltip-producto a{
 	text-decoration: none;
 	color: #A7AAAC;
 }
-#menu-tooltip-producto a:hover{
+.menu-tooltip-producto a:hover{
 	text-decoration: none;
 	color: #414141;
 }
@@ -929,7 +929,7 @@ body{
 }
 .button{
 	width: 87px;
-	height: 30px;
+	height: 20px;
 	padding: 5px 5px;
 	margin-left: 1px;
 	background: url(images/home/boton_off.png) no-repeat;
@@ -939,6 +939,10 @@ body{
 	color: #939598;
 	z-index: 100;
 	position: relative;	
+}
+
+.form-add-new-category .button{
+    height : 30px;
 }
 
 #menu-stores .button:hover, #menu-stores .button:active{

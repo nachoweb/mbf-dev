@@ -422,7 +422,14 @@ function saveCategory(){
 /* Add new DOM category */
 function addCategory(new_category, new_category_id){
     if(new_category != ''){
-                jQuery('#product_filters').append('<li><a class="button" href="#'+new_category+'" data-categoryid="'+ new_category_id +'" data-filter=".'+ new_category_id +'">'+new_category+'</a></li>');
+                var ids = new Array();
+                jQuery('#product_filters').append('<li><a class="button" href="#'+new_category+'" data-categoryid="'+ new_category_id +'" data-filter=".'+ new_category_id +'">'+new_category+'</a></li>');  
+                var productos = $('.producto');
+                for (var i = 0; i< productos.length; i++){ 
+                  
+                    var li =  '<li><a  href="#'+ new_category +'" data-categoryid="'+ new_category_id +'" data-filter="'+ new_category_id +'" onClick="add_product_category(' + productos[i].id + ',' +  new_category_id +')">' + new_category + '</a></li>';
+                    $('#' + productos[i].id).children('.options-producto').children('.tooltip-producto-carpeta').children('.menu-tooltip-producto').children('nav').children('ul').append(li);
+                }
     }
     jQuery('#product_filters li:last').css('display','none');
     jQuery('#product_filters li:last').fadeIn('slow');
@@ -449,7 +456,7 @@ function add_product_category(product_id, category_id){
             success =  false;
         }
     });	
-    $("#product_" + product_id).addClass(category_id.toString());
+    $("#" + product_id).addClass(category_id.toString());
     $('.producto').children('.options-producto').fadeOut('normal');
     return success;
 }
@@ -708,3 +715,20 @@ function close_session(){
     var respuesta = get_by_ajax(url, "text");
     document.location.href=base_url;
 }
+
+/****************/
+/* Limitaciones */
+/****************/
+
+$(document).ready(function(){
+    $('#input-new-session').live('keydown', function(e){
+        if($(this).val().length >= 15){
+            e.preventDefault();
+        }
+    });
+    $('#input-new-category').live('keydown', function(e){
+        if($(this).val().length >= 10){
+            e.preventDefault();
+        }
+    });
+});

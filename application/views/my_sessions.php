@@ -3,7 +3,8 @@
 </div>
 <div id="container-sesiones">	
     <?php
-    foreach($sessions as $session){
+    foreach($sessions as $session){   
+        if($session->name != "myself"){
     ?>
    
     <article class="sesion" onClick="prepare_session(<?php echo $session->id; ?>)">
@@ -16,6 +17,7 @@
             <span class="date-sesion"><?php echo $session->date ?></span>
     </article>  
     <?php
+        }
     }
     ?>
 </div> <!-- END CONTAINER-SESIONES -->

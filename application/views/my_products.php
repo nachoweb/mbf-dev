@@ -31,12 +31,12 @@
             }
            
         ?>
-            <article id="product_<?php echo $id ?>" class="producto <?php echo $cat_class; ?>" data-title="<?php echo $title; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>" >
+            <article id="<?php echo $id ?>" class="producto <?php echo $cat_class; ?>" data-title="<?php echo $title; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>" >
                 <div class="options-producto">
                         <a href="" class="producto-sesion"><div></div></a>
                         <a href="" class="producto-carpeta"><div></div></a>
                         <div class="tooltip-producto-sesion">
-                            <div id="menu-tooltip-producto">
+                            <div class="menu-tooltip-producto">
                                 <nav>
                                     <ul>
                                         <?php   foreach($sessions as $session){ ?>
@@ -47,9 +47,9 @@
                             </div>
                         </div>
                         <div class="tooltip-producto-carpeta">
-                            <div id="menu-tooltip-producto">
+                            <div class="menu-tooltip-producto">
                                 <nav>
-                                    <ul>
+                                    <ul class="">
                                         <?php   foreach($categories as $category){ ?>
                                             <li><a  href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick="add_product_category(<?php echo "$id, $category->id"; ?>)"><?php echo $category->name ?></a></li>
                                         <?php } ?>
