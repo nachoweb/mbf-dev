@@ -239,7 +239,7 @@ class Product_model extends CI_Model {
     }
     
    */
-       function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status, $session_item = "", $myself = ""){
+       function save_product($hex,$image,$price,$title,$description, $url, $store_url,$store_name, $browser, $status, $session_item = "", $myself = "", $category = ""){
         
         //User_id
         $query = $this->db->query("SELECT id FROM mbf_user where hex='$hex'");
@@ -344,6 +344,10 @@ class Product_model extends CI_Model {
             'category'        => $my_products
         );
         $query = $this->db->query("insert into mbf_product_category(product, category) values ($product, $my_products)");
+        
+        if($category != $my_products){
+            $query = $this->db->query("insert into mbf_product_category(product, category) values ($product, $category)");
+        }
         $data["user_id"] = $user_id;
         $data["product_id"] = $product;
         return $data;

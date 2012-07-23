@@ -10,12 +10,12 @@ class Save_product extends CI_Controller {
      * @author Nacho
      * @version 0.0.0
      */
-    public function save($user = "",$image = "",$price = "",$title = "",$description = "", $url = "", $store_url = "",$store_name = "", $browser = "", $status = "", $session = "", $myself = ""){
+    public function save($user = "",$image = "",$price = "",$title = "",$description = "", $url = "", $store_url = "",$store_name = "", $browser = "", $status = "", $session = "", $myself = "", $category = ""){
         echo "sesion: $session";
         echo "myself: $myself";
         $this->load->model('Product_model');
         //data = array($product_id , $user_id);
-        $data =  $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself);      
+        $data =  $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
         $this->save_img($image, $data['user_id'], $data['product_id']);
     }
     
