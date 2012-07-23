@@ -39,7 +39,7 @@
             $description == "NS" ? $description = "" : $description = $description;
             $store_url = rawurldecode($product->store_url); 
     ?>
-    <article class="producto">
+    <article id="<?php echo $id ?>" class="producto" data-title="<?php echo $title; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>" >
             <div class="options-producto">
                     <a href="" class="producto-sesion"><div></div></a>
                     <a href="" class="producto-carpeta"><div></div></a>
