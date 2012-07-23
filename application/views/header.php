@@ -5,8 +5,13 @@
             <?php 
                 if($close_session){
             ?>
-            <div id="close-session">
-                <a href="#" onClick="close_session()" > Cerrar sesión </a>
+            <div id="header-tool">
+                <div id="close-session">
+                    <a href="#" onClick="close_session()" > Cerrar sesión </a>
+                </div>
+                <div id="refresh">
+                    <a href="#" onClick="refresh()"> Actualizar <img id="img-refresh" src="<?php echo $site_url."images/refresh.png" ?>" </a>
+                </div>
             </div>
             <?php
                 }

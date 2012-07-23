@@ -1,6 +1,6 @@
 /* Variables */
 var inter = 0;
-
+var options = {"section" : "home"};
 
 /********************/
 /*  Funciones ajax  */
@@ -16,7 +16,7 @@ function get_by_ajax(url, type){
         success: function(respuesta){										
             r = respuesta;
         },
-        error: function(){
+        error: function(error){
             r = error;
         }
     });	
@@ -95,6 +95,23 @@ function refresh_content(options){
     }   
 }
 
+$(document).ready(function(){
+    document.onkeydown = function(){ 
+        if(window.event && window.event.keyCode == 116){ 
+            event.preventDefault();
+            refresh();    
+        } 
+        if(window.event && window.event.keyCode == 505){
+            event.preventDefault();
+            refresh();
+        } 
+    } 
+});
+
+function refresh(){
+    refresh_content(options);
+}
+
 /* Slider explicación */
 function activar_slider_explicacion(){
 var slider_width = $('.slider-register-container').width();
@@ -122,11 +139,11 @@ $('#nav-slider-register .nav-item-register').click(function (){
 
 
 function prepare_session(session_id){
-    option = {
+    options = {
         "section" : "session" ,
         "session" : session_id
     };
-    refresh_content(option);
+    refresh_content(options);
 }
 
 /* Add message sessions */
@@ -142,7 +159,6 @@ $(document).ready(function(){
 
             //Mandamos
             url = base_url + "messages/add/" + session+ "/" + text + "/" + last;  
-            console.log(url);
             var respuesta = get_by_ajax(url, "json");
             add_messages(respuesta.messages);
             jQuery(this).attr("data-last", respuesta.last_message);

@@ -77,6 +77,7 @@ class Main extends CI_Controller {
             //Show instructions¡
             $content['content'] = $this->load->view('steps_inside', $data_view, true);
             $data_header['close_session'] = true;
+            $data_header['site_url'] = site_url();
             
             /* CARGAR VISTAS */
           
