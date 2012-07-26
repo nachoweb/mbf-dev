@@ -31,7 +31,7 @@ class Product_model extends CI_Model {
             from mbf_product join mbf_store
             on  mbf_product.store = mbf_store.id
             where session=$session_id
-            order by mbf_product.id asc";
+            order by mbf_product.id desc";
         }
         $query = $this->db->query($sql);
         return $query->result();
@@ -325,8 +325,9 @@ class Product_model extends CI_Model {
             'browser'       => $browser,
             'session'       => $session,
             'date'          => date('Y-m-d H:i:s'),
-            'status'        => $status
-        );
+            'status'        => $status,
+            'user'          => $user_id
+        );       
         $this->db->insert('mbf_product', $data); 
         $product = $this->db->insert_id();
         

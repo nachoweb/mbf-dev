@@ -23,6 +23,21 @@ function get_by_ajax(url, type){
     return r;
 }
 
+function send_message(){
+    var params = {      
+        "session_id":   $("#new-message").attr("data-session"),
+        "last"      :   $("#new-message").attr("data-last"),     
+        "text"      :   $("#new-message").val()
+    }  
+    console.log(params);
+ 
+   $.post( base_url + "messages/add", params,
+    function(data){
+            add_messages(data.messages);
+            $("#new-message").attr("data-last", data.last_message);
+    }, "json");
+}
+
 /* Event click menu */
 $(document).ready(function(){
     activar_slider_explicacion();
@@ -67,6 +82,7 @@ function refresh_content(options){
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);
     }else if(options.section == "products"){
+        console.log("ola");
         content = get_by_ajax(base_url + "main/products", "text");
         document.getElementById("content").innerHTML = content;
         load_product_options();
@@ -91,7 +107,7 @@ function refresh_content(options){
         document.getElementById("content").innerHTML = content;
         $("#sesion-chat").animate({scrollTop: $("#sesion-chat")[0].scrollHeight}, 0);
         inter = window.setInterval(refresh_messages, 15000);
-        console.log(inter);
+        activate_session_events();
     }   
 }
 
@@ -147,23 +163,20 @@ function prepare_session(session_id){
 }
 
 /* Add message sessions */
-$(document).ready(function(){
-    $('#new-message').live('keypress', function(e){
-        var text = encodeURIComponent($(this).val());
-        var session = $(this).attr('data-session');
-        var last = $(this).attr('data-last');
+function activate_session_events(){
+    $('#new-message').keypress(function(e){       
         if(e.which == 13){
             //Paramos maquinaria
-            e.preventDefault();
+            e.preventDefault();                
+                send_message();
                 $(this).val("");
-
             //Mandamos
-            url = base_url + "messages/add/" + session+ "/" + text + "/" + last;  
+      /*    url = base_url + "messages/add/" + session+ "/" + text + "/" + last;  
             var respuesta = get_by_ajax(url, "json");
             add_messages(respuesta.messages);
             jQuery(this).attr("data-last", respuesta.last_message);
             //Insertamos
-        /*    message =  "<div class='sesion-message'>";
+            message =  "<div class='sesion-message'>";
             message += "    <div class='sesion-message-left'>";
             message += "        <span class='sesion-message-name'>Nachete</span>"
             message += "        <span class='sesion-message-time'>16:00h</span>"
@@ -179,7 +192,7 @@ $(document).ready(function(){
         }
        
     });  
-});
+}
 
 
 function add_messages(messages){
@@ -304,11 +317,7 @@ function innerContent(item){
     popup_content += '			<span id="popup-brand"><a href="#">'+brand+'</a></span>';
     popup_content += '		</div>';
     popup_content += '		<div id="popup-description">'+description+'</div>';
-    popup_content += '		<form action="" method="post" id="popup-form-send" name="popup-form-send">';
-    popup_content += '			<input type="text" id="popup-input-send" name="popup-input-send" placeholder="enviar a un amigo" />';
-    popup_content += '			<input type="submit" id="popup-submit" class="button-blue" name="popup-submit" value="enviar" /><br />';
-    popup_content += '			<span id="popup-fb">facebook</span>';
-    popup_content += '		</form>';
+    popup_content += '		<span id="popup-fb">facebook</span>';
     popup_content += '	</div>';
     popup_content += '  <nav id="popup-nav">';
     popup_content += '		<ul class="nav-list">';
@@ -627,7 +636,7 @@ function inicializar_menu_tiendas(){
         $('#tiendas-mbf').fadeOut('normal',function(){
             $('#mis-tiendas').fadeIn('normal');
             $('#sidebar').animate({
-            'min-height': $('#content').css('height'),
+            'min-height': $('#content').css('height')
             }, 5000)
         });
        

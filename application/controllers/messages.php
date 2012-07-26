@@ -15,14 +15,19 @@ class Messages extends CI_Controller {
     }
     
    
-    public function add($session_id,$text, $last = 0){
+    public function add(){
+        //Inicializamos
+        $text       =   $this->input->post("text");
+        $session_id =   $user = $this->input->post("session_id");        
+        $last       =   $this->input->post("last") ? $this->input->post("last") : 0;
+        
+        //Loader
         $this->load->library('session');
         $this->load->model('Session_model');
         
-        $user_id = $this->session->userdata('user_id');
-        
+        $user_id = $this->session->userdata('user_id');        
         if($this->Session_model->check_user_session($user_id, $session_id)){
-            $this->Message_model->add_message($session_id, $user_id, urldecode($text));
+            $this->Message_model->add_message($session_id, $user_id, $text);
             $this->get_messages($session_id, $last, true);
         }
     }

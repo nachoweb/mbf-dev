@@ -31,7 +31,7 @@
 										</div>
 										<div id="register-2-button">
 											<img src="<?php echo $site_url;?>/images/register/arrow.png">
-											<div id="register-bookmarklet"> <a href="javascript:void((function(){window.mbfUser='<?php echo $hex; ?>';var mbfBookmarklet=document.createElement('script');mbfBookmarklet.setAttribute('type','text/javascript');mbfBookmarklet.setAttribute('src','<?php echo $script_bm ?>');document.getElementsByTagName('head')[0].appendChild(mbfBookmarklet);})());">MBF</a> </div> 
+											<div id="register-bookmarklet"> <a href="javascript:void((function(){window.mbfUser='<?php echo $hex; ?>';var mbfBookmarklet=document.createElement('script');mbfBookmarklet.setAttribute('type','text/javascript');mbfBookmarklet.setAttribute('src','<?php echo $script_bm ?>?' + Math.random() * 9999999);document.getElementsByTagName('head')[0].appendChild(mbfBookmarklet);})());">MBF</a> </div> 
 
 										</div>
 									</div>

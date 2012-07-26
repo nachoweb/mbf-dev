@@ -27,7 +27,7 @@
     <?php
      foreach ($products as $product){
             $id = $product->id;
-            $image = $base_url_image_product."/products/".$product->image;
+            $image = $base_url_image_product."/".$product->image;
             $thumb = $base_url_image_product."/thumbs/".$product->image;
             $price = rawurldecode($product->price);
             $price == "NS" ? $price = "" : $price = $price." €";
@@ -46,13 +46,13 @@
                     <div class="tooltip-producto-sesion"></div>
                     <div class="tooltip-producto-carpeta">
                             <div id="menu-tooltip-producto">
-                                    <nav>
-                                            <ul>
-                                                    <li><a href="#" id="button-productos-1" class="active">camisetas</a></li>
-                                                    <li><a href="#" id="button-productos-2">regalo alex</a></li>
-                                                    <li><a href="#" id="button-productos-3">mix</a></li>
-                                            </ul>
-                                    </nav>
+                                <nav>
+                                    <ul>
+                                            <li><a href="#" id="button-productos-1" class="active">camisetas</a></li>
+                                            <li><a href="#" id="button-productos-2">regalo alex</a></li>
+                                            <li><a href="#" id="button-productos-3">mix</a></li>
+                                    </ul>
+                                </nav>
                             </div>
                     </div>
             </div>

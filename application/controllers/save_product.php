@@ -10,12 +10,24 @@ class Save_product extends CI_Controller {
      * @author Nacho
      * @version 0.0.0
      */
-    public function save($user = "",$image = "",$price = "",$title = "",$description = "", $url = "", $store_url = "",$store_name = "", $browser = "", $status = "", $session = "", $myself = "", $category = ""){
-        echo "sesion: $session";
-        echo "myself: $myself";
+    //$user = "",$image = "",$price = "",$title = "",$description = "", $url = "", $store_url = "",$store_name = "", $browser = "", $status = "", $session = "", $myself = "", $category = ""
+    public function save(){
         $this->load->model('Product_model');
         //data = array($product_id , $user_id);
-        $data =  $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
+        $user =     $this->input->post("mbf-hex");
+        $image =    $this->input->post('mbf-image');
+        $price =    $this->input->post('mbf-marklet-price');
+        $title =    $this->input->post('mbf-marklet-title');       
+        $url =      $this->input->post('mbf-url');       
+        $browser =  $this->input->post('mbf-marklet-browser');
+        $status =   $this->input->post('mbf-marklet-status');
+        $session =  $this->input->post('mbf-sessions');
+        $myself =   $this->input->post('mbf-myself');
+        $category = $this->input->post('mbf-categories');        
+        $store_url = $this->input->post('password');
+        $store_name = $this->input->post('mbf-marklet-store');
+        $description = $this->input->post('mbf-marklet-comment');
+        $data =     $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
         $this->save_img($image, $data['user_id'], $data['product_id']);
     }
     
