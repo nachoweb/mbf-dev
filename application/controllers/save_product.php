@@ -16,8 +16,8 @@ class Save_product extends CI_Controller {
         //data = array($product_id , $user_id);
         $user =     $this->input->post("mbf-hex");
         $image =    $this->input->post('mbf-image');
-        $price =    $this->input->post('mbf-marklet-price');
-        $title =    $this->input->post('mbf-marklet-title');       
+        $price =    $this->utf8_urldecode($this->input->post('mbf-marklet-price'));
+        $title =    $this->utf8_urldecode($this->input->post('mbf-marklet-title'));       
         $url =      $this->input->post('mbf-url');       
         $browser =  $this->input->post('mbf-marklet-browser');
         $status =   $this->input->post('mbf-marklet-status');
@@ -26,7 +26,7 @@ class Save_product extends CI_Controller {
         $category = $this->input->post('mbf-categories');        
         $store_url = $this->input->post('mbf-marklet-shop');
         $store_name = $this->input->post('mbf-store-name');
-        $description = $this->input->post('mbf-marklet-comment');
+        $description = $this->utf8_urldecode($this->input->post('mbf-marklet-comment'));
         $data =     $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
         $this->save_img($image, $data['user_id'], $data['product_id']);
     }
@@ -154,6 +154,10 @@ class Save_product extends CI_Controller {
         $this->crop->save();
     }*/
     
+    private function utf8_urldecode($str) {
+        $str = preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode($str));
+        return html_entity_decode($str,null,'UTF-8');;
+    }
     
 }
 ?>

@@ -16,7 +16,7 @@
             $image = $base_url_image."/".$product->image;
             $thumb = $base_url_image."/thumbs/".$product->image;
             $price = rawurldecode($product->price);
-            $price == "NS" ? $price = "" : $price = $price." €";
+            $price == "" ? $price = "" : $price = $price." €";
             $product_url = rawurldecode($product->url);
             $store_name = rawurldecode($product->store_name);
             $description = rawurldecode($product->description); 
