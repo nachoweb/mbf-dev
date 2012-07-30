@@ -362,9 +362,9 @@ function innerContentRemoveProduct(product_id){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
     popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
-    popup_content += '		<div><label>¿Estás seguro que deseas eliminar este producto?</label></div>';
+    popup_content += '		<div><label>¿Estás seguro que deseas eliminar este producto?</label></div><br/>';
     popup_content += '		<input type="button"  class="button" value="Aceptar" onClick="remove_product('+ product_id + ')" />';
-    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="Cancelar" onClick="" />';
+    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="Cancelar" onClick="closePopup()" />';
     popup_content += '	</form>';
     popup_content += '	</div>';
     $('#popup-content').append(popup_content);
