@@ -150,6 +150,7 @@ class Register extends CI_Controller {
         $data_view['site_url'] = site_url();
         
         $data_view['script_bm'] =$this->config->item('bm_script');
+        $data_view['close_session'] =false;
         
         //Show instructions¡
         $this->load->view('register_steps', $data_view);

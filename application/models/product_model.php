@@ -21,13 +21,13 @@ class Product_model extends CI_Model {
      * @return array Array of products 
      */
     function get_products_by_session($session_id, $categories = true) {
-        $sql = "select mbf_product.id, mbf_product_category.category, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
+        $sql = "select mbf_product.id, mbf_product.user, mbf_product_category.category, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
             from mbf_product join mbf_store join mbf_product_category
             on mbf_product.store = mbf_store.id and mbf_product.id = mbf_product_category.product
             where session=$session_id
             order by mbf_product.id desc";
         if($categories == false){
-            $sql = "select mbf_product.id,  mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
+            $sql = "select mbf_product.id, mbf_product.user, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
             from mbf_product join mbf_store
             on  mbf_product.store = mbf_store.id
             where session=$session_id
@@ -369,12 +369,14 @@ class Product_model extends CI_Model {
             'browser'       => $product->browser,
             'session'       => $session_id,
             'date'          => date('Y-m-d H:i:s'),
-            'status'        => $product->status
+            'status'        => $product->status,
+            'user'          => $product->user
         );
         $this->db->insert('mbf_product', $data); 
         $product_id = $this->db->insert_id();
         return $product_id;
     }
+    
     
     function remove_product_category($product_id, $category_id){
         $sql = "delete from mbf_product_category where product = $product_id and category= $category_id";
@@ -387,6 +389,16 @@ class Product_model extends CI_Model {
         $sql = "delete from mbf_product where id=$product_id";
         $query = $this->db->query($sql);
         return $this->db->affected_rows();
+    }
+    
+    function check_user_product($product_id, $user_id){
+        $query = $this->db->query("select from mbf_product where id=$product_id and user=$user_id");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return true;
+        }else{
+            return false;
+        }
     }
     
     

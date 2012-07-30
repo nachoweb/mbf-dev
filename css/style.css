@@ -765,6 +765,19 @@ body{
 	color: #414141;
 }
 
+.delete-product{
+    width: 15px;
+    height: 15px;
+    background-image: url(images/borrar_producto.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 400;
+    position: absolute;
+    left: 135px;
+    cursor: pointer;
+    top: 4px;
+}
+
 /* Sesiones */
 
 #container-sesiones{
@@ -918,6 +931,7 @@ body{
 	width: 315px;
 	max-width: 100%;
 	padding: 5px 5px;
+        height: 60px;
 }
 #dentro-sesion-right{
 	width: 380px;

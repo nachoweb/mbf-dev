@@ -1,8 +1,13 @@
 <div id="menu-productos">
     <nav>
-            <ul id="product_filters">
-                <?php   foreach($categories as $category){ ?>
-                  <li><a class="button" href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>"><?php echo $category->name ?></a></li>
+              <ul id="product_filters">
+                <?php   for($i = 0; $i < count($categories); $i++){ ?>
+                    <?php if($i == 0) { ?>
+                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-categoryid="0" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
+                    <?php }else{ ?>
+                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-categoryid="<?php echo $categories[$i]->id; ?>" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
+                    <?php }    ?>
+                  
                <?php  } ?>
             </ul>
     </nav>
@@ -32,6 +37,8 @@
            
         ?>
             <article id="<?php echo $id ?>" class="producto <?php echo $cat_class; ?>" data-title="<?php echo $title; ?>" data-id="<?php echo $id;?>" data-store-url="<?php echo $store_url; ?>" data-img="<?php echo $image ?>" data-price="<?php echo $price ?>" data-brand="<?php echo $store_name ?>" data-description="<?php echo $description ?>" data-producturl="<?php echo $product_url; ?>" >
+                <div class="delete-product">
+                </div>
                 <div class="options-producto">
                         <a href="" class="producto-sesion"><div></div></a>
                         <a href="" class="producto-carpeta"><div></div></a>
@@ -40,7 +47,7 @@
                                 <nav>
                                     <ul>
                                         <?php   foreach($sessions as $session){ ?>
-                                            <li><a  onClick="add_product_sesion(<?php echo $id ?>, <?php echo $session->id ?>)" href="#<?php echo $session->name; ?>" data-sesionid="<?php echo $session->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick=""><?php echo $session->name ?></a></li>
+                                            <li><a  onClick="add_product_sesion(<?php echo $id ?>, <?php echo $session->id ?>)" href="#<?php echo $session->name; ?>" data-sesionid="<?php echo $session->id; ?>" onClick=""><?php echo $session->name ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </nav>

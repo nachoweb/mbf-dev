@@ -27,8 +27,8 @@
     <?php
      foreach ($products as $product){
             $id = $product->id;
-            $image = $base_url_image_product."/".$product->image;
-            $thumb = $base_url_image_product."/thumbs/".$product->image;
+            $image = $base_url_image_product."/$product->user/".$product->image;
+            $thumb = $base_url_image_product."/$product->user/thumbs/".$product->image;
             $price = rawurldecode($product->price);
             $price == "NS" ? $price = "" : $price = $price." €";
             $product_url = rawurldecode($product->url);

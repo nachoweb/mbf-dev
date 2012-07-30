@@ -199,7 +199,7 @@ class Main extends CI_Controller {
                 $data_session["products"]       = $this->Product_model->get_products_by_session($session_id, false);
                 $data_session['user']           = $user_data;
                 $data_session['base_url_image_store'] = site_url("/images/stores");
-                $data_session['base_url_image_product'] = site_url("/images/products/$user_id");
+                $data_session['base_url_image_product'] = site_url("/images/products");
 
                 //View
                 $this->load->view('session', $data_session);

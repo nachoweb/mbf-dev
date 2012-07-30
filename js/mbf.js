@@ -1,6 +1,7 @@
-/* Variables */
+/* globals */
 var inter = 0;
 var options = {"section" : "home"};
+var category_active = 0;
 
 /********************/
 /*  Funciones ajax  */
@@ -28,9 +29,7 @@ function send_message(){
         "session_id":   $("#new-message").attr("data-session"),
         "last"      :   $("#new-message").attr("data-last"),     
         "text"      :   $("#new-message").val()
-    }  
-    console.log(params);
- 
+    } 
    $.post( base_url + "messages/add", params,
     function(data){
             add_messages(data.messages);
@@ -40,6 +39,7 @@ function send_message(){
 
 /* Event click menu */
 $(document).ready(function(){
+    
     activar_slider_explicacion();
     $("#menu_inicio").click(function(){
         options = {"section" : "home"};
@@ -59,8 +59,10 @@ $(document).ready(function(){
     $("#menu_mis_cosas").click(function(){
         options = {"section" : "products"};
         refresh_content(options);
+        mis_cosas_events();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
+        console.log("ola");
     });
     
     $("#menu_sesiones").click(function(){
@@ -69,38 +71,35 @@ $(document).ready(function(){
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
     });
+    
 });
 
 /* Navigability */
 function refresh_content(options){
+    console.log("refresh_content");
     var content = "";
     
     if(options.section == "home"){
         document.getElementById("content").innerHTML = "";
-        content = get_by_ajax(base_url + "main/steps", "text");
-        console.log(base_url + "main/steps");
+        content = get_by_ajax(base_url + "main/steps", "text");        
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);
     }else if(options.section == "products"){
-        console.log("ola");
         content = get_by_ajax(base_url + "main/products", "text");
         document.getElementById("content").innerHTML = content;
         load_product_options();
-        active_isotope_products();
-         console.log(inter);
+        active_isotope_products();       
         window.clearInterval(inter);
     }else if(options.section == "stores"){
         content = get_by_ajax(base_url + "main/stores", "text");
         document.getElementById("content").innerHTML = content;
         tool_bar_stores_events();
         cargar_tool_tips_stores();
-        inicializar_menu_tiendas();    
-         console.log(inter);
+        inicializar_menu_tiendas();         
         window.clearInterval(inter);
     }else if (options.section == "sessions"){
         content = get_by_ajax(base_url + "main/my_sessions", "text");
-        document.getElementById("content").innerHTML = content;
-        console.log(inter);
+        document.getElementById("content").innerHTML = content;      
         window.clearInterval(inter);
     }else if (options.section == "session"){
         content = get_by_ajax(base_url + "main/session/" + options.session, "text");
@@ -108,26 +107,31 @@ function refresh_content(options){
         $("#sesion-chat").animate({scrollTop: $("#sesion-chat")[0].scrollHeight}, 0);
         inter = window.setInterval(refresh_messages, 15000);
         activate_session_events();
-    }   
+    }       
 }
 
+function mis_cosas_events(){
+    
+}
+/*
 $(document).ready(function(){
     document.onkeydown = function(){ 
         if(window.event && window.event.keyCode == 116){ 
             event.preventDefault();
-            refresh();    
+            //refresh();    
         } 
         if(window.event && window.event.keyCode == 505){
             event.preventDefault();
-            refresh();
+            //refresh();
         } 
     } 
 });
 
 function refresh(){
+    console.log("refresh");
     refresh_content(options);
 }
-
+*/
 /* Slider explicación */
 function activar_slider_explicacion(){
 var slider_width = $('.slider-register-container').width();
@@ -183,8 +187,8 @@ function activate_session_events(){
             message += "    </div>"
             message += "   <div class='sesion-message-right'>"
             message += "        <p class='sesion-message-text'>"
-            message +=              text
-            message += "        </p>"
+            message +=              text 
+           message += "        </p>"
             message += "   </div>"
             message += "</div>"
             $("#sesion-chat").append(message);
@@ -220,8 +224,7 @@ function refresh_messages(){
     var session = $('#new-message').attr('data-session');
     var last = $('#new-message').attr('data-last');
     url = base_url + "messages/get_messages/" + session + "/" + last;
-    var respuesta = get_by_ajax(url, "json");
-    console.log(respuesta);
+    var respuesta = get_by_ajax(url, "json");  
     add_messages(respuesta.messages);
     if(respuesta.last_message != 0){
         $('#new-message').attr("data-last",respuesta.last_message );
@@ -269,13 +272,13 @@ function add_store_user(store_id){
 $(document).ready(function(){
     var current_item;
     $('.container-img-producto').live('click', function(){
-            current_item = $(this).parent('.producto');
-            console.log(current_item);
+            current_item = $(this).parent('.producto');           
             innerContent(current_item);
             loadPopup();
+            console.log("producto");
     });
     $('#shadow').click(function(){
-            closePopup();
+           
     });
 
     $('#popup-next').live('click', function(){
@@ -355,6 +358,19 @@ function innerContentAddSession(){
     $('#popup-content').append(popup_content);
 }
 
+function innerContentRemoveProduct(product_id){
+    jQuery('#popup-content').empty();
+    var popup_content = '<div>';
+    popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
+    popup_content += '		<div><label>¿Estás seguro que deseas eliminar este producto?</label></div>';
+    popup_content += '		<input type="button"  class="button" value="Aceptar" onClick="remove_product('+ product_id + ')" />';
+    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="Cancelar" onClick="" />';
+    popup_content += '	</form>';
+    popup_content += '	</div>';
+    $('#popup-content').append(popup_content);
+}
+
+
 function innerContentHex(hex){
     jQuery('#popup-content').empty();
     var popup_content = '<div class="form-add-new-category">';
@@ -384,6 +400,7 @@ function loadPopup(event){
             jQuery('#popup').fadeIn('normal');
                 showPopupContent();
     });
+ 
 }
 function showPopupContent(){   
         jQuery('#popup').animate({
@@ -417,6 +434,7 @@ function closePopup(){
     jQuery('#popup').css('background-image','url(images/loading.gif');
     jQuery('#popup-content').empty();
     jQuery('#popup-content').appendTo('body');
+    console.log("end close");
 }
 
 /****************/
@@ -486,6 +504,8 @@ function add_product_category(product_id, category_id){
     return success;
 }
 
+
+
 /* Add product-sesion */
 function add_product_sesion(product_id, sesion_id){    
     var success = true;
@@ -528,7 +548,6 @@ function saveSession(){
 
 /* Add new DOM Session */
 function addSession(session){
-    console.log(jQuery('#container-sesiones'));
     jQuery('#container-sesiones').append(' <article class="sesion" onClick="prepare_session(' + session.id + ')"> 	<span class="sesion-title">' + session.name + '</span> 	<div class="container-avatar-sesion"> 			<img src="' + base_url + 'images/avatar_sesion.jpg" /> 	</div> 	<span class="date-sesion">'+ session.date +'</span> </article> ');
   /*  jQuery('#product_filters li:last').css('display','none');
     jQuery('#product_filters li:last').fadeIn('slow');
@@ -559,6 +578,7 @@ function active_isotope_products(){
 function click_category_filters(){
     $('#product_filters a').click(function(){ 
             var selector = $(this).attr('data-filter');
+            category_active = $(this).attr('data-categoryid');
             $('#container-productos').isotope({filter: selector});
             return false;
     });
@@ -730,6 +750,37 @@ function load_product_options(){
                     $(this).fadeOut('fast')
             }
     );
+        
+   /* Remove products */
+    $(".delete-product").click(function (event){
+        var producto_id = $(this).parent().attr("id");
+        if(category_active == 0){
+            innerContentRemoveProduct(producto_id)
+            loadPopup();
+        }else{
+            remove_product_category(producto_id, category_active);            
+        }
+        //console.log($(this).parent().attr("id"));
+        //console.log(category_active);
+       
+       
+   });
+}
+
+function remove_product(product_id){
+   $('#container-productos').isotope( 'remove', $("#" + product_id), function(){} );
+   get_by_ajax(base_url + "/product/remove_product/" + product_id, "text");
+   closePopup();
+}
+
+function remove_product_category(category_id, product_id){
+   $('#container-productos').isotope( 'remove', $("#" + product_id), function(){} );
+   get_by_ajax(base_url + "/product/remove_product_category/" + product_id + "/" + category_id, "text");
+   closePopup();
+}
+
+function remove_product_session(session_id, product_id){
+    
 }
 
 
@@ -748,12 +799,16 @@ function close_session(){
 $(document).ready(function(){
     $('#input-new-session').live('keydown', function(e){
         if($(this).val().length >= 15){
-            e.preventDefault();
+            if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+                e.preventDefault();
+            }
         }
     });
     $('#input-new-category').live('keydown', function(e){
         if($(this).val().length >= 10){
-            e.preventDefault();
+             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+                e.preventDefault();
+            }
         }
     });
 });
