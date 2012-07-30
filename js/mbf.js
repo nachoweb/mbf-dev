@@ -773,10 +773,12 @@ function remove_product(product_id){
    closePopup();
 }
 
-function remove_product_category(category_id, product_id){
-   $('#container-productos').isotope( 'remove', $("#" + product_id), function(){} );
+function remove_product_category(product_id, category_id ){   
+   //$('#container-productos').isotope( 'remove', $("#" + product_id), function(){} );
    get_by_ajax(base_url + "/product/remove_product_category/" + product_id + "/" + category_id, "text");
-   closePopup();
+   $("#" + product_id).removeClass(category_id.toString());
+   $('#container-productos').isotope({filter: '.' + category_id});
+   console.log(category_id);
 }
 
 function remove_product_session(session_id, product_id){
