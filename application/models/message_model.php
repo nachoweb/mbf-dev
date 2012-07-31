@@ -41,6 +41,18 @@ class Message_model extends CI_Model {
         return $result;
     }
     
+    function get_notifications($user_id , $session_id = 0){
+        if($session_id = 0){
+            $sql = "select count(mbf_message.id)
+                    from mbf_message join mbf_session_user
+                    on mbf_message.session = mbf_session_user.session
+                    where mbf_session_user.user = $user_id and date > last_visit and mbf_message.user != $user_id";
+        }else{
+            
+        }
+        
+    }
+    
 }
 
 ?>

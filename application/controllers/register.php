@@ -71,7 +71,8 @@ class Register extends CI_Controller {
                 'user_id'   => $user_id,
                 'user_name' => $this->input->post('register-name'),
                 'user_nick' => $this->input->post('nick'),
-                'user_hex'  => $hex
+                'user_hex'  => $hex,
+                'myself'    => $new_session
             );
         $this->session->set_userdata($userdata);
         
@@ -112,11 +113,14 @@ class Register extends CI_Controller {
         
         //Session
         if( !is_numeric($user)){
+            $myself = $this->User_model->get_user_session($user->id);
+            echo "MYSELF: $myself";
             $userdata = array(
                 'user_id'   => $user->id,
                 'user_name' => $user->name,
                 'user_nick' => $user->nick,
-                'user_hex'       => $user->hex
+                'user_hex'  => $user->hex,
+                'myself'    => $myself
             );
             $this->session->set_userdata($userdata);
             

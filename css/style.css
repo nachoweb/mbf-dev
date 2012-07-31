@@ -319,6 +319,68 @@ body{
     min-height: 196px;
 }
 
+#notificaciones{
+    margin-top: 5px;
+}
+
+.sessions-notifications{
+    float:left;
+    border-right:1px solid #BDBEC0;
+    padding-top: 7px;
+}
+
+.contenedor_not_products{
+    width: 45px;
+    height: 41px;
+    background-image: url(images/sesiones/productos_on.png);
+    background-repeat: no-repeat;
+    float:left;
+}
+
+.contenedor_not_mensajes{
+    width: 60px;
+    height: 35px;
+    background-image: url(images/sesiones/mensaje_on.png);
+    background-repeat: no-repeat;
+    float:left;
+} 
+    
+.contenedor_not_mensajes_0{
+    width: 60px;
+    height: 35px;
+    background-image: url(images/sesiones/mensaje.png);
+    background-repeat: no-repeat;
+    float:left; 
+}
+
+.contenedor_not_products_0{
+    width: 45px;
+    height: 30px;
+    background-image: url(images/sesiones/producto.png);
+    background-repeat: no-repeat;
+    float:left;
+}
+
+.not-messages{
+    color: white;
+    top: 8px;
+    left: 28px;
+    position: relative;
+    font-size: 12px;
+    width: 24px;
+    text-align: center;
+}
+
+.not-products{
+    color: white;
+    top: 8px;
+    left: 15px;
+    position: relative;
+    font-size: 12px;
+    width: 24px;
+    text-align: center;
+}
+
 /* Header */
 
 #container-logo{
@@ -460,7 +522,7 @@ body{
 }
 .store{
     width: 195px;
-    height: 142px;
+    height: 100px;
     padding: 5px 7px;
     float: left;
     background: url(images/tiendas/bg_tienda.jpg) no-repeat;
@@ -758,7 +820,7 @@ body{
 
 .menu-tooltip-producto a{
 	text-decoration: none;
-	color: #888;
+	color: #777;
 }
 .menu-tooltip-producto a:hover{
 	text-decoration: none;
@@ -776,6 +838,7 @@ body{
     left: 135px;
     cursor: pointer;
     top: 4px;
+    display: none;
 }
 
 /* Sesiones */
@@ -797,6 +860,35 @@ body{
 	background: url(images/sesiones/bg_sesiones.png) no-repeat;
 	font-size: 12px;
         cursor: pointer;
+}
+
+.sessions-top{
+    float: left;
+    width: 100%;
+    border-bottom: solid 1px #BDBEC0;
+    margin-top: 2px;
+}
+
+.sessions-bot{
+    float:left;
+    width: 100%;
+}
+
+.sessions-avatar{
+    width: 26px;
+    height: 32px;
+    background-image: url(images/sesiones/icono.png);
+    background-repeat: no-repeat;
+    float:left;
+}
+
+.sessions-nick{
+    color: #1875BC;
+    font-weight: bold;
+    margin-left: 10px;
+    float:left;
+    font-size: 26px;
+    margin-top: -5px;
 }
 .sesion-title{
 	width: 100%;
@@ -833,6 +925,7 @@ body{
 	letter-spacing: 0.8px;
 }
 .date-sesion{
+        margin-top: 20px;
 	float: right;
 	color: #818385;
 }

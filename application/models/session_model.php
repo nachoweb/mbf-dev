@@ -28,11 +28,26 @@ class Session_model extends CI_Model {
             $id_user = $user->id;
         }
         $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user, date_format(mbf_session.date,'%e-%M-%Y') as 'date'
-                                    from mbf_session_user join mbf_session
+                                    from mbf_session_user join mbf_session 
                                     on mbf_session_user.session = mbf_session.id
                                     where mbf_session_user.user =$id_user
                                     order by mbf_session.date");
         return $query->result();
+    }
+    
+    
+    function get_sessions_users($user_id){
+        $return = array();
+        $sql =    "select mbf_session_user.session, mbf_user.nick
+                    from  mbf_user join mbf_session_user
+                    on mbf_session_user.user = mbf_user.id and mbf_user.id != $user_id
+                    where mbf_session_user.session in (select mbf_session_user.session from mbf_session_user where mbf_session_user.user = $user_id )";
+        $query = $this->db->query($sql);
+        $sessions = $query->result();
+        foreach($sessions as $session){
+            $return[$session->session] = $session->nick;
+        }
+        return $return;
     }
     
     function get_sessions_notifications_by_user($user){
@@ -159,6 +174,11 @@ class Session_model extends CI_Model {
         }else{
             return array();
         }
+    }
+    
+    public function update_last_visit($user_id, $session_id){
+        $date = date("Y-n-d H:i:s");
+        $query = $this->db->query("update mbf_session_user set last_visit = '$date' where session=$session_id and user=$user_id");
     }
     
     

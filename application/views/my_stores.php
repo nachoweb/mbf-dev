@@ -35,15 +35,17 @@
                     <span class="tooltip-guardar" ></span>
                 </div>
                 <div class="container-img-store">
-                    <img src="<?php echo $base_url_image."/".$member->logo ?>" />
+                    <a href="<?php echo $member->url ?>" target="_blank">
+                        <img src="<?php echo $base_url_image."/".$member->logo ?>" />
+                    </a>
                 </div>
-                <div class="container-description-store">
+                <!--<div class="container-description-store">
                     <p>
                         <?php 
                             echo $member->description;
                         ?>
                     </p>
-                </div>
+                </div>-->
             </article>
             <?php } ?>
     </section>

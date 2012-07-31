@@ -3,9 +3,9 @@
               <ul id="product_filters">
                 <?php   for($i = 0; $i < count($categories); $i++){ ?>
                     <?php if($i == 0) { ?>
-                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-categoryid="0" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
+                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-name="<?php echo $categories[$i]->name; ?>" data-categoryid="0" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
                     <?php }else{ ?>
-                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-categoryid="<?php echo $categories[$i]->id; ?>" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
+                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-name="<?php echo $categories[$i]->name; ?>" data-categoryid="<?php echo $categories[$i]->id; ?>" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
                     <?php }    ?>
                   
                <?php  } ?>

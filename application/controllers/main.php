@@ -35,6 +35,12 @@ class Main extends CI_Controller {
             //USER
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
+            $myself = $this->session->userdata('myself');
+            
+            
+            //Notifications
+            $this->load->model('Notification_model');
+            $data_sidebar['notifications'] = $this->Notification_model->get_user_notifications($user_id, $myself);
             
             //Actualize last visit
              $this->load->model('User_model');
@@ -46,23 +52,7 @@ class Main extends CI_Controller {
                 $this->Session_model->add_session_user_by_hex($user_id,$this->input->get('invitation'));
             }
 
-            //Products
-            $this->load->model('Product_model');        
-            $this->load->helper('url');
-            $this->load->model('Category_model');
-            $data_products['base_url_image'] = site_url("/images/products/$user_id");
-            $data_products['products']=$this->Product_model->get_my_products($user_id);
-            $data_products['categories'] = $this->Category_model->get_categories_by_user($user_id);
-            //$content['content'] = $this->load->view('my_products', $data_products , true);
-            //$content['base_url'] = site_url();
-          
-            //Stores
-            $this->load->model('Store_model');
-            $data_stores['members'] = $this->Store_model->get_members_stores();
-            $data_stores['my_stores'] = $this->Store_model->get_stores_by_user($user_id);
-            $data_stores['base_url_image'] = site_url("/images/stores/"); 
-            $data_stores['image_no_logo'] = site_url("/images/stores/no_logo.png");
-            //$content['content'] = $this->load->view('my_stores',$data_stores, true);
+            
            
             
             //Index content
@@ -83,7 +73,7 @@ class Main extends CI_Controller {
           
             $this->load->view('head');
             $this->load->view('header', $data_header);
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data_sidebar);
             $this->load->view('content', $content);
             $this->load->view('footer');
         }
@@ -161,12 +151,16 @@ class Main extends CI_Controller {
              //USER
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
-            
+            $myself_id = $this->session->userdata('myself');          
+        
             //Loader
             $this->load->model('Session_model');
+            $this->load->model('Notification_model');
             $this->load->helper('url');
             
             //Data
+            $data_sessions['notifications'] = $this->Notification_model->get_sessions_notifications($user_id, $myself_id);
+            $data_sessions['nicks'] = $this->Session_model->get_sessions_users($user_id);
             $data_sessions['sessions'] = $this->Session_model->get_sessions_by_user($user_id);
             $data_sessions['base_url_image'] = site_url("/images"); 
             
@@ -185,6 +179,9 @@ class Main extends CI_Controller {
             $this->load->model('Product_model');
             $this->load->model('Message_model');
             $this->load->helper('url');
+            
+            //Update last_session
+            $this->Session_model->update_last_visit($user_id, $session_id);
             
             if($this->Session_model->check_user_session($user_id, $session_id)){
                 //Data               

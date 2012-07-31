@@ -116,6 +116,16 @@ class User_model extends CI_Model {
         $this->db->where('id', $user_id);
         $this->db->update('mbf_user', $data); 
     }
+    
+    function get_user_session($user_id){
+        $query = $this->db->query("SELECT * from mbf_session where mbf_session.user=$user_id and name='myself'");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+             return $result[0]->id;
+        }else{
+            return -1;
+        }
+    }
 }
 
 ?>

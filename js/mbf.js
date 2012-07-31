@@ -1,7 +1,7 @@
 /* globals */
 var inter = 0;
 var options = {"section" : "home"};
-var category_active = 0;
+var category_active = {"id" : 0, "name" : ""};
 
 /********************/
 /*  Funciones ajax  */
@@ -76,7 +76,6 @@ $(document).ready(function(){
 
 /* Navigability */
 function refresh_content(options){
-    console.log("refresh_content");
     var content = "";
     
     if(options.section == "home"){
@@ -158,12 +157,16 @@ $('#nav-slider-register .nav-item-register').click(function (){
 }
 
 
-function prepare_session(session_id){
+function prepare_session(session_id, messages, products){
     options = {
         "section" : "session" ,
         "session" : session_id
-    };
+    };    
     refresh_content(options);
+    messages_act = parseInt($('#not-messages').text());
+    products_act = parseInt($('#not-products').text());
+    $('#not-messages').text(messages_act -  messages);
+    $('#not-products').text(products_act -  products);
 }
 
 /* Add message sessions */
@@ -362,9 +365,21 @@ function innerContentRemoveProduct(product_id){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
     popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
-    popup_content += '		<div><label>¿Estás seguro que deseas eliminar este producto?</label></div><br/>';
-    popup_content += '		<input type="button"  class="button" value="Aceptar" onClick="remove_product('+ product_id + ')" />';
-    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="Cancelar" onClick="closePopup()" />';
+    popup_content += '		<div><label> ¿Deseas eliminar este producto de todas tus carpetas de forma permanente?<br/</label></div><br/>';
+    popup_content += '		<input type="button"  class="button" value="Si" onClick="remove_product('+ product_id + ')" />';
+    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="No" onClick="closePopup()" />';
+    popup_content += '	</form>';
+    popup_content += '	</div>';
+    $('#popup-content').append(popup_content);
+}
+
+function innerContentRemoveCatProduct(product_id, category_id, category_name){
+    jQuery('#popup-content').empty();
+    var popup_content = '<div>';
+    popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
+    popup_content += '		<div><label>Este producto se borrará solo de tu carpeta "'+ category_name +'" <br/>¿Continuar?</label></div><br/>';
+    popup_content += '		<input type="button"  class="button" value="Si" onClick="remove_product_category('+ product_id + ','+ category_id +')" />';
+    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="No" onClick="closePopup()" />';
     popup_content += '	</form>';
     popup_content += '	</div>';
     $('#popup-content').append(popup_content);
@@ -578,7 +593,8 @@ function active_isotope_products(){
 function click_category_filters(){
     $('#product_filters a').click(function(){ 
             var selector = $(this).attr('data-filter');
-            category_active = $(this).attr('data-categoryid');
+            category_active.id = $(this).attr('data-categoryid');
+            category_active.name = $(this).attr('data-name');
             $('#container-productos').isotope({filter: selector});
             return false;
     });
@@ -665,13 +681,13 @@ function inicializar_menu_tiendas(){
 }
 
 function tool_bar_stores_events(){
-        $('.store').on("mouseenter", function(){
+     /*   $('.store').on("mouseenter", function(){
             $(this).children('.options-store').fadeIn('normal');
         });
         $('.store').on("mouseleave", function(){
             $(this).children('.options-store').fadeOut('normal');
         }
-        );
+        );*/
 }
 
 function cargar_tool_tips_stores(){
@@ -706,10 +722,12 @@ function cargar_tool_tips_stores(){
 function load_product_options(){
     $('.producto').hover(
         function(){
-                $(this).children('.options-producto').fadeIn('normal')
+                $(this).children('.options-producto').fadeIn('normal');
+                $(this).children('.delete-product').fadeIn('normal');
         },
         function(){
                 $(this).children('.options-producto').fadeOut('normal')
+                $(this).children('.delete-product').fadeOut('normal');
         }
     );
 
@@ -754,11 +772,12 @@ function load_product_options(){
    /* Remove products */
     $(".delete-product").click(function (event){
         var producto_id = $(this).parent().attr("id");
-        if(category_active == 0){
+        if(category_active.id == 0){
             innerContentRemoveProduct(producto_id)
             loadPopup();
         }else{
-            remove_product_category(producto_id, category_active);            
+            innerContentRemoveCatProduct(producto_id, category_active.id, category_active.name);
+            loadPopup();         
         }
         //console.log($(this).parent().attr("id"));
         //console.log(category_active);
@@ -778,14 +797,12 @@ function remove_product_category(product_id, category_id ){
    get_by_ajax(base_url + "/product/remove_product_category/" + product_id + "/" + category_id, "text");
    $("#" + product_id).removeClass(category_id.toString());
    $('#container-productos').isotope({filter: '.' + category_id});
-   console.log(category_id);
+   closePopup();
 }
 
 function remove_product_session(session_id, product_id){
     
 }
-
-
 
 
 function close_session(){

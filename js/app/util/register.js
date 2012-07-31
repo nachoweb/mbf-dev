@@ -98,6 +98,10 @@ function form_register_validate(){
         console.log("true");
         return true;
     }
+    if(!($("#conditions").is(":checked"))){
+        jQuery("#info-register-condiciones").text('Debes introducir una contraseña');
+        document.getElementById('validated-register').value=false;
+    }
     else{
         console.log("false");
         return false;
