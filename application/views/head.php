@@ -31,6 +31,18 @@
         <script src="./js/mbf.js"></script>
         <script src="./js/app/util/register.js"></script>
         <script src="./js/config.js"></script>
+        <!-- VIGLINK -->
+        <script type="text/javascript">
+        var vglnk = { api_url: '//api.viglink.com/api',
+                        key: '63c37f676437a402f6d1422167f82ad1' };
+
+        (function(d, t) {
+            var s = d.createElement(t); s.type = 'text/javascript'; s.async = true;
+            s.src = ('https:' == document.location.protocol ? vglnk.api_url :
+                    '//cdn.viglink.com/api') + '/vglnk.js';
+            var r = d.getElementsByTagName(t)[0]; r.parentNode.insertBefore(s, r);
+        }(document, 'script'));
+        </script>
     </head>
     <body>
        
