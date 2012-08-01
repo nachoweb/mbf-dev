@@ -811,9 +811,9 @@ function close_session(){
     document.location.href=base_url;
 }
 
-/****************/
-/* Limitaciones */
-/****************/
+/*****************/
+/* Limitaciones  */
+/*****************/
 
 $(document).ready(function(){
     $('#input-new-session').live('keydown', function(e){
