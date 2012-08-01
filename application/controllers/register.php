@@ -113,8 +113,7 @@ class Register extends CI_Controller {
         
         //Session
         if( !is_numeric($user)){
-            $myself = $this->User_model->get_user_session($user->id);
-            echo "MYSELF: $myself";
+            $myself = $this->User_model->get_user_session($user->id);            
             $userdata = array(
                 'user_id'   => $user->id,
                 'user_name' => $user->name,
