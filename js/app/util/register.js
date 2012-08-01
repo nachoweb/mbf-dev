@@ -62,6 +62,7 @@ function checkLogin(){
 
 
 function form_register_validate(){
+    jQuery(".form-info").text("");
     document.getElementById('validated-register').value = true;
       
     if(document.getElementById('register-email').value==''){
@@ -92,16 +93,20 @@ function form_register_validate(){
      if (document.getElementById('nick').value == ""){
         jQuery("#info-nick").text('Introduce un nick');  
         document.getElementById('validated-register').value=false;
+     }else if(document.getElementById('nick').value.length > 10){
+         jQuery("#info-nick").text('Máx. 10 caracteres');
+         document.getElementById('validated-register').value=false;
+     }
+     if(!($("#conditions").is(":checked"))){
+        jQuery("#info-register-condiciones").text('Debes aceptar las condiciones');
+        document.getElementById('validated-register').value=false;
     }
 
     if (document.getElementById('validated-register').value == 'true'){
         console.log("true");
         return true;
     }
-    if(!($("#conditions").is(":checked"))){
-        jQuery("#info-register-condiciones").text('Debes introducir una contraseña');
-        document.getElementById('validated-register').value=false;
-    }
+
     else{
         console.log("false");
         return false;

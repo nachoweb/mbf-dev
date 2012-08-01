@@ -156,6 +156,16 @@ $('#nav-slider-register .nav-item-register').click(function (){
     });
 }
 
+/** NOTIFICACIONES **/
+$(document).ready(function(){
+    if(parseInt($('#user-notification-star').text()) != 0){
+        console.log("ola");
+        $('#user-notifications').fadeIn(1000, function(){ console.log("despues")});
+    }
+    console.log("Notificaciones:" + parseInt($('#user-notification-star').text()));
+});
+
+
 
 function prepare_session(session_id, messages, products){
     options = {
@@ -163,10 +173,13 @@ function prepare_session(session_id, messages, products){
         "session" : session_id
     };    
     refresh_content(options);
-    messages_act = parseInt($('#not-messages').text());
-    products_act = parseInt($('#not-products').text());
-    $('#not-messages').text(messages_act -  messages);
-    $('#not-products').text(products_act -  products);
+    num_act = parseInt($('#user-notification-star').text());
+    num_new = num_act -  messages - products;
+    if(num_new == 0){
+        $("#user-notifications").fadeOut('normal');
+    }else{
+        $('#user-notification-star').text(num_new);
+    }        
 }
 
 /* Add message sessions */

@@ -18,15 +18,15 @@
                 <form id="form-register" name="form-register" method="post" action="<?php echo $base_url?>/register/signup" onSubmit="return form_register_validate()" method="post">
                         <input type="hidden" id="validated-register" />
                         <input type="text" id="register-name" name="register-name" placeholder="Nombre" /><div id="info-register-name" class="form-info"></div>
-                        <input type="text" id="register-surname" name="register-surname" placeholder="Apellidos" /><div id="info-register-surname" class="form-info"></div>
+                        <input type="text" id="register-surname" name="register-surname" placeholder="Apellidos" /><div id="info-register-surname" class="form-info"></div><br/>
                         <label id="label-sex">sexo</label>
                         <input type="radio" name="gender" value="male" checked="checked"/><label>hombre</label>
-                        <input type="radio" name="gender" value="female" /><label>mujer</label>
+                        <input type="radio" name="gender" value="female" /><label>mujer</label><br/><br/>
                         <input type="text" id="nick" name="nick" placeholder="Nick" /><div id="info-nick" class="form-info"></div>
                         <input type="text" id="register-email" name="register-email" placeholder="E-mail"/><div id="register-info-email" class="form-info"></div>
                         <input type="password" id="register-password1" name="register-password1" placeholder="contraseña" /><div id="register-info-password" class="form-info"></div>
                         <input type="password" id="register-password2" name="register-password2" placeholder="repetir contraseña" /><br/>
-                        <input type="checkbox" name="conditions" id="conditions" value="conditions"> Acepto las <a href="#" onClick="show_conditions();"> condiciones de uso </a> <div id="info-register-condiciones" class="form-info"></div>
+                        <input type="checkbox" name="conditions" id="conditions" value="conditions"> <span id="conditions-span">Acepto las <a href="#" onClick="show_conditions();"> condiciones de uso </a> </span><div id="info-register-condiciones" class="form-info"></div>
                         <br/><br/>
                         <?php 
                             echo "<input type='hidden' name='invitation' id='invitation' value='$invitation' />";

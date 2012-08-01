@@ -27,7 +27,7 @@ class Session_model extends CI_Model {
         }else{
             $id_user = $user->id;
         }
-        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user, date_format(mbf_session.date,'%e-%M-%Y') as 'date'
+        $query = $this->db->query( "select mbf_session.id, mbf_session.name, mbf_session.store, mbf_session.user, date_format(mbf_session.date,'%e-%c-%Y') as 'date'
                                     from mbf_session_user join mbf_session 
                                     on mbf_session_user.session = mbf_session.id
                                     where mbf_session_user.user =$id_user
