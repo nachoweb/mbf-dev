@@ -26,7 +26,7 @@
                         <input type="text" id="register-email" name="register-email" placeholder="E-mail"/><div id="register-info-email" class="form-info"></div>
                         <input type="password" id="register-password1" name="register-password1" placeholder="contraseña" /><div id="register-info-password" class="form-info"></div>
                         <input type="password" id="register-password2" name="register-password2" placeholder="repetir contraseña" /><br/>
-                        <input type="checkbox" name="conditions" id="conditions" value="conditions"> Acepto las <a href="#" > condiciones de uso </a> <div id="info-register-condiciones" class="form-info"></div>
+                        <input type="checkbox" name="conditions" id="conditions" value="conditions"> Acepto las <a href="#" onClick="show_conditions();"> condiciones de uso </a> <div id="info-register-condiciones" class="form-info"></div>
                         <br/><br/>
                         <?php 
                             echo "<input type='hidden' name='invitation' id='invitation' value='$invitation' />";
