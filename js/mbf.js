@@ -690,7 +690,7 @@ function tool_bar_stores_events(){
         );*/
 }
 
-function cargar_tool_tips_stores(){
+function cargar_tool_tips_stores(){ 
     $('.sesion').on("mouseenter", function(){
         $(this).parent().children('.tooltip-sesion').fadeIn('normal')
     });
