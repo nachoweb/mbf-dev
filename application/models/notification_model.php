@@ -37,7 +37,8 @@ class Notification_model extends CI_Model {
        $sql =  "select count(*) as products
                 from mbf_product join mbf_session_user
                 on mbf_product.session = mbf_session_user.session
-                where mbf_session_user.user = $user_id and date > last_visit and mbf_session_user.session != $myself_id";
+                where mbf_session_user.user = $user_id and date > last_visit and mbf_session_user.session != $myself_id
+                and mbf_product.user != $user_id";
        $aux = $this->db->query($sql)->result();
        $notifications['products'] = $aux[0]->products;
        return $notifications;
@@ -57,7 +58,7 @@ class Notification_model extends CI_Model {
        $sql = "select mbf_session_user.session, count(mbf_product.id) as 'products'
                 from mbf_product join mbf_session_user
                 on mbf_product.session = mbf_session_user.session
-                where mbf_session_user.user = $user_id and date > last_visit and mbf_session_user.session != $myself_id
+                where mbf_session_user.user = $user_id and date > last_visit and mbf_session_user.session != $myself_id and mbf_product.user != $user_id
                 group by mbf_session_user.session";
        
        $query = $this->db->query($sql);
