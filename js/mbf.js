@@ -752,7 +752,7 @@ function load_product_options(){
         
     /* Tooltip Session */
     
-     $('.producto-sesion').hover(
+     $('.producto-sesion').hover( 
             function(){
                     $(this).parent().children('.tooltip-producto-sesion').stop().fadeIn('fast')
             },
@@ -811,9 +811,9 @@ function close_session(){
     document.location.href=base_url;
 }
 
-/*****************/
-/* Limitaciones  */
-/*****************/
+/******************/
+/* Limitaciones  **/
+/******************/
 
 $(document).ready(function(){
     $('#input-new-session').live('keydown', function(e){
