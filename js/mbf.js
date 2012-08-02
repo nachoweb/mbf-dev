@@ -41,7 +41,8 @@ function send_message(){
 $(document).ready(function(){
     
     activar_slider_explicacion();
-    $("#menu_inicio").click(function(){
+    $("#menu_inicio").click(function(e){
+        e.preventDefault();
         options = {"section" : "home"};
         refresh_content(options);
         $("#menu-sidebar .active").removeClass("active");
@@ -49,14 +50,16 @@ $(document).ready(function(){
         activar_slider_explicacion();
     });
     
-    $("#menu_tiendas").click(function(){
+    $("#menu_tiendas").click(function(e){
+         e.preventDefault();
         options = {"section" : "stores"};
         refresh_content(options);
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
     });
     
-    $("#menu_mis_cosas").click(function(){
+    $("#menu_mis_cosas").click(function(e){
+         e.preventDefault();
         options = {"section" : "products"};
         refresh_content(options);
         mis_cosas_events();
@@ -65,11 +68,21 @@ $(document).ready(function(){
         console.log("ola");
     });
     
-    $("#menu_sesiones").click(function(){
+    $("#menu_sesiones").click(function(e){
+         e.preventDefault();
         options = {"section" : "sessions"};
         refresh_content(options);
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
+    });
+    
+    $("#menu_bookmarklet").click(function(e){
+         e.preventDefault();
+        options = {"section" : "bookmarklet"};
+        refresh_content(options);
+        $("#menu-sidebar .active").removeClass("active");
+        $(this).addClass("active");
+        activar_slider_explicacion();
     });
     
 });
@@ -78,11 +91,12 @@ $(document).ready(function(){
 function refresh_content(options){
     var content = "";
     
-    if(options.section == "home"){
+    if(options.section == "bookmarklet"){
         document.getElementById("content").innerHTML = "";
         content = get_by_ajax(base_url + "main/steps", "text");        
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);
+        
     }else if(options.section == "products"){
         content = get_by_ajax(base_url + "main/products", "text");
         document.getElementById("content").innerHTML = content;
@@ -160,7 +174,7 @@ $('#nav-slider-register .nav-item-register').click(function (){
 $(document).ready(function(){
     if(parseInt($('#user-notification-star').text()) != 0){
         console.log("ola");
-        $('#user-notifications').fadeIn(1000, function(){ console.log("despues")});
+        $('#user-notifications').fadeIn(1000, function(){console.log("despues")});
     }
     console.log("Notificaciones:" + parseInt($('#user-notification-star').text()));
 });
@@ -333,10 +347,13 @@ function innerContent(item){
     popup_content += '		<span id="popup-title">'+ title +'</span>';
     popup_content += '		<div id="popup-price-brand">';
     popup_content += '			<span id="popup-price">'+price+'</span><br />';
-    popup_content += '			<span id="popup-brand"><a href="#">'+brand+'</a></span>';
+    popup_content += '			<span id="popup-brand"><a href="'+ link +'" target="_blank">'+brand+'</a></span>';
     popup_content += '		</div>';
     popup_content += '		<div id="popup-description">'+description+'</div>';
-    popup_content += '		<span id="popup-fb">facebook</span>';
+    popup_content += '		<div id="popup-social">';
+    popup_content += '              <a href="" onclick="return false;"><div id="popup_facebook"></div></a>';
+    popup_content += '              <a href="" onclick="return false;"><div id="popup_twitter"> </div></a>';
+    popup_content += '		</div>';
     popup_content += '	</div>';
     popup_content += '  <nav id="popup-nav">';
     popup_content += '		<ul class="nav-list">';
@@ -386,6 +403,18 @@ function innerContentRemoveProduct(product_id){
     $('#popup-content').append(popup_content);
 }
 
+function innerContentBaja(){
+    jQuery('#popup-content').empty();
+    var popup_content = '<div>';
+    popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
+    popup_content += '		<div><label> ¿Estás seguro que deseas darte de baja de MybuyFriends?<br/</label></div><br/>';
+    popup_content += '		<input type="button"  class="button" value="Si" onClick="darse_baja()" />';
+    popup_content += '		<input type="button" id="cancel-new-category" name="cancel-new-category" class="button" value="No" onClick="closePopup()" />';
+    popup_content += '	</form>';
+    popup_content += '	</div>';
+    $('#popup-content').append(popup_content);
+}
+
 function innerContentRemoveCatProduct(product_id, category_id, category_name){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
@@ -397,6 +426,19 @@ function innerContentRemoveCatProduct(product_id, category_id, category_name){
     popup_content += '	</div>';
     $('#popup-content').append(popup_content);
 }
+
+function innerContentImSorry(){
+    jQuery('#popup-content').empty();
+    var popup_content = '<div>';
+    popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
+    popup_content += '		<div><label> Lo sentimos, este operación aún no está disponible.<br/</label></div><br/>';
+    popup_content += '		<input type="button"  class="button" value="Aceptar" onClick="closePopup()" />';
+   
+    popup_content += '	</form>';
+    popup_content += '	</div>';
+    $('#popup-content').append(popup_content);
+}
+
 
 
 function innerContentHex(hex){
@@ -576,7 +618,7 @@ function saveSession(){
 
 /* Add new DOM Session */
 function addSession(session){
-    jQuery('#container-sesiones').append(' <article class="sesion" onClick="prepare_session(' + session.id + ')"> 	<span class="sesion-title">' + session.name + '</span> 	<div class="container-avatar-sesion"> 			<img src="' + base_url + 'images/avatar_sesion.jpg" /> 	</div> 	<span class="date-sesion">'+ session.date +'</span> </article> ');
+jQuery('#container-sesiones').append('<article class="sesion" onclick="prepare_session(' + session.id + ',0,0)"><div class="sessions-top"><div class="sessions-avatar"></div>               <div class="sessions-nick"><span class="pendiente">Pendiente...</span></div></div><div class="sessions-bot"><div class="sessions-notifications"><div class="contenedor_not_mensajes_0"><div class="not-messagess"></div></div><div class="contenedor_not_products_0"><div class="not-products"></div></div></div><div class="date-sesion">'+ session.date +'</div></div></article>');    
   /*  jQuery('#product_filters li:last').css('display','none');
     jQuery('#product_filters li:last').fadeIn('slow');
     closePopup();
@@ -846,3 +888,16 @@ $(document).ready(function(){
 });
 
 
+function show_conditions(){
+    
+    myRef = window.open('condiciones','mywin',
+'left=20,top=20,width=800,height=500,toolbar=1,resizable=0');
+myRef.focus()
+}
+
+
+function darse_baja(){
+    get_by_ajax(base_url + "register/delete_user", "text");
+    closePopup();
+    window.location.reload();
+}

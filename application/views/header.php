@@ -9,6 +9,9 @@
                 <div id="close-session">
                     <a href="#" onClick="close_session()" > Cerrar sesión </a>
                 </div>
+                <div>
+                    <a href="#" id="menu_bookmarklet"> Mi BookMarklet </a>
+                </div>
                 <div id="refresh">
                  <!--   <a href="#" onClick="refresh()"> Actualizar <img id="img-refresh" src="<?php echo $site_url."images/refresh.png" ?>" </a> -->
                 </div>

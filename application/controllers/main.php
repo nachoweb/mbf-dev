@@ -238,6 +238,7 @@ class Main extends CI_Controller {
             $this->session->unset_userdata('user_id');
             $this->session->unset_userdata('user_name');
             $this->session->unset_userdata('user_nick');
+            $this->session->unset_userdata('myself');
         }
 }
 

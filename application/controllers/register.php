@@ -8,7 +8,6 @@ class Register extends CI_Controller {
     }
     /**
      * this controller is used to control the user registration process.
-     * Example URL:
      * @author Nacho
      * @version 0.0.0
      */
@@ -20,7 +19,7 @@ class Register extends CI_Controller {
             $gender = 0;
         }
         $password = md5($this->input->post('register-password1'));
-        $hex = $this->rand_text(32,32);
+        $hex = $this->rand_text(32,32);    
         $user_data = array(
             'name'              => $this->input->post('register-name'),
             'surname'           => $this->input->post('register-surname'),
@@ -29,8 +28,9 @@ class Register extends CI_Controller {
             'email'             => $this->input->post('register-email'),
             'password'          => $password,
             'hex'               => $hex,
-            'nick'              => $this->input->post('nick')
-        );
+            'nick'              => $this->input->post('nick'),
+            'date_birth'        => $this->input->post('register-date').'-01-01'
+       );        
         //Register user
         $this->load->model('User_model');
         $user_id = $this->User_model->register_user($user_data);
@@ -72,7 +72,7 @@ class Register extends CI_Controller {
                 'user_name' => $this->input->post('register-name'),
                 'user_nick' => $this->input->post('nick'),
                 'user_hex'  => $hex,
-                'myself'    => $new_session
+                'myself'    => $new_session['id']
             );
         $this->session->set_userdata($userdata);
         
@@ -134,6 +134,22 @@ class Register extends CI_Controller {
         }
     }
     
+    public function delete_user(){
+        $this->load->library('session');
+        $user_id = $this->session->userdata('user_id');
+        
+        //BBDD
+        $this->load->model('User_model');
+        $this->User_model->delete_user($user_id);
+        
+        //Delete user
+        $this->session->unset_userdata('user_id');
+        $this->session->unset_userdata('user_name');
+        $this->session->unset_userdata('user_nick');
+        $this->session->unset_userdata('myself');
+        
+    }
+    
     
   
     /**
@@ -157,6 +173,7 @@ class Register extends CI_Controller {
         
         //Show instructions¡
         $this->load->view('register_steps', $data_view);
+        
     }
 }
 ?>

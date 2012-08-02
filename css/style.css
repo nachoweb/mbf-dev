@@ -144,6 +144,7 @@
     color: #FFFFFF;
     font-size: 12px;
     padding: 2% 3%;
+    min-height: 16px;
 }
 #popup-price-brand{
     background: #E9E9EA;
@@ -162,6 +163,7 @@
     color: #1C75BE;
     text-decoration: none;
 }
+
 #popup-description{
     width: 94%;
     min-height: 100px;
@@ -201,6 +203,27 @@
     padding-top: 10px;
     bottom: 10px;
     text-align: center;
+}
+
+#popup-social img{
+    height: 20px;
+}
+
+#popup_facebook{
+    background: url(images/ilike.png) no-repeat;
+    height: 20px;
+    width: 81px;
+    border: 0px;
+    float: left;
+}
+
+#popup_twitter{
+    background: url(images/tweet.png) no-repeat;
+    height: 20px;
+    width: 57px;
+    border: 0px;
+    float:left;
+    margin-left: 5px;
 }
 
 .nav-list li {
@@ -439,13 +462,17 @@ body{
 }
 
 
-#close-session{
+
+#header-tool div{
     float:right;
     font-size: 12px;
     padding-top: 20px;
+    clear:both;
+    margin-top: 8px;
+    padding-top: 0px;
 }
 
-#close-session a{
+#header-tool div a{
     color: #E8E9E9;
 }
 
@@ -828,15 +855,23 @@ body{
 	top: 0px;
 	left: 22px;
 	display: none;
+        max-height: 240px;
+        overflow-y: scroll;
+        overflow: hidden;
+        width: 137px;
 }
 
 .menu-tooltip-producto{
-	width: 100px;
+	width: 120px;
 	float: left;
 	padding: 5px;
 	clear: both;
 	position: relative;
-	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y;
+	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y; 
+        max-height: 240px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+       
 }
 
 .menu-tooltip-producto ul{
@@ -965,6 +1000,10 @@ body{
 }
 .sesion .bandera-naranja{
 	right: 8px;
+}
+
+.pendiente{
+    color: #868686;
 }
 
 /** dentro sesion **/
@@ -1485,4 +1524,16 @@ span.register-title{
       -ms-transition-duration: 0s;
        -o-transition-duration: 0s;
           transition-duration: 0s;
+}
+
+
+#footer{
+    float: right;
+    width: 790px;
+    margin-bottom: 28px;
+    font-size: 12px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
 }

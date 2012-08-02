@@ -132,8 +132,3 @@ $(document).ready(function() {
     $
 });
 
-function show_conditions(){
-    myRef = window.open('condiciones','mywin',
-'left=20,top=20,width=800,height=500,toolbar=1,resizable=0');
-myRef.focus()
-}

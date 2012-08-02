@@ -63,7 +63,7 @@
                     <div class="title-producto"><?php echo $title ?></div>
                     <div class="price-brand-producto">
                             <span class="price-producto"><?php echo $price ?></span>
-                            <span class="brand-producto"><a href="<?php echo $store_url; ?>" target="_blank"><?php echo $store_name?></a></span>
+                            <span class="brand-producto"><a href="<?php echo $product_url; ?>" target="_blank"><?php echo $store_name?></a></span>
                     </div>
             </div>
     </article>

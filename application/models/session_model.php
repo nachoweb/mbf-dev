@@ -106,11 +106,15 @@ class Session_model extends CI_Model {
             "name"      =>  $name,
             "hex"       =>  $hex
         );
-        $this->db->insert('mbf_session', $data); 
-        $data['date'] = date('d - F - Y');
-        $session_id = $this->db->insert_id();
-        $data['id'] = $session_id;
-        return $data;
+        try{
+            $this->db->insert('mbf_session', $data); 
+            $data['date'] = date('d-n-Y');
+            $session_id = $this->db->insert_id();
+            $data['id'] = $session_id;
+            return $data;
+        } catch (Exception $e) {
+            return -1;
+        }
     }
     
     
@@ -119,7 +123,11 @@ class Session_model extends CI_Model {
             "session"   =>  $session_id,
             "user"      =>  $user_id,
         );
-        @$this->db->insert('mbf_session_user', $data);
+        try{
+            $this->db->insert('mbf_session_user', $data);
+        } catch (Exception $e) {
+            
+        }
     }
     
     function add_session_user_by_hex($user, $hex){
@@ -129,7 +137,11 @@ class Session_model extends CI_Model {
             "session"   =>  $session->id,
             "user"      =>  $user,
         );
-        @$this->db->insert('mbf_session_user', $data);
+         try{
+            $this->db->insert('mbf_session_user', $data);
+        } catch (Exception $e) {
+            
+        }
     }
     
     function get_session_by_hex($hex){

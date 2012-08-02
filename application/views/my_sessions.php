@@ -35,7 +35,7 @@
                 if(isset($nicks[$session->id])){
                     echo $nicks[$session->id];
                 }else{
-                    echo "<span id='pendiente'>Pendiente...</span>";
+                    echo "<span class='pendiente'>Pendiente...</span>";
                 }               
                 ?>
               </div>

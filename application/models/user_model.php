@@ -126,6 +126,21 @@ class User_model extends CI_Model {
             return -1;
         }
     }
+    
+    function delete_user($user_id){
+        $sql = "DELETE FROM mbf_user WHERE id=$user_id";
+        $query = $this->db->query($sql);
+        
+        $sql = "DELETE from mbf_product WHERE user=$user_id";
+        $query = $this->db->query($sql);
+        
+        $sql = "DELETE from mbf_SESSION_USER where user=$user_id";
+        $query = $this->db->query($sql);
+        
+        $sql = "DELETE from mbf_category where user=$user_id";
+        $query = $this->db->query($sql);
+    }
+    
 }
 
 ?>

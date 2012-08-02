@@ -340,8 +340,8 @@ class Product_model extends CI_Model {
         $ci =& get_instance();
         $ci->load->model('Category_model');
         $my_products = $ci->Category_model->get_category_my_product($user_id);
-        $data = array(
-            'product'         => $title,
+        $data = array( 
+           'product'         => $title,
             'category'        => $my_products
         );
         $query = $this->db->query("insert into mbf_product_category(product, category) values ($product, $my_products)");

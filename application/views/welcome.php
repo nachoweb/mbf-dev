@@ -19,6 +19,7 @@
                         <input type="hidden" id="validated-register" />
                         <input type="text" id="register-name" name="register-name" placeholder="Nombre" /><div id="info-register-name" class="form-info"></div>
                         <input type="text" id="register-surname" name="register-surname" placeholder="Apellidos" /><div id="info-register-surname" class="form-info"></div><br/>
+                        <input type="text" id="register-date" name="register-date" placeholder="Año de nacimiento" /><div id="info-register-date" class="form-info"></div><br/>
                         <label id="label-sex">sexo</label>
                         <input type="radio" name="gender" value="male" checked="checked"/><label>hombre</label>
                         <input type="radio" name="gender" value="female" /><label>mujer</label><br/><br/>

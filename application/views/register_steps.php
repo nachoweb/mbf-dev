@@ -14,26 +14,26 @@
 				var slider_width = $('.slider-register-container').width();
 				var current_item = 0;
 				$('#nav-slider-register .nav-item-register').click(function (){
-					if($(this).attr('id') == 'slider-left'){
-						if (current_item > 0){
-							current_item--;
-                                                        console.log(current_item);
-                                                }
-                                                if(current_item==1){
-                                                    jQuery("#slider-right").css("display","inline");
-                                                    jQuery("#start").css("display","none");
-                                                }
-					}
-					else if($(this).attr('id') == 'slider-right'){						
-						if (current_item < $('.slider-register-item').length-1){
-							current_item++;
-                                                }
-                                                if(current_item==2){
-                                                   jQuery("#slider-right").css("display","none");
-                                                   jQuery("#start").css("display","inline");
-                                                }
-					}
-					$('.slider').animate({	'left' : -current_item * slider_width	});
+                                    if($(this).attr('id') == 'slider-left'){
+                                        if (current_item > 0){
+                                                current_item--;
+                                                console.log(current_item);
+                                        }
+                                        if(current_item==1){
+                                            jQuery("#slider-right").css("display","inline");
+                                            jQuery("#start").css("display","none");
+                                        }
+                                    }
+                                    else if($(this).attr('id') == 'slider-right'){						
+                                        if (current_item < $('.slider-register-item').length-1){
+                                                current_item++;
+                                        }
+                                        if(current_item==2){
+                                            jQuery("#slider-right").css("display","none");
+                                            jQuery("#start").css("display","inline");
+                                        }
+                                    }
+                                    $('.slider').animate({ 'left' : -current_item * slider_width });
 				});
                                 
                                 jQuery("#start").click(function(){
