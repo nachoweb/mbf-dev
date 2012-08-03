@@ -71,7 +71,7 @@
                     </div>
                     <div class="container-img-store">
                         <a href="<?php echo $member->url ?>" target="_blank">
-                            <img src="<?php echo $base_url_image."/".$member->logo ?>" />
+                            <img src="<?php echo $base_url_image."/".$member->logo ?>" data-original="<?php echo $base_url_image."/".$member->logo ?>" />
                         </a>
                     </div>
                     <!--<div class="container-description-store">
@@ -91,9 +91,19 @@
           
                 <article class="my_store" id="my_store_<?php echo $my_store->id ?>">
                     <div class="container-img-store">
-                        <a href="<?php echo $member->url ?>" target="_blank">
-                           <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
-                        </a>                        
+                        <?php
+                            if($my_store->logo == ""){ 
+                        ?>
+                            <a href="<?php echo $member->url ?>" target="_blank">
+                                <img src="<?php echo $base_url_image."/bolsa.png" ?>" />
+                            </a>                         
+                        <?php
+                            }else{ ?>
+                                    <a href="<?php echo $member->url ?>" target="_blank">
+                                        <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
+                                    </a> 
+                        <?php   } ?>
+                                               
                     </div>
                 </article>
             <?php } ?>

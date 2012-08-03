@@ -42,8 +42,8 @@ class Register extends CI_Controller {
         $this->Category_model->add_category("Mis productos", $user_id); 
         
         //St_categories
-        $this->load->model('St_category_model');
-        $this->St_category_model->add_st_category("todas", $user_id);
+        /*$this->load->model('St_category_model');
+        $this->St_category_model->add_st_category("todas", $user_id);*/
         
         //User Sessions
         $this->load->model('Session_model');
@@ -66,6 +66,8 @@ class Register extends CI_Controller {
         mkdir( $path."/images/products/$user_id/thumbs", 0777);
         chmod( $path."/images/products/$user_id/thumbs", 0777);
         
+        
+        
         //New Session
         $userdata = array(
                 'user_id'   => $user_id,
@@ -78,7 +80,7 @@ class Register extends CI_Controller {
         
        
         //Show instructions
-        redirect("/register/steps/$hex");
+        //redirect("/register/steps/$hex");
     }
     
     
