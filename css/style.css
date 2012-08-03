@@ -558,9 +558,51 @@ body{
     text-decoration: none;
 }
 
+#submenu-stores{
+    clear: both;
+    float: left;
+    height: 25px;
+    width: 100%;
+}
+
+#submenu-moda{
+    display:none;
+    float: left;       
+    position: relative;
+    margin-left: 68px;
+}
+
+#submenu-moda ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;	
+}
+#submenu-moda li{
+    height: 21px;   
+    display: inline;    
+    float:left;
+    margin-left: 25px;
+}
+
+#submenu-moda a{
+    float: left;
+    text-decoration: none;
+    font-family: ebasneue;
+    color:#818386;
+}
+
+#submenu-moda a:hover{
+    color:#3A3A3B;
+}
+
+
+#submenu-moda a.active{    
+    color:#3A3A3B;
+}
+
 #container-stores{
     width: 100%;
-    padding-top: 18px;
     overflow: hidden;
     min-height: 200px;
 }

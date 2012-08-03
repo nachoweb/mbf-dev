@@ -2,7 +2,7 @@
     <nav>
         <ul id="stores_filters">
             <li><a href="#" id="button-tiendas-mbf" class="button active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
-            <li><a href="#" class="button" data-filter=".1,.2,.3">moda</a></li>
+            <li><a href="#" class="button" data-filter=".1,.2,.3" id="st-menu-moda">moda</a></li>
             <li><a href="#" class="button" data-filter=".7">deporte</a></li>
             <li><a href="#" class="button" data-filter=".6">electrónica</a></li>
             <li><a href="#" class="button" data-filter=".5">ocio</a></li>
@@ -31,7 +31,18 @@
             </div>
     </div>
 </div>
-        <div id="container-stores">
+<div id="submenu-stores">
+    <div id="submenu-moda">
+        <ul>
+            <li> <a href="#" data-filter=".1,.2,.3">todo</a> </li>
+            <li> <a href="#" data-filter=".2">hombre</a> </li>
+            <li> <a href="#" data-filter=".1">mujer</a> </li>
+            <li> <a href="#" data-filter=".3">complementos</a> </li>
+            
+        </ul>
+    </div>
+</div>
+<div id="container-stores">
         <section id="tiendas-mbf">
                 <?php foreach($members as $member){ 
 

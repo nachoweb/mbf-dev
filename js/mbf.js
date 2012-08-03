@@ -66,7 +66,6 @@ $(document).ready(function(){
         mis_cosas_events();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
-        console.log("ola");
     });
     
     $("#menu_sesiones").click(function(e){
@@ -174,11 +173,9 @@ $('#nav-slider-register .nav-item-register').click(function (){
 
 /** NOTIFICACIONES **/
 $(document).ready(function(){
-    if(parseInt($('#user-notification-star').text()) != 0){
-        console.log("ola");
-        $('#user-notifications').fadeIn(1000, function(){console.log("despues")});
+    if(parseInt($('#user-notification-star').text()) != 0){       
+        $('#user-notifications').fadeIn(1000, function(){});
     }
-    console.log("Notificaciones:" + parseInt($('#user-notification-star').text()));
 });
 
 
@@ -306,8 +303,7 @@ $(document).ready(function(){
     $('.container-img-producto').live('click', function(){
             current_item = $(this).parent('.producto');           
             innerContent(current_item);
-            loadPopup();
-            console.log("producto");
+            loadPopup();  
     });
     $('#shadow').click(function(){
            
@@ -505,8 +501,7 @@ function closePopup(){
     jQuery('#popup').height('150px');
     jQuery('#popup').css('background-image','url(images/loading.gif');
     jQuery('#popup-content').empty();
-    jQuery('#popup-content').appendTo('body');
-    console.log("end close");
+    jQuery('#popup-content').appendTo('body');  
 }
 
 /****************/
@@ -660,13 +655,13 @@ function click_category_filters(){
 /* Stores */
 
 function active_isotope_stores(){
-    // filter items when filter link is clicked
-    console.log("active")
+    // filter items when filter link is clicked  
      $('#container-stores').isotope({
         // options
         itemSelector : '.store',
         layoutMode : 'fitRows'
     });
+    
     click_st_category_filters();
 }
 
@@ -688,19 +683,28 @@ function click_st_category_filters(){
                         }, 5000);
                         $('#tiendas-mbf').fadeIn('slow',function(){
                             
-                        });
-                        
-                        
-                         
+                        });               
                     });                    
-            }else{
+            }else{                
                 var selector = $(this).attr('data-filter');
                 $('#container-stores').isotope({filter: selector});
                 $('.menu-stores .button').removeClass('active');
-                $(this).addClass('active');    
-                
+                $(this).addClass('active');  
             }
+            if(element.attr("id") == "st-menu-moda"){
+                $('#submenu-moda').fadeIn('slow');
+            }else{
+                $('#submenu-moda').fadeOut('slow');
+            }  
            return false;
+    });
+    
+    $('#submenu-moda a').click(function(){ 
+          var selector = $(this).attr('data-filter');
+          $('#container-stores').isotope({filter: selector});
+          $('#submenu-moda a').removeClass('active');
+          $(this).addClass('active');   
+          return false;
     });
 }
 
