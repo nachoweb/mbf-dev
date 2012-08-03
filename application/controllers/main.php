@@ -51,9 +51,6 @@ class Main extends CI_Controller {
                 $this->load->model('Session_model');
                 $this->Session_model->add_session_user_by_hex($user_id,$this->input->get('invitation'));
             }
-
-            
-           
             
             //Index content
             $hex = $this->session->userdata('user_hex');

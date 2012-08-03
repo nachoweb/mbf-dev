@@ -31,9 +31,9 @@ class Store_model extends CI_Model {
     
     function get_stores_by_user($id_user){
         $sql = "SELECT mbf_store.id,mbf_store.offer, mbf_store.notification,  mbf_store.star, mbf_store.description, mbf_store.member, mbf_store.name, mbf_store.url, mbf_store.logo
-                FROM mbf_store join mbf_user_store
-                on mbf_store.id = mbf_user_store.store
-                where mbf_user_store.user = $id_user
+                FROM mbf_store join mbf_store_user
+                on mbf_store.id = mbf_store_user.store
+                where mbf_store_user.user = $id_user
                 order by mbf_store.id asc";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0){
@@ -64,9 +64,31 @@ class Store_model extends CI_Model {
     }
     
     function get_members_stores(){
-        $query = $this->db->query("SELECT * FROM mbf_store where member = 1");
+        $query = $this->db->query("SELECT *
+            from mbf_store join mbf_st_category_store
+            on mbf_store.id = mbf_st_category_store.store
+            order by mbf_store.id");
         if ($query->num_rows() > 0){
-            return $query->result();
+            $stores_cats = $query->result();
+            //k: Index of new array; $i: Index of the $stores_cats; $j:Index for check same store
+            $k=0;
+            for($i=0; $i< count($stores_cats); $i++){
+                foreach($stores_cats[$i] as $key => $value){
+                    if($key != "st_category"){
+                        $stores[$k]->$key = $value;
+                    }else{
+                        $stores[$k]->categories[] = $value;
+                    }
+                }
+                $j = $i + 1;
+                while($j < count($stores_cats) && $stores_cats[$i]->id == $stores_cats[$j]->id){
+                    $stores[$k]->categories[] = $stores_cats[$j]->st_category;
+                    $i++;
+                    $j++;
+                }
+                $k++;
+            }
+            return $stores;
         }
         return array();
     }

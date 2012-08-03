@@ -1,84 +1,91 @@
-<div id="menu-stores">
+<div class="menu-stores">
     <nav>
-        <ul>
-            <li><a href="#" id="button-tiendas-mbf" class="button active">TIENDAS MBF</a></li>
-            <li><a href="#" id="button-mis-tiendas" class="button">MIS TIENDAS</a></li>
+        <ul id="stores_filters">
+            <li><a href="#" id="button-tiendas-mbf" class="button active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
+            <li><a href="#" class="button" data-filter=".1,.2,.3">moda</a></li>
+            <li><a href="#" class="button" data-filter=".7">deporte</a></li>
+            <li><a href="#" class="button" data-filter=".6">electrónica</a></li>
+            <li><a href="#" class="button" data-filter=".5">ocio</a></li>
+            <li><a href="#" class="button" data-filter=".4">hogar</a></li> 
         </ul>
     </nav>
-    <div class="bg-botonera">
-            <div class="bg-botonera-left">						
+    <div class="bg-botonera_N">
+            <div class="bg-botonera-left_N">						
             </div>
-            <div class="bg-botonera-mid">							
+            <div class="bg-botonera-mid_N">							
             </div>
-            <div class="bg-botonera-right">							
+            <div class="bg-botonera-right_N">							
             </div>
     </div>
+</div>
+<div class="menu-stores" id="menu-mis-tiendas">
+    <nav>
+         <li><a href="#" id="button-mis-tiendas" class="button">MIS TIENDAS</a></li>
+    </nav>     
+    <div class="bg-botonera_N">
+            <div class="bg-botonera-left_N">						
+            </div>
+            <div class="bg-botonera-mid_N">							
+            </div>
+            <div class="bg-botonera-right_N">							
+            </div>
     </div>
-    <div id="container-stores">
-    <section id="tiendas-mbf">
-            <?php foreach($members as $member){ ?>
-            <article class="store" id="store_<?php echo $member->id; ?>">
-                <?php
-                if ($member->offer == 1){
-                    echo '<div class="bandera-verde"></div>';
-                }
-                if( $member->notification == 1){
-                    echo '<div class="bandera-naranja"></div>';
-                }
+</div>
+        <div id="container-stores">
+        <section id="tiendas-mbf">
+                <?php foreach($members as $member){ 
+
+                    $cat_class = "";
+                    foreach($member->categories as $cat){
+                        $cat_class .= " $cat";
+                    }
+
                 ?>
-                <div class="options-store">
-                    <a href="" class="sesion"><div></div></a>
-                    <a href="<?php echo $member->url ?>" class="ir-tienda" target="_blank"><div></div></a>
-                    <a href="#" onClick="add_store_user(<?php echo $member->id ?>)" class="suscribirse"><div></div></a>
-                    <span class="tooltip-sesion"></span>
-                    <span class="tooltip-tienda"></span>
-                    <span class="tooltip-guardar" ></span>
-                </div>
-                <div class="container-img-store">
-                    <a href="<?php echo $member->url ?>" target="_blank">
-                        <img src="<?php echo $base_url_image."/".$member->logo ?>" />
-                    </a>
-                </div>
-                <!--<div class="container-description-store">
-                    <p>
-                        <?php 
-                            echo $member->description;
-                        ?>
-                    </p>
-                </div>-->
-            </article>
+                <article class="store <?php echo $cat_class ?>" id="store_<?php echo $member->id; ?>">
+                    <?php
+                    if ($member->offer == 1){
+                        echo '<div class="bandera-verde"></div>';
+                    }
+                    if( $member->notification == 1){
+                        echo '<div class="bandera-naranja"></div>';
+                    }
+                    ?>
+                    <div class="options-store">
+                        <a href="" class="sesion"><div></div></a>
+                        <a href="<?php echo $member->url ?>" class="ir-tienda" target="_blank"><div></div></a>
+                        <a href="#" onClick="add_store_user(<?php echo $member->id ?>)" class="suscribirse"><div></div></a>
+                        <span class="tooltip-sesion"></span>
+                        <span class="tooltip-tienda"></span>
+                        <span class="tooltip-guardar" ></span>
+                    </div>
+                    <div class="container-img-store">
+                        <a href="<?php echo $member->url ?>" target="_blank">
+                            <img src="<?php echo $base_url_image."/".$member->logo ?>" />
+                        </a>
+                    </div>
+                    <!--<div class="container-description-store">
+                        <p>
+                            <?php 
+                                echo $member->description;
+                            ?>
+                        </p>
+                    </div>-->
+                </article>
+                <?php } ?>
+        </section>
+ 
+
+        <section id="mis-tiendas">
+            <?php foreach($my_stores as $my_store){ ?>
+          
+                <article class="my_store" id="my_store_<?php echo $my_store->id ?>">
+                    <div class="container-img-store">
+                        <a href="<?php echo $member->url ?>" target="_blank">
+                           <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
+                        </a>                        
+                    </div>
+                </article>
             <?php } ?>
-    </section>
-    <section id="mis-tiendas">
-        <?php foreach($my_stores as $my_store){ ?>
-            <article class="store" id="my_store_<?php echo $my_store->id ?>">
-                <?php
-                if ($my_store->offer == 1){
-                    echo '<div class="bandera-verde"></div>';
-                }
-                if($my_store->notification == 1){
-                    echo '<div class="bandera-naranja"></div>';
-                }
-                ?>
-                <div class="options-store">
-                    <a href="" class="sesion"><div></div></a>
-                    <a href="<?php echo $my_store->url ?>" class="ir-tienda" target="_blank"><div></div></a>
-                    <a href=="#" onClick="add_store_user(<?php echo $my_store->id ?>)" class="suscribirse"><div></div></a>
-                    <span class="tooltip-sesion"></span>
-                    <span class="tooltip-tienda"></span>
-                    <span class="tooltip-guardar"></span>
-                </div>
-                <div class="container-img-store">
-                    <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
-                </div>
-                <div class="container-description-store">
-                    <p>
-                        <?php 
-                            echo $my_store->description;
-                        ?>
-                    </p>
-                </div>
-            </article>
-        <?php } ?>
-    </section>
+        </section>
+    </div>
 </div>

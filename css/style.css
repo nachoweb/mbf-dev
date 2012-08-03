@@ -534,26 +534,26 @@ body{
 /* Content */
 
 /* Tiendas */
-#menu-stores{
+.menu-stores{
     float: left;
     padding: 5px;
-    clear: both;
+    
     position: relative;
 }
 
-#menu-stores ul{
+.menu-stores ul{
     list-style: none;
     margin: 0;
     padding: 0;
     text-align: center;	
 }
-#menu-stores li{
+.menu-stores li{
     height: 21px;
     margin-top: 5px;
     display: inline;
 }
 
-#menu-stores a{
+.menu-stores a{
     float: left;
     text-decoration: none;
 }
@@ -589,6 +589,17 @@ body{
     margin-right: 20px;
     margin-bottom: 20px;
     position: relative;
+}
+
+.my_store{
+    width: 195px;
+    height: 100px;
+    padding: 5px 7px;
+    float: left;
+    background: url(images/tiendas/bg_tienda.jpg) no-repeat;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    
 }
 .container-img-store{
     width: 195px;
@@ -764,6 +775,11 @@ body{
 	left: 0;
 	float: left;
 	display: block;
+}
+
+#container-stores{
+    width: 100%;
+    overflow: hidden;
 }
 .producto{
 	width: 139px;
@@ -1138,6 +1154,38 @@ body{
 	float: left;
 	margin-left: -4px;
 }
+
+.bg-botonera_N{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-left: 4px;
+}
+.bg-botonera-left_N{
+	width: 6px;
+	height: 40px;
+	background: url(images/home/bg_botonera_left_n.png) no-repeat;
+	float: left;
+	margin-left:-6px;
+}
+.bg-botonera-mid_N{
+	width: 100%;
+	height: 40px;
+	background: url(images/home/bg_botonera_mid_n.png) repeat-x;
+	float: left;
+	margin-left:-4px;
+}
+.bg-botonera-right_N{
+	width: 5px;
+	height: 40px;
+	background: url(images/home/bg_botonera_right_n.png) no-repeat;
+	float: left;
+	margin-left: -4px;
+}
+
+
+
 .button{
 	width: 87px;
 	height: 20px;
@@ -1152,19 +1200,49 @@ body{
 	position: relative;	
 }
 
+.menu-stores .button{
+	width: 87px;
+	height: 30px;
+	padding: 5px 0px;
+	margin-left: 1px;
+	background: url(images/home/boton_off_N.png) no-repeat;
+	border: none;
+	font-family: "ebasneue";
+	font-size: 18px;	
+	color: #BCBEC0;
+	z-index: 100;
+	position: relative;	
+}
+
 .form-add-new-category .button{
     height : 30px;
 }
 
-#menu-stores .button:hover, #menu-stores .button:active{
-	background: url(images/home/boton_off_hover.png) no-repeat;
+.menu-stores .button:hover{
+	background: url(images/home/boton_off_N.png) no-repeat;
 	color: #939598;
 	cursor: pointer;
 }
+
+#menu-mis-tiendas{
+    float: left;
+    margin-left: 28px;
+}
+
+#menu-mis-tiendas a{
+    text-align:center;
+}
+
 .button.active, #menu-productos .button:hover{
 	background: url(images/home/boton_on.png) no-repeat;
 	color: #414142;
 }
+
+.menu-stores  .button.active{
+    background: url(images/home/boton_on_N.png) no-repeat;
+    color: #FFF;
+}
+
 #menu-productos .button{
 	color: #414142;
 }

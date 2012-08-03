@@ -2,6 +2,7 @@
 var inter = 0;
 var options = {"section" : "home"};
 var category_active = {"id" : 0, "name" : ""};
+var st_category = "members";
 
 /********************/
 /*  Funciones ajax  */
@@ -108,7 +109,8 @@ function refresh_content(options){
         document.getElementById("content").innerHTML = content;
         tool_bar_stores_events();
         cargar_tool_tips_stores();
-        inicializar_menu_tiendas();         
+        inicializar_menu_tiendas();   
+        active_isotope_stores();
         window.clearInterval(inter);
     }else if (options.section == "sessions"){
         content = get_by_ajax(base_url + "main/my_sessions", "text");
@@ -655,6 +657,53 @@ function click_category_filters(){
     });
 }
 
+/* Stores */
+
+function active_isotope_stores(){
+    // filter items when filter link is clicked
+    console.log("active")
+     $('#container-stores').isotope({
+        // options
+        itemSelector : '.store',
+        layoutMode : 'fitRows'
+    });
+    click_st_category_filters();
+}
+
+
+function click_st_category_filters(){
+    $('#stores_filters a').click(function(){ 
+            var element = $(this);
+            if(st_category == "mis_tiendas"){
+                st_category = "members";
+                $('.menu-stores .button').removeClass('active');
+                element.addClass('active');
+                $('#mis-tiendas').fadeOut('slow',function(){
+                        var selector = element.attr('data-filter');
+                        $('#container-stores').isotope({filter: selector});
+                        $('.menu-stores .button').removeClass('active');
+                        element.addClass('active');    
+                        $('#sidebar').animate({
+                        'min-height': $('#content').css('height')
+                        }, 5000);
+                        $('#tiendas-mbf').fadeIn('slow',function(){
+                            
+                        });
+                        
+                        
+                         
+                    });                    
+            }else{
+                var selector = $(this).attr('data-filter');
+                $('#container-stores').isotope({filter: selector});
+                $('.menu-stores .button').removeClass('active');
+                $(this).addClass('active');    
+                
+            }
+           return false;
+    });
+}
+
 
 /************/
 /* GUILLE   */
@@ -709,7 +758,7 @@ $(document).ready(function(){
 /* Menú tiendas */
 function inicializar_menu_tiendas(){
     $('#button-tiendas-mbf').click(function(){
-        $('#menu-stores .button').removeClass('active');
+        $('.menu-stores .button').removeClass('active');
         $('#button-tiendas-mbf').addClass('active');
         $('#mis-tiendas').fadeOut('normal',function(){
                 $('#sidebar').animate({
@@ -722,15 +771,15 @@ function inicializar_menu_tiendas(){
     });
     
     $('#button-mis-tiendas').click(function(){
-        $('#menu-stores .button').removeClass('active');
+        st_category = "mis_tiendas";
+        $('.menu-stores .button').removeClass('active');
         $('#button-mis-tiendas').addClass('active');       
         $('#tiendas-mbf').fadeOut('normal',function(){
             $('#mis-tiendas').fadeIn('normal');
-            $('#sidebar').animate({
+           /* $('#sidebar').animate({
             'min-height': $('#content').css('height')
-            }, 5000)
-        });
-       
+            }, 5000)*/
+        });       
          return false;
     });
 }

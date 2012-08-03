@@ -255,9 +255,10 @@ class Product_model extends CI_Model {
         $session = $myself;
         
         //Get the user st_category TODAS 
+        /*
         $query = $this->db->query("SELECT * FROM mbf_st_category where name='todas' and user=$user_id");
         $row = $query->row();
-        $st_cat = $row->id;
+        $st_cat = $row->id;*/
         
         //Store
         $query = $this->db->query("SELECT * FROM mbf_store where url='http://$store_url'");
@@ -267,14 +268,14 @@ class Product_model extends CI_Model {
         
             //Check user-store            
             //Check user-cat-myself vs store
-            $query = $this->db->query("SELECT * FROM mbf_st_category_store where st_category=$st_cat and store=$store");
+            $query = $this->db->query("SELECT * FROM mbf_store_user where user=$user_id and store=$store");
             if ($query->num_rows() == 0){
                 //Insert User Store
                 $data = array(
-                    "st_category"   =>  $st_cat,
-                    "store"         =>  $store
+                    "store"   =>  $store,
+                    "user"    =>  $user_id
                 );
-                $this->db->insert('mbf_st_category_store', $data); 
+                $this->db->insert('mbf_store_user', $data); 
             }            
         }else{
             //Insert store
@@ -286,10 +287,10 @@ class Product_model extends CI_Model {
             $store = $this->db->insert_id();
             //Insert User Store
             $data = array(
-                "st_category"   =>  $st_cat,
-                "store"         =>  $store
-            );
-            $this->db->insert('mbf_st_category_store', $data); 
+                    "store"   =>  $store,
+                    "user"    =>  $user_id
+                );
+            $this->db->insert('mbf_store_user', $data); 
         }
         
         //imagen
