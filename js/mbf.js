@@ -763,7 +763,7 @@ $(document).ready(function(){
 function inicializar_menu_tiendas(){
     $('#button-tiendas-mbf').click(function(){
         $('.menu-stores .button').removeClass('active');
-        $('#button-tiendas-mbf').addClass('active');
+        $('#button-tiendas-mbf').addClass('active');        
         $('#mis-tiendas').fadeOut('normal',function(){
                 $('#sidebar').animate({
                 'min-height': $('#content').css('height')
@@ -776,8 +776,9 @@ function inicializar_menu_tiendas(){
     
     $('#button-mis-tiendas').click(function(){
         st_category = "mis_tiendas";
-        $('.menu-stores .button').removeClass('active');
-        $('#button-mis-tiendas').addClass('active');       
+        $('.menu-stores .button').removeClass('active');        
+        $('#button-mis-tiendas').addClass('active');  
+        $('#submenu-moda').fadeOut('normal');
         $('#tiendas-mbf').fadeOut('normal',function(){
             $('#mis-tiendas').fadeIn('normal');
            /* $('#sidebar').animate({
@@ -938,6 +939,14 @@ $(document).ready(function(){
             }
         }
     });
+    $('#register-date').live('keydown', function(e){
+        if($(this).val().length >= 4){
+             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+                e.preventDefault();
+            }
+        }
+    });
+    
 });
 
 

@@ -80,7 +80,7 @@ class Register extends CI_Controller {
         
        
         //Show instructions
-        //redirect("/register/steps/$hex");
+        redirect("/register/steps/$hex");
     }
     
     
