@@ -96,20 +96,22 @@
                         ?>
                             <a href="<?php echo $my_store->url ?>" target="_blank">
                                 <img src="<?php echo $base_url_image."/bolsa.png" ?>" />
-                            </a>                         
+                            </a>       
+                        </div>
+                        <div class="my_store_name">
+                        <a href="<?php echo $my_store->url ?>" target="_blank">
+                                <?php echo $my_store->name; ?>
+                            </a> 
+                        </div>
                         <?php
                             }else{ ?>
                                     <a href="<?php echo $my_store->url ?>" target="_blank">
                                         <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
                                     </a> 
+                                    </div>
                         <?php   } ?>
                                                
-                    </div>
-                    <div class="my_store_name">
-                       <a href="<?php echo $my_store->url ?>" target="_blank">
-                            <?php echo $my_store->name; ?>
-                        </a> 
-                    </div>
+                    
                 </article>
             <?php } ?>
         </section>
