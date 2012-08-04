@@ -66,9 +66,12 @@ class Main extends CI_Controller {
             $data_header['close_session'] = true;
             $data_header['site_url'] = site_url();
             
+            //HEad options
+            $data_head['nick'] =  $user_data['name'];
+            
             /* CARGAR VISTAS */
           
-            $this->load->view('head');
+            $this->load->view('head', $data_head);
             $this->load->view('header', $data_header);
             $this->load->view('sidebar', $data_sidebar);
             $this->load->view('content', $content);

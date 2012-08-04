@@ -24,6 +24,9 @@
             $price == "" ? $price = "" : $price = $price." €";
             $product_url = rawurldecode($product->url);
             $store_name = rawurldecode($product->store_name);
+            if(strlen($store_name) > 13){
+                $store_name = substr($store_name, 0, 10)."...";               
+            }
             $description = rawurldecode($product->description); 
             $description == "NS" ? $description = "" : $description = $description;
             $store_url = rawurldecode($product->store_url); 

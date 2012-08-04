@@ -6,6 +6,15 @@
                 if($close_session){
             ?>
             <div id="header-tool">
+                <div id="nick"> <a href="#"><span id="span-nick"><?php echo $nick ?></span> ▼</a> </div>
+                <div id="user-options">
+                    <ul id="menu-user">             
+                        <li><a href="" id="menu_bookmarklet">Instalar botón MBF</a></li>
+                        <li><a href="" onClick="close_session(); return false;">Cerrar sesión</a></li>                        
+                   </ul>
+                </div>
+            <!--
+                
                 <div id="close-session">
                     <a href="#" onClick="close_session()" > Cerrar sesión </a>
                 </div>
@@ -14,8 +23,11 @@
                 </div>
                 <div id="refresh">
                  <!--   <a href="#" onClick="refresh()"> Actualizar <img id="img-refresh" src="<?php echo $site_url."images/refresh.png" ?>" </a> -->
-                </div>
+             <!--   </div> 
+            -->
             </div>
+            
+            
             <?php
                 }
             ?>

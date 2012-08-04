@@ -44,53 +44,57 @@ $(document).ready(function(){
     activar_slider_explicacion();
     $("#menu_inicio").click(function(e){
         e.preventDefault();
+        $("#menu-sidebar .active").removeClass("active");
+        $(this).addClass("active");       
         options = {"section" : "home"};
         refresh_content(options);
-        $("#menu-sidebar .active").removeClass("active");
-        $(this).addClass("active");
         activar_slider_explicacion();
+        $("#user-options").css("display", "none");
     });
     
     $("#menu_tiendas").click(function(e){
-         e.preventDefault();
+        e.preventDefault();
+        $("#menu-sidebar .active").removeClass("active");
+        $(this).addClass("active");        
         options = {"section" : "stores"};
         refresh_content(options);
-        $("#menu-sidebar .active").removeClass("active");
-        $(this).addClass("active");
+        $("#user-options").css("display", "none");
     });
     
     $("#menu_mis_cosas").click(function(e){
-         e.preventDefault();
+        e.preventDefault();    
+        $("#menu-sidebar .active").removeClass("active");
+        $(this).addClass("active");
         options = {"section" : "products"};
         refresh_content(options);
         mis_cosas_events();
-        $("#menu-sidebar .active").removeClass("active");
-        $(this).addClass("active");
+        $("#user-options").css("display", "none");
     });
     
     $("#menu_sesiones").click(function(e){
-         e.preventDefault();
-        options = {"section" : "sessions"};
-        refresh_content(options);
+        e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
+        options = {"section" : "sessions"};
+        refresh_content(options);
+        $("#user-options").css("display", "none");
     });
     
     $("#menu_bookmarklet").click(function(e){
-         e.preventDefault();
-        options = {"section" : "bookmarklet"};
-        refresh_content(options);
+        e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
+        options = {"section" : "bookmarklet"};
+        refresh_content(options);
         activar_slider_explicacion();
+        $("#user-options").css("display", "none");
     });
     
 });
 
 /* Navigability */
 function refresh_content(options){
-    var content = "";
-    
+    var content = "";        
     if(options.section == "bookmarklet"){
         document.getElementById("content").innerHTML = "";
         content = get_by_ajax(base_url + "main/steps", "text");        
@@ -480,6 +484,7 @@ function showPopupContent(){
                 jQuery('#popup-content').prependTo('#popup');
                 jQuery('#popup').css('background-image','none');
                 jQuery('#popup-content').fadeIn('normal');
+                jQuery('#input-new-session').focus();
                 jQuery('#input-new-category').focus();
                 jQuery('#input-new-category-store').focus();
         });
@@ -962,4 +967,23 @@ function darse_baja(){
     get_by_ajax(base_url + "register/delete_user", "text");
     closePopup();
     window.location.reload();
+}
+
+
+
+/* User options */
+
+$(document).ready(function(){
+    $("#nick a").click(function(e){        
+      toggle_menu_user()
+    });
+});
+
+function toggle_menu_user(){
+    if($("#user-options").css("display") == "none"){
+        $("#user-options").css("display", "block");
+    }else{
+        $("#user-options").css("display", "none");
+    }
+       
 }

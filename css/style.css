@@ -8,7 +8,6 @@
 }
 
 
-
 #login-register{
     width: 850px;
     padding-top: 20px;
@@ -324,7 +323,6 @@ body{
     padding-top: 28px;
     margin: 0 auto;
     background: url(images/home/cabecera.png) repeat-x;
-    overflow: hidden;
 }
 
 
@@ -353,7 +351,6 @@ body{
 
 .sessions-notifications{
     float:left;
-    border-right:1px solid #BDBEC0;
     padding-top: 2px;
 }
 
@@ -481,6 +478,10 @@ body{
     
 }
 
+#user-options{
+    display:none;
+}
+
 #img-refresh{
     float:right;
     width: 18px;
@@ -499,6 +500,52 @@ body{
     text-decoration: none;
     font-size: 12px;
 }
+
+#header-tool{
+    height: 33px;
+    overflow: visible;
+    margin-top: 15px;
+}
+
+
+#header-tool ul ul{
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 38px;
+    left: 0px;
+    float: left;
+    z-index: 99999;
+}
+
+#menu-user{
+    padding: 0px;
+    margin: 10px 15px 15px 15px;
+}
+
+
+div#user-options{
+    background: black; 
+    margin-top: 3px;
+    position: relative;
+    z-index: 300;
+    
+}
+
+#user-options li{
+   list-style: none;
+   margin-bottom: 10px;
+}
+
+#user-options li a, #user-options li a:hover, #user-options li a:link{
+    color: white;
+}
+
+
 /* Sidebar */
 
 /* Menu sidebar */
@@ -624,34 +671,32 @@ body{
 }
 .store{
     width: 195px;
-    height: 100px;
-    padding: 5px 7px;
+    height: 100px;  
     float: left;
-    background: url(images/tiendas/bg_tienda.jpg) no-repeat;
+    background: url(images/tiendas/bg_tienda.png) no-repeat;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     position: relative;
 }
+
 
 .my_store{
     width: 195px;
     height: 100px;
     padding: 5px 7px;
     float: left;
-    background: url(images/tiendas/bg_tienda.jpg) no-repeat;
+    background: url(images/tiendas/bg_tienda.png) no-repeat;
     margin-right: 20px;
     margin-bottom: 20px;
     
 }
 .container-img-store{
     width: 195px;
-    height: 88px;
     overflow: hidden;
     text-align: center;
 }
 .container-img-store img{
-    margin-top: 15px;
-    width: 150px;
+    margin-top: 8px;  
 }
 .container-description-store{
     width: 189px;
@@ -991,7 +1036,7 @@ body{
 .sessions-top{
     float: left;
     width: 100%;
-    border-bottom: solid 1px #BDBEC0;
+    //border-bottom: solid 1px #BDBEC0;
     margin-top: 2px;
     height: 29px;
 }
@@ -1004,8 +1049,6 @@ body{
 .sessions-avatar{
     width: 26px;
     height: 32px;
-    background-image: url(images/sesiones/icono.png);
-    background-repeat: no-repeat;
     float:left;
 }
 
@@ -1024,6 +1067,7 @@ body{
 	font-weight: bold;
 	color: #595A5C;
 	letter-spacing: 0.8px;
+        
 }
 .container-avatar-sesion{
 	width: 45px;
@@ -1656,4 +1700,9 @@ span.register-title{
     margin-bottom: 20px;
     margin-top: 20px;
     text-align: center;
+}
+
+#loading{
+    margin-left: 200px;
+    margin-top: 76px;
 }
