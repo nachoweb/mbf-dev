@@ -141,6 +141,33 @@ class User_model extends CI_Model {
         $query = $this->db->query($sql);
     }
     
+    /**
+     * Obtenemos usuario o un campo de esto a través del token
+     * @param type $hex The user's token
+     * @param type $field The field that u want to get
+     * @return User object or user field 
+     */
+    
+    function get_user_by_hex($hex, $field = ""){
+        //User_id
+        $query = $this->db->query("SELECT id FROM mbf_user where hex='$hex'");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+            if($field == ""){
+                return $result[0];
+            }else{
+                return $result[0]->$field;
+            }           
+        }else{
+            return -1;
+        }
+    }
+    
+    function activate($user_id){
+        $query = $this->db->query("update mbf_user set activated=1 where id=$user_id");
+        return $this->db->affected_rows();
+    }
+    
 }
 
 ?>

@@ -94,16 +94,21 @@
                         <?php
                             if($my_store->logo == ""){ 
                         ?>
-                            <a href="<?php echo $member->url ?>" target="_blank">
+                            <a href="<?php echo $my_store->url ?>" target="_blank">
                                 <img src="<?php echo $base_url_image."/bolsa.png" ?>" />
                             </a>                         
                         <?php
                             }else{ ?>
-                                    <a href="<?php echo $member->url ?>" target="_blank">
+                                    <a href="<?php echo $my_store->url ?>" target="_blank">
                                         <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
                                     </a> 
                         <?php   } ?>
                                                
+                    </div>
+                    <div class="my_store_name">
+                       <a href="<?php echo $my_store->url ?>" target="_blank">
+                            <?php echo $my_store->name; ?>
+                        </a> 
                     </div>
                 </article>
             <?php } ?>

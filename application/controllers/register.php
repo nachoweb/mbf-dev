@@ -177,5 +177,13 @@ class Register extends CI_Controller {
         $this->load->view('register_steps', $data_view);
         
     }
+    
+    public function activate($hex){
+        $this->load->model('User_model');
+        $user_id = $this->User_model->get_user_by_hex($hex, 'id');
+        if($user_id != -1){
+            $this->User_model->activate($user_id);
+        }
+    }
 }
 ?>

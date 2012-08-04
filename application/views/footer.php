@@ -6,6 +6,7 @@
 </div>
 </div> <!-- END PAGE -->
 
+<!-- Sugerencias -->
  <script type="text/javascript">
   var uvOptions = {};
   (function() {
