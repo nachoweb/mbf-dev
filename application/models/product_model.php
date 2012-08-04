@@ -261,7 +261,7 @@ class Product_model extends CI_Model {
         $st_cat = $row->id;*/
         
         //Store
-        $query = $this->db->query("SELECT * FROM mbf_store where url='http://$store_url'");
+        $query = $this->db->query("SELECT * FROM mbf_store where url like '%$store_url%'");
         if ($query->num_rows() > 0){
             $row = $query->row();
             $store = $row->id;
