@@ -46,7 +46,7 @@ $(document).ready(function(){
         e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");       
-        options = {"section" : "home"};
+        options = {"section" : "inicio"};
         refresh_content(options);
         activar_slider_explicacion();
         $("#user-options").css("display", "none");
@@ -95,12 +95,16 @@ $(document).ready(function(){
 /* Navigability */
 function refresh_content(options){
     var content = "";        
-    if(options.section == "bookmarklet"){
+    if(options.section == "inicio"){
+        document.getElementById("content").innerHTML = "";
+        content = get_by_ajax(base_url + "main/inicio", "text");        
+        document.getElementById("content").innerHTML = content;
+        window.clearInterval(inter);
+    }else if(options.section == "bookmarklet"){
         document.getElementById("content").innerHTML = "";
         content = get_by_ajax(base_url + "main/steps", "text");        
         document.getElementById("content").innerHTML = content;
-        window.clearInterval(inter);
-        
+        window.clearInterval(inter);        
     }else if(options.section == "products"){
         content = get_by_ajax(base_url + "main/products", "text");
         document.getElementById("content").innerHTML = content;
@@ -952,6 +956,14 @@ $(document).ready(function(){
         }
     });
     
+    $("#nick").live('keydown', function(e){
+         if($(this).val().length >= 10){
+             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+                e.preventDefault();
+            }
+        }
+    });
+    
 });
 
 
@@ -977,6 +989,10 @@ $(document).ready(function(){
     $("#nick a").click(function(e){        
       toggle_menu_user()
     });
+    
+    $("#user-options").mouseleave( function(e){
+        $("#user-options").css("display", "none");
+} );
 });
 
 function toggle_menu_user(){
@@ -984,6 +1000,6 @@ function toggle_menu_user(){
         $("#user-options").css("display", "block");
     }else{
         $("#user-options").css("display", "none");
-    }
-       
+    }       
 }
+
