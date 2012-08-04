@@ -62,7 +62,7 @@ class Main extends CI_Controller {
             $data_view['script_bm'] =$this->config->item('bm_script');
 
             //Show instructions¡
-            $content['content'] = $this->load->view('steps_inside', $data_view, true);
+            $content['content'] = $this->load->view('inicio', '', true);
             $data_header['close_session'] = true;
             $data_header['site_url'] = site_url();
             
