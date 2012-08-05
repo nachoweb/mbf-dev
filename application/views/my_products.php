@@ -4,7 +4,7 @@
               <ul id="product_filters">
                 <?php   for($i = 0; $i < count($categories); $i++){ ?>
                     <?php if($i == 0) { ?>
-                        <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-name="<?php echo $categories[$i]->name; ?>" data-categoryid="0" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
+                        <li><a class="button active" href="#<?php echo $categories[$i]->name; ?>" data-name="<?php echo $categories[$i]->name; ?>" data-categoryid="0" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
                     <?php }else{ ?>
                         <li><a class="button" href="#<?php echo $categories[$i]->name; ?>" data-name="<?php echo $categories[$i]->name; ?>" data-categoryid="<?php echo $categories[$i]->id; ?>" data-filter=".<?php echo $categories[$i]->id; ?>"><?php echo $categories[$i]->name ?></a></li>
                     <?php }    ?>
@@ -14,7 +14,7 @@
     </nav>
 </div>
 
-<div id="add-category-div"><a href="#" id="add-category"> + <img src="<?php echo $base_url ?>images/carpeta.png">  </a></div>
+<div id="add-category-div"><a href="#" id="add-category"> <div>+</div><div> <img src="<?php echo $base_url ?>images/carpeta.png">  </a></div></div>
 <?php } ?>
 <div id="container-productos">
     <section id="productos-1">

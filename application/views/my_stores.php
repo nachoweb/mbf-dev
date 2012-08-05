@@ -1,14 +1,15 @@
-<div class="menu-stores">
+<div id="menu-productos" class="menu-my-stores">
     <nav>
         <ul id="stores_filters">
-            <li><a href="#" id="button-tiendas-mbf" class="button active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
-            <li><a href="#" class="button" data-filter=".1,.2,.3" id="st-menu-moda">moda</a></li>
-            <li><a href="#" class="button" data-filter=".7">deporte</a></li>
-            <li><a href="#" class="button" data-filter=".6">electrónica</a></li>
-            <li><a href="#" class="button" data-filter=".5">ocio</a></li>
-            <li><a href="#" class="button" data-filter=".4">hogar</a></li> 
+            <li><a href="#" id="button-tiendas-mbf" class="button-small active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
+            <li><a href="#" class="button-small" data-filter=".1,.2,.3" id="st-menu-moda">moda</a></li>
+            <li><a href="#" class="button-small" data-filter=".7">deporte</a></li>
+            <li><a href="#" class="button-small" data-filter=".6">electrónica</a></li>
+            <li><a href="#" class="button-small" data-filter=".5">ocio</a></li>
+            <li><a href="#" class="button-small" data-filter=".4">hogar</a></li> 
         </ul>
     </nav>
+    <!--
     <div class="bg-botonera_N">
             <div class="bg-botonera-left_N">						
             </div>
@@ -17,11 +18,15 @@
             <div class="bg-botonera-right_N">							
             </div>
     </div>
+    -->
 </div>
-<div class="menu-stores" id="menu-mis-tiendas">
+<div class="menu-my-stores" id="menu-mis-tiendas">
     <nav>
-         <li><a href="#" id="button-mis-tiendas" class="button">MIS TIENDAS</a></li>
+        <ul>
+            <li><a href="#" id="button-mis-tiendas" class="button-small">MIS TIENDAS</a></li>
+        </ul>
     </nav>     
+    <!--
     <div class="bg-botonera_N">
             <div class="bg-botonera-left_N">						
             </div>
@@ -30,6 +35,7 @@
             <div class="bg-botonera-right_N">							
             </div>
     </div>
+    -->
 </div>
 <div id="submenu-stores">
     <div id="submenu-moda">

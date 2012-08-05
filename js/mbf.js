@@ -388,7 +388,7 @@ function innerContentAddSession(){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
     popup_content += '<form id="form-add-new-session" name="form-add-new-session" class="form-add-new-category" method="post">';
-    popup_content += '		<label>Crear sesión</label>';
+    popup_content += '		<label>Título:</label><label id="session-message"></label>';
     popup_content += '		<input type="text" id="input-new-session" name="input-new-session" class="input-new-category"/>';
     popup_content += '		<input type="button" id="accept-new-category" name="accept-new-session" class="button" value="Añadir" onClick="saveSession()" />';
     popup_content += '		<input type="button" id="cancel-new-session" name="cancel-new-session" class="button" value="Cancelar" onClick="closePopup()" />';
@@ -657,6 +657,8 @@ function click_category_filters(){
             category_active.id = $(this).attr('data-categoryid');
             category_active.name = $(this).attr('data-name');
             $('#container-productos').isotope({filter: selector});
+            $('#menu-productos a').removeClass("active");
+            $(this).addClass("active");
             return false;
     });
 }
@@ -669,8 +671,7 @@ function active_isotope_stores(){
         // options
         itemSelector : '.store',
         layoutMode : 'fitRows'
-    });
-    
+    });    
     click_st_category_filters();
 }
 
@@ -678,6 +679,9 @@ function active_isotope_stores(){
 function click_st_category_filters(){
     $('#stores_filters a').click(function(){ 
             var element = $(this);
+            $(".button-small").removeClass("active");
+             $('#button-mis-tiendas').removeClass("active");
+            element.addClass("active");
             if(st_category == "mis_tiendas"){
                 st_category = "members";
                 $('.menu-stores .button').removeClass('active');
@@ -787,7 +791,7 @@ function inicializar_menu_tiendas(){
     
     $('#button-mis-tiendas').click(function(){
         st_category = "mis_tiendas";
-        $('.menu-stores .button').removeClass('active');        
+        $('.button-small').removeClass('active');        
         $('#button-mis-tiendas').addClass('active');  
         $('#submenu-moda').fadeOut('normal');
         $('#tiendas-mbf').fadeOut('normal',function(){
