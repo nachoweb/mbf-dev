@@ -702,6 +702,8 @@ function click_st_category_filters(){
             }
             if(element.attr("id") == "st-menu-moda"){
                 $('#submenu-moda').fadeIn('slow');
+                $('#submenu-moda a').removeClass("active");
+                $("#submenu-todo").addClass("active");
             }else{
                 $('#submenu-moda').fadeOut('slow');
             }  
@@ -853,10 +855,18 @@ function load_product_options(){
     
     $('.producto-carpeta').hover(
             function(){
-                    $(this).parent().children('.tooltip-producto-carpeta').stop().fadeIn('fast')
+                    var element = $(this).parent().children('.tooltip-producto-carpeta');
+                    element.stop().fadeIn('fast');
+                    if(element.height() > 240){
+                        element.css("max-height", "216px");
+                        element.css("overflow-y", "scroll");
+                        element.css("overflow-x", "hidden");
+                        element.css("width", "135px");
+                        element.css("left", "28px");
+                    }
             },
             function(){
-                    $(this).parent().children('.tooltip-producto-carpeta').fadeOut('fast')
+                    $(this).parent().children('.tooltip-producto-carpeta').fadeOut('fast');
             }
     );
     $('.tooltip-producto-carpeta').hover(
@@ -872,10 +882,19 @@ function load_product_options(){
     
      $('.producto-sesion').hover( 
             function(){
-                    $(this).parent().children('.tooltip-producto-sesion').stop().fadeIn('fast')
+                   
+                    element = $(this).parent().children('.tooltip-producto-sesion');
+                    element.stop().fadeIn('fast');
+                    if(element.height() > 240){
+                        element.css("max-height", "216px");
+                        element.css("overflow-y", "scroll");
+                        element.css("overflow-x", "hidden");
+                        element.css("width", "135px");
+                        element.css("left", "28px");
+                    }
             },
             function(){
-                    $(this).parent().children('.tooltip-producto-sesion').fadeOut('fast')
+                    $(this).parent().children('.tooltip-producto-sesion').fadeOut('fast');
             }
     );
     $('.tooltip-producto-sesion').hover(
@@ -970,7 +989,7 @@ $(document).ready(function(){
 function show_conditions(){
     
     myRef = window.open('condiciones','mywin',
-'left=20,top=20,width=800,height=500,toolbar=1,resizable=0');
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0');
 myRef.focus()
 }
 

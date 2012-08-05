@@ -34,7 +34,7 @@
 <div id="submenu-stores">
     <div id="submenu-moda">
         <ul>
-            <li> <a href="#" data-filter=".1,.2,.3">todo</a> </li>
+            <li> <a id="submenu-todo" href="#" data-filter=".1,.2,.3">todo</a> </li>
             <li> <a href="#" data-filter=".2">hombre</a> </li>
             <li> <a href="#" data-filter=".1">mujer</a> </li>
             <li> <a href="#" data-filter=".3">complementos</a> </li>

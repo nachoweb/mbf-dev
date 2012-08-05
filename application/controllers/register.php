@@ -185,5 +185,9 @@ class Register extends CI_Controller {
             $this->User_model->activate($user_id);
         }
     }
+    
+    public function reset_password(){
+        $hex = $this->rand_text(8,8);
+    }
 }
 ?>

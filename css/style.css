@@ -342,7 +342,7 @@ body{
     margin-bottom: 50px;
     float: left;	
     background: url(images/home/separador_muro.png) repeat-y 0 100%;
-    min-height: 196px;
+    min-height: 380px;
 }
 
 #notificaciones{
@@ -616,7 +616,7 @@ div#user-options{
     display:none;
     float: left;       
     position: relative;
-    margin-left: 68px;
+    margin-left: 0px;
 }
 
 #submenu-moda ul{
@@ -629,7 +629,7 @@ div#user-options{
     height: 21px;   
     display: inline;    
     float:left;
-    margin-left: 25px;
+    margin-right: 25px;
 }
 
 #submenu-moda a{
@@ -637,6 +637,7 @@ div#user-options{
     text-decoration: none;
     font-family: ebasneue;
     color:#818386;
+    letter-spacing: 1px;
 }
 
 #submenu-moda a:hover{
@@ -645,7 +646,7 @@ div#user-options{
 
 
 #submenu-moda a.active{    
-    color:#3A3A3B;
+    color:#000;
 }
 
 #container-stores{
@@ -832,7 +833,11 @@ div#user-options{
     margin-top: 10px;
     margin-left: 7px;
     font-size: 13px;
-    
+    height: 24px;
+    width: 34px;    
+}
+#add-category-div img{
+    float:right;
 }
 
 #add-category-div a{
@@ -947,8 +952,9 @@ div#user-options{
 	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y;
 	position: absolute;
 	top: 0px;
-	left: 22px;
+	left: 28px;
 	display: none;
+        margin-top: 30px;
 }
 
 .tooltip-producto-sesion{
@@ -956,7 +962,7 @@ div#user-options{
 	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y;
 	position: absolute;
 	top: 0px;
-	left: 22px;
+	left: 28px;
 	display: none;
         max-height: 240px;
         overflow-y: scroll;
@@ -970,11 +976,8 @@ div#user-options{
 	padding: 5px;
 	clear: both;
 	position: relative;
-	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y; 
-        max-height: 240px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-       
+	background: url(images/botones/bg_texto_botones_carpetas_productos.png) repeat-y;        
+              
 }
 
 .menu-tooltip-producto ul{
@@ -1702,7 +1705,34 @@ span.register-title{
     text-align: center;
 }
 
+#footer a{
+    color: #666;
+}
+
 #loading{
     margin-left: 200px;
     margin-top: 76px;
+}
+
+
+/****************/
+/* Texto inicio */
+/****************/
+#text-inicio{
+    font-size: 14px;
+}
+
+#text-inicio table{
+    margin-left: -3px;
+}
+
+#firma{
+    float: left;
+    width: 218px;
+    margin-top: 36px;
+}
+
+#text-inicio h3, #text-inicio h4{
+    font-family: lsansuni;
+    font-weight: bold;
 }

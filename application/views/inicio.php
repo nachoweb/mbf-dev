@@ -1,13 +1,13 @@
 <div id="text-inicio">
 <h3>¡¡BIENVENID@ A LA VERSIÓN BETA DE MYBUYFRIENDS!! </h3>
-<h4>¿QUÉ ES UNA BETA?</h$>
+<h4>¿QUÉ ES UNA BETA?</h4>
 <p>
     Una beta es una versión en desarrollo de una página web. Se usa para ir detectando posibles fallos e ir
     añadiendo cosas nuevas que recomienden los usuarios.
 </p>
 <h4>¿CÓMO PUEDO AYUDAR? </h4>
 <p>
-Sencillo, usa la web y cuando se te ocurra algo: ¡No dudes! Mándanoslo usando el botón que verás a la derecha (Enviar sugerencias)
+Sencillo, usa la web y cuando se te ocurra algo: ¡No dudes! Mándanoslo usando el botón que verás a la izquierda (Enviar sugerencias)
 Importante: Para que podamos saber que nos has enviado una sugerencia necesitamos que hagas lo siguiente la primera vez que uses el botón: 
 </p>
 <ul>
@@ -23,9 +23,13 @@ Importante: Para que podamos saber que nos has enviado una sugerencia necesitamo
     </li>
 </ul>
 <p>
-    También podrás hablar con nosotros usando el chat situado abajo a la derecha, ¡Estamos siempre disponibles para hablar contigo!
+    También podrás hablar con nosotros usando el chat situado abajo a la izquierda, ¡Estamos siempre disponibles para hablar contigo!
+</p>
+<p>
     Recuerda, nos encanta recibir ideas así que no dejes de enviarlas por locas que te parezcan, son nuestras preferidas ☺
+</p>    
     En adelante usaremos este tablón para avisarte de las novedades y de los ganadores del sorteo así que: ¡sigue atento!
+</p>
     Muchas gracias por aceptar ser embajador de MyBuyfriends.
 </p>
 
@@ -33,7 +37,26 @@ Importante: Para que podamos saber que nos has enviado una sugerencia necesitamo
 <div id="firma">
 El equipo de Mybuyfriends
 info@mybuyfriends.com
-Tel.: (+34) 931 234 965  
-        (+34) 686 073 576
+<table>
+    <tr>
+        <td>
+           Tel.:  
+        </td>
+        <td>
+            (+34) 931 234 965  
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+        </td>
+        <td>
+            (+34) 686 073 576
+        </td>   
+    </tr>
+    
+</table>
+
+        
 </div>
 

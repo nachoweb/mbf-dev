@@ -110,6 +110,7 @@ class Main extends CI_Controller {
            
             //Products & categories          
             $data_products['sessions'] = $this->Session_model->get_sessions_by_user($user_id);
+            $data_products['base_url'] = site_url();
             $data_products['base_url_image'] = site_url("/images/products/$user_id");
             $data_products['products']=$this->Product_model->get_my_products($user_id);
             $data_products['categories'] = $this->Category_model->get_categories_by_user($user_id);

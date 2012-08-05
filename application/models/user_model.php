@@ -168,6 +168,11 @@ class User_model extends CI_Model {
         return $this->db->affected_rows();
     }
     
+    function set_password($user_id, $password){
+        $query = $this->db->query("update mbf_user set password='$password' where id=$user_id");
+        return $this->db->affected_rows();
+    }
+    
 }
 
 ?>
