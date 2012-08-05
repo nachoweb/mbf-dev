@@ -681,13 +681,13 @@ div#user-options{
 
 
 .my_store{
-    width: 195px;
-    height: 100px;
-    padding: 5px 7px;
+     width: 195px;
+    height: 100px;  
     float: left;
     background: url(images/tiendas/bg_tienda.png) no-repeat;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    position: relative;
     
 }
 .container-img-store{
@@ -1380,6 +1380,9 @@ a img{
 	border:none;
 }
 
+.my_store_name{
+    text-align: center;
+}
 
 /* AGREGACIONES */
 
