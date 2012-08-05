@@ -1314,7 +1314,7 @@ div#user-options{
     color: #404041;
 }
 
-.button-small:hover{
+ .button-small:hover{
     color:#404041;
 }
 
@@ -1341,6 +1341,7 @@ div#user-options{
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
     max-width: 688px;
+    margin-left: 30px;
 }
 
 #menu-mis-tiendas a{
