@@ -90,6 +90,11 @@ $(document).ready(function(){
         $("#user-options").css("display", "none");
     });
     
+    $("#session-back a").live("click",function(e){
+        e.preventDefault();
+        $("#menu_sesiones").click();
+    });
+    
 });
 
 /* Navigability */

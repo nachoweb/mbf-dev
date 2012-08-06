@@ -3,7 +3,7 @@
 </div>
 <div id="container-sesiones">	
     <?php
-    foreach($sessions as $session){   
+    foreach($sessions as $session){          
         if($session->name != "myself"){
             if(isset($notifications['messages'][$session->id])){
                 $messages = $notifications['messages'][$session->id];
@@ -15,17 +15,62 @@
             }else{
                 $products = 0;
             }
+            
+            if(strlen($session->name) > 14){
+                $session->name = substr($session->name, 0, 11)."...";
+            }
     ?>
    
     <article class="sesion" onClick="prepare_session(<?php echo $session->id.",".$messages.",".$products ?>)">
-          <!--  <div class="bandera-naranja"></div> -->
-            <!--<span class="sesion-title"><?php echo $session->name ?></span>-->
-          <!--  <div class="container-avatar-sesion">
-                    <img src="<?php echo $base_url_image ?>/avatar_sesion.jpg" />
+        <div class="sessions-left">         
+            <div class="sessions-nick">
+            <?php
+                if(isset($nicks[$session->id])){
+                    echo $nicks[$session->id];
+                }else{
+                    echo "<span class='pendiente'>pendiente...</span>";
+                }               
+            ?>
             </div>
-            <!-- <span class="name-sesion">Rufino</span> -->
-            <!-- <span class="date-sesion"><?php echo $session->date ?></span> -->
-          
+            <div class="sessions-left-bottom">
+                <div class="sesion-title">
+                    <?php echo $session->name; ?>
+                </div>
+                <div class="date-sesion">
+                    <?php echo $session->date ?>
+                </div>
+            </div>
+        </div>
+        <div class="sessions-right">
+            <!-- NOTIFICACIONES DE MENSAJES -->
+            <?php
+                if(isset($notifications['messages'][$session->id])){ 
+                ?>
+                    <div class="contenedor_not_mensajes">
+                        <div class="not-messages"> <?php echo $notifications['messages'][$session->id]; ?></div>
+                    </div>
+                <?php    
+                }else{ ?>
+                    <div class="contenedor_not_mensajes_0">
+                        <div class="not-messagess"></div>
+                    </div>
+              <?php } ?>
+            <!-- NOTIFICACIONES DE PRODUCTOS -->
+            <?php
+                if(isset($notifications['products'][$session->id])){?>
+                    <div class="contenedor_not_products">
+                        <div class="not-products"> <?php echo $notifications['products'][$session->id]; ?></div>
+                    </div>
+                    <?php
+                    }else{?>
+                    <div class="contenedor_not_products_0">
+                        <div class="not-products"></div>
+                    </div>
+                <?php
+                }
+                ?>   
+        </div>
+          <!--
           <div class="sessions-top">
               <div class="sessions-avatar">
                   
@@ -75,7 +120,7 @@
               <div class="date-sesion">
                  <?php echo $session->date ?>
               </div>
-          </div>
+          </div>-->
     </article>  
     <?php
         }
