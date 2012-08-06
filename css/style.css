@@ -1155,6 +1155,25 @@ div#user-options{
 
 /** dentro sesion **/
 
+#session-slide{
+    float:left;
+}
+
+#session-pliegue{
+    clear: both;
+    width:100%;    
+    height:40px;
+}
+
+.pliegue-up{
+    background-image: url('images/sesiones/pliegue.png');
+    background-repeat: no-repeat;
+}
+
+.pliegue-down{
+    background-image: url('images/sesiones/pliegue-down.png');
+    background-repeat: no-repeat;
+}
 
 .social-left{
     width: 216px;

@@ -238,6 +238,20 @@ function activate_session_events(){
         }
        
     });  
+    
+    $("#session-pliegue").click(function(e){
+        console.log("pliegue");
+        if($("#session-slide").css("display") != "none"){
+            $("#session-slide").slideUp("normal", function(){});
+            $("#session-pliegue").removeClass("pliegue-up");
+            $("#session-pliegue").addClass("pliegue-down");
+        }else{
+            $("#session-slide").slideDown("normal", function(){});
+            $("#session-pliegue").removeClass("pliegue-down");
+            $("#session-pliegue").addClass("pliegue-up");
+           
+        }
+    })
 }
 
 

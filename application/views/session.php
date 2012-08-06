@@ -1,66 +1,71 @@
-<div id="session-back">
-    <a href="#"> volver </a>
-</div>
-<div id="session-title-nick" class="session-border">
-    <div id="session-nick">
-        <span class="session-title"> SESIÓN CON </span><span class="session-color"> <?php echo $user->nick; ?> </span>
+<div id="session-slide">
+    <div id="session-back">
+        <a href="#"> volver </a>
     </div>
-    <div id="session-title">
-        <?php echo $session->name; ?>
-    </div>
-</div>
-<div id="session-social">
-    <div id="social-left">
-        <div class="social-left">
-            <div class="social-left-title">
-               <span class="session-title"> CREADA </span>
-            </div>
-            <div id="social-left-data">
-                <span class="session-color"><?php echo $session->date ?></span>
-            </div>
+    <div id="session-title-nick" class="session-border">
+        <div id="session-nick">
+            <span class="session-title"> SESIÓN CON </span><span class="session-color"> <?php echo $user->nick; ?> </span>
         </div>
-        <div class="social-left">
-            <div class="social-left-title">
-                <span class="session-title">  Productos </span>
-            </div>
-            <div id="social-left-data">
-                <span class="session-color"><?php echo count($products); ?></span>
-            </div>
+        <div id="session-title">
+            <?php echo $session->name; ?>
         </div>
     </div>
-    <div id="sesion-right">
-        <section id="sesion-chat">
-        <?php 
-        if(count($messages) == 0){ ?>
-            <div class="sesion-message">
-                <div class="sesion-message-left">
-                        <div class="sesion-message-name"><?php echo "MyBuyFriends" ?></div>                        
+    <div id="session-social">
+        <div id="social-left">
+            <div class="social-left">
+                <div class="social-left-title">
+                <span class="session-title"> CREADA </span>
                 </div>
-                <div class="sesion-message-right">
-                        <p class="sesion-message-text">Aquí puedes chatear con tu compañero de sesión :) </p>
+                <div id="social-left-data">
+                    <span class="session-color"><?php echo $session->date ?></span>
                 </div>
             </div>
-      <?php  }else{
-        foreach ($messages as $message){  ?>
-            <div class="sesion-message">
-                        <div class="sesion-message-left">
-                                <span class="sesion-message-name"><?php echo $message->nick ?></span>
-                                <span class="sesion-message-time"><?php echo $message->date ?></span>
-                        </div>
-                        <div class="sesion-message-right">
-                                <p class="sesion-message-text">
-                                        <?php echo $message->text ?>
-                                </p>
-                        </div>
+            <div class="social-left">
+                <div class="social-left-title">
+                    <span class="session-title">  Productos </span>
                 </div>
-        <?php } ?>
-        <?php }   ?>
+                <div id="social-left-data">
+                    <span class="session-color"><?php echo count($products); ?></span>
+                </div>
+            </div>
+        </div>
+        <div id="sesion-right">
+            <section id="sesion-chat">
+            <?php 
+            if(count($messages) == 0){ ?>
+                <div class="sesion-message">
+                    <div class="sesion-message-left">
+                            <div class="sesion-message-name"><?php echo "MyBuyFriends" ?></div>                        
+                    </div>
+                    <div class="sesion-message-right">
+                            <p class="sesion-message-text">Aquí puedes chatear con tu compañero de sesión :) </p>
+                    </div>
+                </div>
+        <?php  }else{
+            foreach ($messages as $message){  ?>
+                <div class="sesion-message">
+                            <div class="sesion-message-left">
+                                    <span class="sesion-message-name"><?php echo $message->nick ?></span>
+                                    <span class="sesion-message-time"><?php echo $message->date ?></span>
+                            </div>
+                            <div class="sesion-message-right">
+                                    <p class="sesion-message-text">
+                                            <?php echo $message->text ?>
+                                    </p>
+                            </div>
+                    </div>
+            <?php } ?>
+            <?php }   ?>
 
-        </section> <!-- End session chat -->
-        <div id="container-new-message">
-            <textarea id="new-message" data-session="<?php echo $session->id ?>" data-user="<?php echo $user->nick ?>" data-last="<?php echo $last_message ?>"></textarea>
+            </section> <!-- End session chat -->
+            <div id="container-new-message">
+                <textarea id="new-message" data-session="<?php echo $session->id ?>" data-user="<?php echo $user->nick ?>" data-last="<?php echo $last_message ?>"></textarea>
+            </div>
         </div>
     </div>
+</div>
+<div id="session-pliegue" class="pliegue-up">
+    
 </div>
 <div id="session-products">	
     <?php
