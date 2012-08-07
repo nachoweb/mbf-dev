@@ -89,9 +89,9 @@
 				</section> <!-- END slider container -->
 				<nav id="nav-slider-register">	 	
 					<ul class="nav-list">
-						<li class="nav-item-register" id="slider-left"><img src="<?php echo $site_url;?>/images/register/anterior.png" /></li>
-						<li class="nav-item-register" id="slider-right"><img src="<?php echo $site_url;?>/images/register/siguiente.png" /></li>
-						<li class="nav-item-register" id="start"><img src="<?php echo $site_url;?>/images/register/entrar.png" /></li>
+						<li class="nav-item-register" id="slider-right"><input type="button" class="button" name="login-submit" value="Siguiente"></li>
+                                                <li class="nav-item-register" id="start"><input type="button" class="button" id="login-submit" name="login-submit" value="Entrar"></li>
+                                                <li class="nav-item-register" id="slider-left"><!--<img src="<?php echo $site_url;?>/images/register/anterior.png" />--> <input type="button" class="button"  name="login-submit" value="Anterior"></li>
 					</ul>
 				</nav>
 			</div>
