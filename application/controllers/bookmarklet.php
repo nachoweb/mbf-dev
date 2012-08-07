@@ -30,9 +30,12 @@ class Bookmarklet extends CI_Controller {
         $sessions = $this->Session_model->get_sessions_by_user($user_id);
         $categories = $this->Category_model->get_categories_by_user($user_id);
         foreach($sessions as $session){
-            $json['sessions'][] = array("id" => $session->id, "name" => $session->name);
             if($session->name == "myself"){
-                $json['myself'] = $session->id;
+            $json['sessions'][] = array("id" => $session->id, "name" => "-----------");
+            }else{
+                if($session->name == "myself"){
+                    $json['myself'] = $session->id;
+                }
             }
         }
         foreach($categories as $cat){
