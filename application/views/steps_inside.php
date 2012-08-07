@@ -80,9 +80,9 @@
 								<img src="<?php echo $site_url;?>/images/register/imagen6.jpg">
 								-->
 								<img src="<?php echo $site_url;?>/images/register/imagen6.jpg">
-								<div class="register-description last-message">
+							<!--	<div class="register-description last-message">
 									Recuerda que MyBuyFriends es privado y solo tú podrás ver lo que has guardado en <span class="bold">Mis Cosas</span> y solo tu amigo lo que hayais compartido en las <span class="bold">Sesiones</span>.
-								</div>
+								</div>-->
 							</div>
 						</section> <!-- END ITEM 4 -->
 					</section>  <!-- END slider -->
