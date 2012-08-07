@@ -79,6 +79,7 @@ class Store_model extends CI_Model {
         $query = $this->db->query("SELECT *
             from mbf_store join mbf_st_category_store
             on mbf_store.id = mbf_st_category_store.store
+            where member=1
             order by mbf_store.id");
         if ($query->num_rows() > 0){
             $stores_cats = $query->result();
