@@ -464,7 +464,7 @@ function innerContentImSorry(){
     jQuery('#popup-content').empty();
     var popup_content = '<div>';
     popup_content += '<form name="form-add-new-category" class="form-add-new-category" method="post">';
-    popup_content += '		<div><label> Lo sentimos, este operación aún no está disponible.<br/</label></div><br/>';
+    popup_content += '		<div><label> Ups!. Lo sentimos, este operación aún no está disponible.<br/</label></div><br/>';
     popup_content += '		<input type="button"  class="button" value="Aceptar" onClick="closePopup()" />';
    
     popup_content += '	</form>';
