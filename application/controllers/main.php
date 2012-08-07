@@ -25,7 +25,7 @@ class Main extends CI_Controller {
                 $this->load->view('head');   
                 $this->load->view('header', $data_header); 
                 $this->load->view('welcome', $data);
-                $this->load->view('footer'); 
+                $this->load->view('footer_welcome'); 
             }else{
                 $this->home();
             }
@@ -36,6 +36,7 @@ class Main extends CI_Controller {
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
             $myself = $this->session->userdata('myself');
+            $nick =  $this->session->userdata('user_nick');          
             
             
             //Notifications
@@ -67,7 +68,7 @@ class Main extends CI_Controller {
             $data_header['site_url'] = site_url();
             
             //HEad options
-            $data_head['nick'] =  $user_data['name'];
+            $data_head['nick'] =  $nick;
             
             /* CARGAR VISTAS */
           
@@ -179,6 +180,7 @@ class Main extends CI_Controller {
             $this->load->model('Session_model');
             $this->load->model('Product_model');
             $this->load->model('Message_model');
+            $this->load->model('Store_model');
             $this->load->helper('url');
             
             //Update last_session
@@ -197,7 +199,9 @@ class Main extends CI_Controller {
                 $data_session["products"]       = $this->Product_model->get_products_by_session($session_id, false);
                 $data_session['user']           = $user_data;
                 $data_session['base_url_image_store'] = site_url("/images/stores");
+                $data_session['base_url'] = site_url();
                 $data_session['base_url_image_product'] = site_url("/images/products");
+                $data_session['stores'] = $this->Store_model->get_stores_by_session($session_id);
 
                 //View
                 $this->load->view('session', $data_session);

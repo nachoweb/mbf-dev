@@ -130,17 +130,24 @@ class Session_model extends CI_Model {
         }
     }
     
-    function add_session_user_by_hex($user, $hex){
+    function add_session_user_by_hex($user, $hex){        
         //Get session
         $session = $this->get_session_by_hex($hex);
-         $data = array(
+        $sql = "select * from mbf_session_user where session=$session->id";       
+        $query = $this->db->query($sql);       
+        $result = $query->result();
+        if ($query->num_rows() > 1){
+             return -1;
+        }else{
+            $data = array(
             "session"   =>  $session->id,
             "user"      =>  $user,
-        );
-         try{
-            $this->db->insert('mbf_session_user', $data);
-        } catch (Exception $e) {
-            
+            );
+            try{
+                $this->db->insert('mbf_session_user', $data);
+            } catch (Exception $e) {
+
+            }
         }
     }
     
@@ -164,7 +171,7 @@ class Session_model extends CI_Model {
         }
     }
     function get_session($session_id){
-        $query = $this->db->query(" SELECT mbf_session.id, mbf_session.date, mbf_session.user, mbf_session.name, mbf_session.store
+        $query = $this->db->query(" SELECT mbf_session.id, mbf_session.date, mbf_session.user, mbf_session.name, mbf_session.store, mbf_session.hex
                                     FROM mbf_session
                                     where mbf_session.id = $session_id");
         $result = $query->result();
@@ -217,6 +224,8 @@ class Session_model extends CI_Model {
             return $result;
         }
     }
+    
+    
     
     private function rand_text($min = 10,$max = 20,$randtext = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'){
         if($min < 1) $min=1;

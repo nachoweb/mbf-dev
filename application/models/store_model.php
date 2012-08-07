@@ -42,6 +42,18 @@ class Store_model extends CI_Model {
         return array();
     }
     
+    function get_stores_by_session($session_id){
+        $sql = "select distinct mbf_store.name, mbf_store.url
+        from mbf_session join mbf_product join mbf_store
+        on mbf_session.id = mbf_product.session and mbf_store.id = mbf_product.store
+        where mbf_session.id = $session_id";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0){
+            return $query->result();
+        }
+        return array();
+    }
+    
 
     
     

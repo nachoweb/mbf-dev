@@ -31,6 +31,7 @@
         <script src="./js/mbf.js"></script>
         <script src="./js/app/util/register.js"></script>
         <script src="./js/config.js"></script>
+        <script src="./js/jquery.tipsy.js"></script>
         
       
     </head>

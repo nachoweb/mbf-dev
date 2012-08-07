@@ -61,6 +61,8 @@ $(document).ready(function(){
         $("#user-options").css("display", "none");
     });
     
+     
+    
     $("#menu_mis_cosas").click(function(e){
         e.preventDefault();    
         $("#menu-sidebar .active").removeClass("active");
@@ -95,6 +97,8 @@ $(document).ready(function(){
         $("#menu_sesiones").click();
     });
     
+    $("#menu_tiendas").tipsy({gravity: 'w'});
+    $("#menu_sesiones").tipsy({gravity: 'w'});
 });
 
 /* Navigability */
@@ -251,7 +255,11 @@ function activate_session_events(){
             $("#session-pliegue").addClass("pliegue-up");
            
         }
-    })
+    });
+    
+    $("#session-title span").click(function(e){
+        
+    });
 }
 
 
@@ -641,9 +649,14 @@ function saveSession(){
     addSession(new_session);
 }
 
+function show_link_session(hex){
+    innerContentHex(hex);
+    loadPopup();
+}
+
 /* Add new DOM Session */
 function addSession(session){
-jQuery('#container-sesiones').append('<article class="sesion" onclick="prepare_session(' + session.id + ',0,0)"><div class="sessions-top"><div class="sessions-avatar"></div>               <div class="sessions-nick"><span class="pendiente">Pendiente...</span></div></div><div class="sessions-bot"><div class="sessions-notifications"><div class="contenedor_not_mensajes_0"><div class="not-messagess"></div></div><div class="contenedor_not_products_0"><div class="not-products"></div></div></div><div class="date-sesion">'+ session.date +'</div></div></article>');    
+jQuery('#container-sesiones').append('<article class="sesion" onclick="prepare_session(' + session.id + ',0,0)"> <div class="sessions-left"><div class="sessions-nick"><span class="pendiente">pendiente...</span> </div> <div class="sessions-left-bottom"> <div class="sesion-title"> ' + session.name + ' </div> <div class="date-sesion"> 				' + session.date + ' </div> </div> 	</div> 	<div class="sessions-right"> 		<!-- NOTIFICACIONES DE MENSAJES --> 		<div class="contenedor_not_mensajes_0"> 			<div class="not-messagess"></div> 		</div> 		<!-- NOTIFICACIONES DE PRODUCTOS --> <div class="contenedor_not_products_0"> <div class="not-products"></div> </div> 	</div> </article>');    
   /*  jQuery('#product_filters li:last').css('display','none');
     jQuery('#product_filters li:last').fadeIn('slow');
     closePopup();
@@ -978,21 +991,21 @@ function close_session(){
 $(document).ready(function(){
     $('#input-new-session').live('keydown', function(e){
         if($(this).val().length >= 15){
-            if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+            if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27 ){
                 e.preventDefault();
             }
         }
     });
     $('#input-new-category').live('keydown', function(e){
         if($(this).val().length >= 10){
-             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27 && e.keyCode!= 9){
                 e.preventDefault();
             }
         }
     });
     $('#register-date').live('keydown', function(e){
         if($(this).val().length >= 4){
-             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27 && e.keyCode!= 9){
                 e.preventDefault();
             }
         }
@@ -1000,7 +1013,7 @@ $(document).ready(function(){
     
     $("#nick").live('keydown', function(e){
          if($(this).val().length >= 10){
-             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27){
+             if(e.keyCode!= 13 &&  e.keyCode!= 8 && e.keyCode!= 46 && e.keyCode!= 37 && e.keyCode!= 39 && e.keyCode!= 27 && e.keyCode!= 27 && e.keyCode!= 9 ){
                 e.preventDefault();
             }
         }
