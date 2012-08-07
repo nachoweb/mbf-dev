@@ -165,6 +165,7 @@ class Main extends CI_Controller {
             $data_sessions['nicks'] = $this->Session_model->get_sessions_users($user_id);
             $data_sessions['sessions'] = $this->Session_model->get_sessions_by_user($user_id);
             $data_sessions['base_url_image'] = site_url("/images"); 
+            $data_sessions['base_url'] = site_url(); 
             
             //View
             $this->load->view('my_sessions', $data_sessions);
