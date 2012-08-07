@@ -1936,12 +1936,16 @@ a img{
 #firma{
     float: left;
     width: 218px;
-    margin-top: 36px;
+    margin-top: 17px;
 }
 
 #text-inicio h3, #text-inicio h4{
     font-family: lsansuni;
     font-weight: bold;
+}
+
+#text-inicio h3{
+    margin-top: -2px;
 }
 
 /** TIPSY **/
