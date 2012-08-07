@@ -384,8 +384,8 @@ function innerContent(item){
     popup_content += '		</div>';
     popup_content += '		<div id="popup-description">'+description+'</div>';
     popup_content += '		<div id="popup-social">';
-    popup_content += '              <a href="" onclick="return false;"><div id="popup_facebook"></div></a>';
-    popup_content += '              <a href="" onclick="return false;"><div id="popup_twitter"> </div></a>';
+    popup_content += '              <a href="#" onclick="show_sorry_msn();return false;"><div id="popup_facebook"></div></a>';
+    popup_content += '              <a href="#" onclick="show_sorry_msn();return false;"><div id="popup_twitter"> </div></a>';
     popup_content += '		</div>';
     popup_content += '	</div>';
     popup_content += '  <nav id="popup-nav">';
@@ -1056,5 +1056,10 @@ function toggle_menu_user(){
     }else{
         $("#user-options").css("display", "none");
     }       
+}
+
+function show_sorry_msn(){
+    innerContentImSorry();
+     showPopupContent();
 }
 
