@@ -3,7 +3,7 @@
 </div>
 <?php
     if(count($sessions)==1){ ?>
-      <div class="tipsy tipsy-w" id="tool-tip-pedrito"><div class="tipsy-arrow"></div><div class="tipsy-inner">Esto es un ejemplo de una sesión. Pulsa aquí para crear una.</div></div>
+      <div class="tipsy tipsy-w" id="tool-tip-pedrito"><div class="tipsy-arrow"></div><div class="tipsy-inner">Crea una sesión, y podrás compartir tus productos con tus amigos</div></div>
 <?php
     }
 ?>
