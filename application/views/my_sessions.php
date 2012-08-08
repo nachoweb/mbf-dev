@@ -11,7 +11,7 @@
     
     <?php
     if(count($sessions)==1){        
-        echo "<img id='session_fake' src='".$base_url."/images/sessions_fake.png' >";
+        //echo "<img id='session_fake' src='".$base_url."/images/sessions_fake.png' >";
     }else{
         foreach($sessions as $session){          
             if($session->name != "myself"){
