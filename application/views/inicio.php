@@ -12,11 +12,11 @@ Importante: Para que podamos saber que nos has enviado una sugerencia necesitamo
 </p>
 <ul>
     <li>
-        Rellena el campo de “tu dirección de correo electrónico” con el Nick que has elegido al registrarte en 
+        Rellena el campo de “tu dirección de correo electrónico” con el correo que has elegido al registrarte en 
         MyBuyfriends.com.
     </li>
     <li>
-        Rellena el campo de “tu nombre” con el correo con el que te registraste en MyBuyfriends.com.
+        Rellena el campo de “tu nombre” con el nick que usaste al registraste en MyBuyfriends.com.
     </li>
     <li>
         Revisa y acepta el e-mail de confirmación que recibirás en tu correo.
