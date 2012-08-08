@@ -261,10 +261,8 @@ class Product_model extends CI_Model {
         $st_cat = $row->id;*/
         
         //Store
-        $query = $this->db->query("SELECT * FROM mbf_store where url like '%$store_url%'");
-        echo "SELECT * FROM mbf_store where url like '%$store_url%'<br/>";
-        if ($query->num_rows() > 0){
-            echo $query->num_rows();
+        $query = $this->db->query("SELECT * FROM mbf_store where url like '%$store_url%'");       
+        if ($query->num_rows() > 0){          
             $row = $query->row();
             $store = $row->id;
         
@@ -279,17 +277,14 @@ class Product_model extends CI_Model {
                 );
                 $this->db->insert('mbf_store_user', $data); 
             }            
-        }else{
-            echo "insert store:";
+        }else{           
             //Insert store
             $data = array(
                     "url"   =>  "http://".$store_url,
                     "name"  =>  $store_name
             );
-            $sql = "insert into mbf_store (url,name) values ('http://".$store_url."','$store_name')";
-            echo $sql;
-            $this->db->query($sql);
-            echo $this->db->insert_id();
+            $sql = "insert into mbf_store (url,name) values ('http://".$store_url."','$store_name')";           
+            $this->db->query($sql);            
             $store = $this->db->insert_id();
             //Insert User Store
             $data = array(
