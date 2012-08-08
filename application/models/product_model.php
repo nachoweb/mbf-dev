@@ -286,7 +286,9 @@ class Product_model extends CI_Model {
                     "url"   =>  "http://".$store_url,
                     "name"  =>  $store_name
             );
-            $this->db->insert('mbf_store', $data); 
+            $sql = "insert into mbf_store (url,name) values ('http://".$store_url."','$store_name')";
+            echo $sql;
+            $this->db->query($sql);
             echo $this->db->insert_id();
             $store = $this->db->insert_id();
             //Insert User Store
