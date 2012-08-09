@@ -53,9 +53,9 @@ class Product extends CI_Controller {
         $product = $this->Product_model->get_product_by_id($product_id);
         if($product->user == $user_id){
             if($this->Product_model->remove_product($product_id) > 0){
-                $image= $this->config->item('real_path')."/images/products/".$user_id."/$product->image";
+             /*   $image= $this->config->item('real_path')."/images/products/".$user_id."/$product->image";
                 $thumb = $this->config->item('real_path')."/images/products/".$user_id."/thumbs/$product->image";
-                $this->remove_image($image, $thumb);
+                $this->remove_image($image, $thumb);*/
             }
         }
         
