@@ -1969,3 +1969,11 @@ a img{
     margin-left: 102px;
     z-index:auto;
   }
+  
+  
+  #video{
+      float: left;
+    clear: both;
+    width: 100%;
+    text-align: center;
+  }

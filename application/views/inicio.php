@@ -1,5 +1,8 @@
 <div id="text-inicio">
 <h3>¡¡BIENVENID@ A LA VERSIÓN BETA DE MYBUYFRIENDS!! </h3>
+<div id="video">
+    <iframe src="http://player.vimeo.com/video/47243807" width="500" height="306" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
 <h4>¿QUÉ ES UNA BETA?</h4>
 <p>
     Una beta es una versión en desarrollo de una página web. Se usa para ir detectando posibles fallos e ir
