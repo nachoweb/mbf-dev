@@ -109,20 +109,20 @@ function refresh_content(options){
         content = get_by_ajax(base_url + "main/inicio", "text");        
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);
-        pageTracker._trackPageview('/inicio');
+        _gaq.push(['_trackPageview', '/inicio']);
     }else if(options.section == "bookmarklet"){
         document.getElementById("content").innerHTML = "";
         content = get_by_ajax(base_url + "main/steps", "text");        
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);    
-        pageTracker._trackPageview('/bookmarklet');
+        _gaq.push(['_trackPageview', '/bookmarklet']);
     }else if(options.section == "products"){
         content = get_by_ajax(base_url + "main/products", "text");
         document.getElementById("content").innerHTML = content;
         load_product_options();
         active_isotope_products();       
         window.clearInterval(inter);
-        pageTracker._trackPageview('/mis_cosas');
+        _gaq.push(['_trackPageview', '/mis_cosas']);
     }else if(options.section == "stores"){
         content = get_by_ajax(base_url + "main/stores", "text");
         document.getElementById("content").innerHTML = content;
@@ -131,19 +131,19 @@ function refresh_content(options){
         inicializar_menu_tiendas();   
         active_isotope_stores();
         window.clearInterval(inter);
-        pageTracker._trackPageview('/tiendas');
+        _gaq.push(['_trackPageview', '/tiendas']);
     }else if (options.section == "sessions"){
         content = get_by_ajax(base_url + "main/my_sessions", "text");
         document.getElementById("content").innerHTML = content;      
         window.clearInterval(inter);
-        pageTracker._trackPageview('/sesiones');
+         _gaq.push(['_trackPageview', '/sesiones']);
     }else if (options.section == "session"){
         content = get_by_ajax(base_url + "main/session/" + options.session, "text");
         document.getElementById("content").innerHTML = content;
         $("#sesion-chat").animate({scrollTop: $("#sesion-chat")[0].scrollHeight}, 0);
         inter = window.setInterval(refresh_messages, 15000);
         activate_session_events();
-        pageTracker._trackPageview('/sesion');
+         _gaq.push(['_trackPageview', '/sesion_'+ options.session]);
     }       
 }
 
