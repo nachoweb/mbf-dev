@@ -716,6 +716,14 @@ function active_isotope_stores(){
 
 function click_st_category_filters(){
     $('#stores_filters a').click(function(){ 
+            /* BBQ */
+            var href = $(this).attr('href').replace( /^#/, '' ),
+                // convert href into object
+                // i.e. 'filter=.inner-transition' -> { filter: '.inner-transition' }
+                option = $.deparam( href, true );
+            // set hash, triggers hashchange on window
+            $.bbq.pushState( option );
+            
             var element = $(this);
             $(".button-small").removeClass("active");
              $('#button-mis-tiendas').removeClass("active");
@@ -753,6 +761,14 @@ function click_st_category_filters(){
     });
     
     $('#submenu-moda a').click(function(){ 
+            /* BBQ */
+            var href = $(this).attr('href').replace( /^#/, '' ),
+                // convert href into object
+                // i.e. 'filter=.inner-transition' -> { filter: '.inner-transition' }
+                option = $.deparam( href, true );
+            // set hash, triggers hashchange on window
+            $.bbq.pushState( option );
+            
           var selector = $(this).attr('data-filter');
           $('#container-stores').isotope({filter: selector});
           $('#submenu-moda a').removeClass('active');
@@ -828,6 +844,9 @@ function inicializar_menu_tiendas(){
     });
     
     $('#button-mis-tiendas').click(function(){
+       
+        // set hash, triggers hashchange on window
+        $.bbq.pushState( {"section" : "tiendas", "cat" : "mis_tiendas"} );
         st_category = "mis_tiendas";
         $('.button-small').removeClass('active');        
         $('#button-mis-tiendas').addClass('active');  
@@ -1088,9 +1107,9 @@ $(function(){
     var url = $.bbq.getState();
     
    
-    
+    $("#menu-sidebar a").removeClass("active");
     // Add .bbq-current class to "current" nav link(s), only if url isn't empty.
-    if(!url.section) { url = {"section" : "inicio"} }
+    if(!url.section ) {url = {"section" : "inicio"}}
     console.log(url);
     $( 'a[href="#section=' + url.section + '"]' ).addClass( 'active' );
     
@@ -1110,8 +1129,10 @@ $(function(){
             options = {"section" : "products"};
             refresh_content(options);
         }else if(url.section == "tiendas"){
-            options = {"section" : "stores"};
-            refresh_content(options);
+            if(!url.cat){
+                options = {"section" : "stores"};
+                refresh_content(options);
+            }
         }else if(url.section == "sessions"){
             options = {"section" : "sessions"};
             refresh_content(options);

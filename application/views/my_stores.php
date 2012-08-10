@@ -1,12 +1,12 @@
 <div id="menu-productos" class="menu-my-stores">
     <nav>
         <ul id="stores_filters">
-            <li><a href="#" id="button-tiendas-mbf" class="button-small active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
-            <li><a href="#" class="button-small" data-filter=".1,.2,.3" id="st-menu-moda">moda</a></li>
-            <li><a href="#" class="button-small" data-filter=".7">deporte</a></li>
-            <li><a href="#" class="button-small" data-filter=".6">electrónica</a></li>
-            <li><a href="#" class="button-small" data-filter=".5">ocio</a></li>
-            <li><a href="#" class="button-small" data-filter=".4">hogar</a></li> 
+            <li><a href="#section=tiendas&cat=todas" id="button-tiendas-mbf" class="button-small active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
+            <li><a href="#section=tiendas&cat=moda" class="button-small" data-filter=".1,.2,.3" id="st-menu-moda">moda</a></li>
+            <li><a href="#section=tiendas&cat=deporte" class="button-small" data-filter=".7">deporte</a></li>
+            <li><a href="#section=tiendas&cat=electronica" class="button-small" data-filter=".6">electrónica</a></li>
+            <li><a href="#section=tiendas&cat=ocio" class="button-small" data-filter=".5">ocio</a></li>
+            <li><a href="#section=tiendas&cat=hogar" class="button-small" data-filter=".4">hogar</a></li> 
         </ul>
     </nav>
     <!--
@@ -23,7 +23,7 @@
 <div class="menu-my-stores" id="menu-mis-tiendas">
     <nav>
         <ul>
-            <li><a href="#" id="button-mis-tiendas" class="button-small">MIS TIENDAS</a></li>
+            <li><a href="#section=tiendas&cat=mis_tiendas" id="button-mis-tiendas" class="button-small">MIS TIENDAS</a></li>
         </ul>
     </nav>     
     <!--
@@ -40,10 +40,10 @@
 <div id="submenu-stores">
     <div id="submenu-moda">
         <ul>
-            <li> <a id="submenu-todo" href="#" data-filter=".1,.2,.3">todo</a> </li>
-            <li> <a href="#" data-filter=".2">hombre</a> </li>
-            <li> <a href="#" data-filter=".1">mujer</a> </li>
-            <li> <a href="#" data-filter=".3">complementos</a> </li>
+            <li> <a id="submenu-todo" href="#section=tiendas&cat=moda_todo" data-filter=".1,.2,.3">todo</a> </li>
+            <li> <a href="#section=tiendas&cat=hombre" data-filter=".2">hombre</a> </li>
+            <li> <a href="#section=tiendas&cat=mujer" data-filter=".1">mujer</a> </li>
+            <li> <a href="#section=tiendas&cat=complementos" data-filter=".3">complementos</a> </li>
             
         </ul>
     </div>
