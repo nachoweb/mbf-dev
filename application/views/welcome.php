@@ -2,7 +2,7 @@
         <section id="login-register">
             <article id="login">
                 <h3>¿Eres usuario?</h3>
-                <form id="form-login" name="form-login" method="post" action="<?php echo $base_url?>/main" onSubmit="return checkLogin()">
+                <form id="form-login" name="form-login" method="post" action="<?php echo $base_url?>/pasarela" onSubmit="return checkLogin()">
                         <input type="text" id="login-email" name="login-email" placeholder="E-mail" />
                         <input type="password" id="login-password" name="login-password" placeholder="contraseña" />
                         <?php

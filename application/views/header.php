@@ -1,12 +1,12 @@
 <div id="bg-header">
     <header id="header">
         <div id="container-logo">
-            <h1><a href=""><img id="logo" src="images/logotipo.png" alt="Mybuyfriends" /></a></h1>
+            <h1><a href="#section=inicio"><img id="logo" src="images/logotipo.png" alt="Mybuyfriends" /></a></h1>
             <?php 
                 if($close_session){
             ?>
             <div id="header-tool">
-                <div id="nick"> <a href="#"><span id="span-nick"><?php echo $nick ?></span> ▼</a> </div>
+                <div id="nick"> <span id="span-nick"><?php echo $nick ?></span> ▼ </div>
                 <div id="user-options">
                     <ul id="menu-user">             
                         <li><a href="" id="menu_bookmarklet">Instalar botón MBF</a></li>

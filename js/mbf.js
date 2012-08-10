@@ -43,57 +43,57 @@ $(document).ready(function(){
     
     activar_slider_explicacion();
     $("#menu_inicio").click(function(e){
-        e.preventDefault();
+        //e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");       
         options = {"section" : "inicio"};
-        refresh_content(options);
-        activar_slider_explicacion();
+        /*refresh_content(options);
+        activar_slider_explicacion();*/
         $("#user-options").css("display", "none");
     });
     
     $("#menu_tiendas").click(function(e){
-        e.preventDefault();
+        //e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");        
-        options = {"section" : "stores"};
-        refresh_content(options);
+        /*options = {"section" : "stores"};
+        refresh_content(options);*/
         $("#user-options").css("display", "none");
     });
     
      
     
     $("#menu_mis_cosas").click(function(e){
-        e.preventDefault();    
+        //e.preventDefault();    
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
-        options = {"section" : "products"};
-        refresh_content(options);
+       /* options = {"section" : "products"};
+        refresh_content(options);*/
         mis_cosas_events();
         $("#user-options").css("display", "none");
     });
     
     $("#menu_sesiones").click(function(e){
-        e.preventDefault();
+        //e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
-        options = {"section" : "sessions"};
-        refresh_content(options);
+        /*options = {"section" : "sessions"};
+        refresh_content(options);*/
         $("#user-options").css("display", "none");
     });
     
     $("#menu_bookmarklet").click(function(e){
-        e.preventDefault();
+        //e.preventDefault();
         $("#menu-sidebar .active").removeClass("active");
         $(this).addClass("active");
-        options = {"section" : "bookmarklet"};
-        refresh_content(options);
+        /*options = {"section" : "bookmarklet"};
+        refresh_content(options);*/
         activar_slider_explicacion();
         $("#user-options").css("display", "none");
     });
     
     $("#session-back a").live("click",function(e){
-        e.preventDefault();
+        //e.preventDefault();
         $("#menu_sesiones").click();
     });
     
@@ -1047,7 +1047,7 @@ function darse_baja(){
 /* User options */
 
 $(document).ready(function(){
-    $("#nick a").click(function(e){        
+    $("#nick").click(function(e){        
       toggle_menu_user()
     });
     
@@ -1069,3 +1069,82 @@ function show_sorry_msn(){
      showPopupContent();
 }
 
+/********/
+/* BBQ  */
+/********/
+
+$(function(){
+  
+  // Keep a mapping of url-to-container for caching purposes.
+  var cache = {};
+  
+  // Bind an event to window.onhashchange that, when the history state changes,
+  // gets the url from the hash and displays either our cached content or fetches
+  // new content to be displayed.
+  $(window).bind( 'hashchange', function(e) {
+    
+    // Get the hash (fragment) as a string, with any leading # removed. Note that
+    // in jQuery 1.4, you should use e.fragment instead of $.param.fragment().
+    var url = $.bbq.getState();
+    
+   
+    
+    // Add .bbq-current class to "current" nav link(s), only if url isn't empty.
+    if(!url.section) { url = {"section" : "inicio"} }
+    console.log(url);
+    $( 'a[href="#section=' + url.section + '"]' ).addClass( 'active' );
+    
+    if ( cache[ url ] ) {
+      // Since the element is already in the cache, it doesn't need to be
+      // created, so instead of creating it again, let's just show it!
+      cache[ url ].show();      
+    } else {       
+      // Show "loading" content while AJAX content loads.
+      //$( '.bbq-loading' ).show();
+      
+      // Show "loading" content while AJAX content loads.
+        if(url.section == "inicio"){
+            options = {"section" : "inicio"};
+            refresh_content(options);
+        }else if (url.section == "mis_cosas"){
+            options = {"section" : "products"};
+            refresh_content(options);
+        }else if(url.section == "tiendas"){
+            options = {"section" : "stores"};
+            refresh_content(options);
+        }else if(url.section == "sessions"){
+            options = {"section" : "sessions"};
+            refresh_content(options);
+        }else if(url.section == "session"){
+            var session = $("#session" + url.id);            
+            var messages = session.attr("data-messages");
+            var products = session.attr("data-products");
+            prepare_session( url.id, messages, products)
+        }else if(url.section == "bm"){
+            options = {"section" : "bookmarklet"};
+            refresh_content(options);
+        }
+        
+      // Create container for this url's content and store a reference to it in
+      // the cache.
+      /*
+      cache[ url ] = $( '<div class="bbq-item"/>' )
+        
+        // Append the content container to the parent container.
+        .appendTo( '.bbq-content' )
+        
+        // Load external content via AJAX. Note that in order to keep this
+        // example streamlined, only the content in .infobox is shown. You'll
+        // want to change this based on your needs.
+        .load( url, function(){
+          // Content loaded, hide "loading" content.
+          $( '.bbq-loading' ).hide();
+        });*/
+    }
+  })
+  
+  // Since the event is only triggered when the hash changes, we need to trigger
+  // the event now, to handle the hash the page may have loaded with.
+  $(window).trigger( 'hashchange' );
+  
+});

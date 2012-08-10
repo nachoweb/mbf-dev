@@ -31,7 +31,7 @@
                 }
         ?>
 
-        <article class="sesion" onClick="prepare_session(<?php echo $session->id.",".$messages.",".$products ?>)">
+    <a href="#section=session&id=<?php echo $session->id?>"><article id="session_<?php echo $session->id ?>" class="sesion"  data-messages="<?php echo $messages ?>" data-products="<?php echo $products ?>">
             <div class="sessions-left">         
                 <div class="sessions-nick">
                 <?php
@@ -131,7 +131,7 @@
                     <?php echo $session->date ?>
                 </div>
             </div>-->
-        </article>  
+        </article>  </a>
         <?php
             }
         }

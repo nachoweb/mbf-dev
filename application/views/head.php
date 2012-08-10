@@ -32,6 +32,7 @@
         <script src="./js/app/util/register.js"></script>
         <script src="./js/config.js"></script>
         <script src="./js/jquery.tipsy.js"></script>
+        <script src="./js/jquery.ba-bbq.min.js"></script>
         
       
     </head>
