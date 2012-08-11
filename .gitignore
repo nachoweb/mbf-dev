@@ -5,6 +5,7 @@ build/
 js/config.js
 application/config/config.php
 application/config/database.php
+application/views/footer.php
 images
 
 # O usar comodines
