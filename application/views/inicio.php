@@ -36,6 +36,23 @@ Importante: Para que podamos saber que nos has enviado una sugerencia necesitamo
     Muchas gracias por aceptar ser embajador de MyBuyfriends.
 </p>
 
+<h4>¡¡Ganadores de la ronda de cervezas a nuestra salud!1 </h4>
+<p>
+    Esta semana ha sido muy sencillo elegir los ganadores porque no hemos recibido muchas sugerencias. Pero hay que agradecer a dos
+    personas que nos han ayudado mucho con sus ideas y para ellos va el premio de esta semana:
+</p>
+<ul>
+    <li>
+        David Pareja.
+    </li>
+    <li>
+        Javier Maroto.
+    </li>
+</ul>
+<p>
+    ¡¡ Que las disfrutéis!! Nos pondremos en contacto con vosotros en breve :)
+</p>
+
 </div>
 <div id="firma">
 El equipo de Mybuyfriends
