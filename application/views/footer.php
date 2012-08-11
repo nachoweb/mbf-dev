@@ -33,6 +33,15 @@
         a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
     </script>
     <!-- End CrayEgg -->
+    
+    <!-- Pagealizer --> 
+
+    <script type="text/javascript">
+    var pagealizer_site_id="15621344686491";
+    </script>
+
+    <script type="text/javascript" src="http://www.pagealizer.com/timer.js"></script><noscript><a href="http://www.pagealizer.com/">bounce rate analytics</a></noscript>
+    <!-- END PAGEALIZER ->
 
 </body>
     
