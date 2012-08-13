@@ -9,7 +9,7 @@
                 <div id="nick"> <span id="span-nick"><?php echo $nick ?></span> ▼ </div>
                 <div id="user-options">
                     <ul id="menu-user">             
-                        <li><a href="" id="menu_bookmarklet">Instalar botón MBF</a></li>
+                        <li><a href="#section=bm" id="menu_bookmarklet">Instalar botón MBF</a></li>
                         <li><a href="" onClick="close_session(); return false;">Cerrar sesión</a></li>                        
                    </ul>
                 </div>
