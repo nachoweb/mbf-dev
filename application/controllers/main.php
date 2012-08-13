@@ -176,6 +176,7 @@ class Main extends CI_Controller {
             $user_id = $this->session->userdata('user_id');
             $user_data->name = $this->session->userdata('user_name');
             $user_data->nick = $this->session->userdata("user_nick");
+            $user_data->id = $user_id;
             
             //Loader
             $this->load->model('Session_model');

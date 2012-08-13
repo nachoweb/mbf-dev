@@ -1,10 +1,25 @@
-
+<?php
+    
+    foreach($users as $aux){
+        if($aux->id != $user->id){
+            $otro = $aux;
+        }
+    }
+?>
     <!--<div id="session-back">
         <a href="#"> volver </a>
     </div>--> 
     <div id="session-title-nick" class="session-border">
         <div id="session-nick">
-            <span class="session-title"> SESIÓN CON </span><span class="session-color""> <?php echo $user->nick; ?> </span>
+            <?php
+            if(isset($otro->nick)){
+            ?>
+            <span class="session-title"> SESIÓN CON </span><span class="session-color""> <?php echo $otro->nick; ?> </span>
+            <?php
+            }else{
+            ?>
+             <span class="session-title"> Invitación aún no aceptada. </span>   
+            <?php } ?>
         </div>
         <div id="session-title">
             <?php echo $session->name; ?>

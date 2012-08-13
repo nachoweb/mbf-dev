@@ -216,12 +216,12 @@ class Session_model extends CI_Model {
         $query = $this->db->query( "SELECT * 
                                     FROM mbf_session_user join mbf_user
                                     on mbf_session_user.user = mbf_user.id
-                                    where session = $session_id");
+                                    where session = $session_id");        
         $result = $query->result();
         if ($query->num_rows() > 0){
-             return array();
+             return $result;
         }else{
-            return $result;
+            return array();
         }
     }
     
