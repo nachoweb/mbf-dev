@@ -4,6 +4,11 @@ var options = {"section" : "home"};
 var category_active = {"id" : 0, "name" : ""};
 var st_category = "members";
 
+
+
+
+  
+
 /********************/
 /*  Funciones ajax  */
 /********************/
@@ -250,7 +255,7 @@ function activate_session_events(){
     });  
     
     $("#session-pliegue").click(function(e){
-        console.log("pliegue");
+        
         if($("#session-slide").css("display") != "none"){
             $("#session-slide").slideUp("normal", function(){});
             $("#session-pliegue").removeClass("pliegue-up");
@@ -1003,10 +1008,21 @@ function remove_product_session(session_id, product_id){
 }
 
 
-function close_session(){
+function close_session(){    
     var url = base_url + "main/close_session";
-    var respuesta = get_by_ajax(url, "text");
-    document.location.href=base_url;
+    console.log(url);
+    jQuery.ajax({
+        url: url,
+        async: false,
+        dataType: "text",
+        success: function(respuesta){										
+            document.location.href=base_url;
+        },
+        error: function(error){
+            r = error;
+            console.log(r);
+        }
+    });	    
 }
 
 /******************/
@@ -1105,12 +1121,12 @@ $(function(){
     // Get the hash (fragment) as a string, with any leading # removed. Note that
     // in jQuery 1.4, you should use e.fragment instead of $.param.fragment().
     var url = $.bbq.getState();
-    
+    console.log(url);
    
     $("#menu-sidebar a").removeClass("active");
     // Add .bbq-current class to "current" nav link(s), only if url isn't empty.
     if(!url.section ) {url = {"section" : "inicio"}}
-    console.log(url);
+
     $( 'a[href="#section=' + url.section + '"]' ).addClass( 'active' );
     
     if ( cache[ url ] ) {
@@ -1142,6 +1158,7 @@ $(function(){
             var products = session.attr("data-products");
             prepare_session( url.id, messages, products)
         }else if(url.section == "bm"){
+            console.log("BM");
             options = {"section" : "bookmarklet"};
             refresh_content(options);
         }
@@ -1169,3 +1186,4 @@ $(function(){
   $(window).trigger( 'hashchange' );
   
 });
+

@@ -22,7 +22,9 @@ class Main extends CI_Controller {
                 
                 $data_header['close_session'] = false;
                 
-                $this->load->view('head');   
+                $data_head['mbfjs'] = false;
+                
+                $this->load->view('head', $data_head);   
                 $this->load->view('header', $data_header); 
                 $this->load->view('welcome', $data);
                 $this->load->view('footer_welcome'); 

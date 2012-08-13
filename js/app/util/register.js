@@ -2,13 +2,12 @@ function checkUserMail(){
     document.getElementById('validated-register').value = true;
     var emailToCheck = jQuery('#register-email').val();
     if (emailToCheck != ''){
-        console.log(base_url + "register/check_mail/" + encodeURIComponent(emailToCheck));
+        
         jQuery.ajax({
             url: base_url + "register/check_mail/" + encodeURIComponent(emailToCheck),
             async: false,
             success: function(respuesta){
                 respuesta = jQuery.trim(respuesta);
-                console.log(respuesta);
                 if(respuesta == 'fail'){
                         jQuery("#register-info-email").text('Email ya en uso');
                         document.getElementById('validated-register').value=false;						
@@ -25,27 +24,24 @@ function checkUserMail(){
 }
 
 
-function checkLogin(){
+function checkLogin(){   
     var success = true; 
     var emailToCheck = jQuery('#login-email').val();
     var passToCheck = jQuery('#login-password').val();
-    var invitation = jQuery('#invitation').val();
-    console.log("INVITATION" + invitation);
+    var invitation = jQuery('#invitation').val();   
     if (emailToCheck != ''){
         if(passToCheck != ''){
-            console.log(base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck) + "/" + invitation);
+           
             jQuery.ajax({
                 url: base_url + "register/check_login/" + encodeURIComponent(emailToCheck) + "/" + encodeURIComponent(passToCheck) + "/" + invitation,
                 async: false,
                 success: function(respuesta){
-                    respuesta = jQuery.trim(respuesta);
-                    if(respuesta == 'fail'){
-                        console.log("fail1");
+                    respuesta = jQuery.trim(respuesta);                    
+                    if(respuesta == 'fail'){                        
                         jQuery("#info-login-email").text('Login incorrecto');
                         success = false;					
                     }
-                    else{
-                        console.log("success");
+                    else{                      
                         success = true;
                     }
                 }
@@ -56,7 +52,8 @@ function checkLogin(){
     }else{
         jQuery('#info-login-email').text('No has introducido ningún correo...');
         success = false;
-    }
+    }   
+    console.log("suecess:" + success);
     return success;
 }
 
@@ -84,8 +81,7 @@ function form_register_validate(){
         jQuery("#register-info-password").text('Debes introducir una contraseña');  
         document.getElementById('validated-register').value=false;
     }else if (document.getElementById('register-password1').value != document.getElementById('register-password2').value){
-        jQuery("#register-info-password").text('Las contraseñas no coinciden');
-        console.log("contraseñas no coinciden");
+        jQuery("#register-info-password").text('Las contraseñas no coinciden');       
         document.getElementById('register-password1').focus();			
         document.getElementById('validated-register').value=false;
     }
@@ -103,12 +99,12 @@ function form_register_validate(){
     }
 
     if (document.getElementById('validated-register').value == 'true'){
-        console.log("true");
+        
         return true;
     }
 
     else{
-        console.log("false");
+       
         return false;
     }
 }
