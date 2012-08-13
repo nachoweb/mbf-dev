@@ -1153,9 +1153,13 @@ $(function(){
             options = {"section" : "sessions"};
             refresh_content(options);
         }else if(url.section == "session"){
-            var session = $("#session" + url.id);            
+            var session = $("#session_" + url.id);            
             var messages = session.attr("data-messages");
             var products = session.attr("data-products");
+            console.log("url_id:" + url.id);
+            console.log(session);
+            console.log(messages);
+            console.log(products);
             prepare_session( url.id, messages, products)
         }else if(url.section == "bm"){
             console.log("BM");
