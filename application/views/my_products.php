@@ -17,7 +17,7 @@
 <div id="add-category-div"><a href="#" id="add-category"> <div>+</div><div> <img src="<?php echo $base_url ?>images/carpeta.png">  </a></div></div>
 <?php } ?>
 <div id="container-productos">
-    <section id="productos-1">
+   
         <?php        
         if(count($products) > 0){
             foreach ($products as $product){
@@ -54,7 +54,7 @@
                                     <nav>
                                         <ul>
                                             <?php   foreach($sessions as $session){ ?>
-                                                <li><a  onClick="add_product_sesion(<?php echo $id ?>, <?php echo $session->id ?>)" href="#<?php echo $session->name; ?>" data-sesionid="<?php echo $session->id; ?>" onClick=""><?php echo $session->name ?></a></li>
+                                                <li><span onClick="add_product_sesion(<?php echo $id ?>, <?php echo $session->id ?>)" href="#<?php echo $session->name; ?>" data-sesionid="<?php echo $session->id; ?>" onClick=""><?php echo $session->name ?></span></li>
                                             <?php } ?>
                                         </ul>
                                     </nav>
@@ -65,7 +65,7 @@
                                     <nav>
                                         <ul class="">
                                             <?php   foreach($categories as $category){ ?>
-                                                <li><a  href="#<?php echo $category->name; ?>" data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick="add_product_category(<?php echo "$id, $category->id"; ?>)"><?php echo $category->name ?></a></li>
+                                                <li><span data-categoryid="<?php echo $category->id; ?>" data-filter=".<?php echo $category->id; ?>" onClick="add_product_category(<?php echo "$id, $category->id"; ?>)"><?php echo $category->name ?></span></li>
                                             <?php } ?>
                                         </ul>
                                     </nav>
@@ -90,5 +90,5 @@
          </article>
         <?php } ?>
            
-    </section>
+    
 </div>

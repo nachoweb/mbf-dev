@@ -1005,9 +1005,10 @@ div#user-options{
 	text-align: center;
 }
 
-.menu-tooltip-producto a{
+.menu-tooltip-producto span{
 	text-decoration: none;
 	color: #777;
+        cursor: pointer;
 }
 .menu-tooltip-producto a:hover{
 	text-decoration: none;
