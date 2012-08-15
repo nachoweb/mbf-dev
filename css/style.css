@@ -857,6 +857,9 @@ div#user-options{
     color: #818385;
  }
  
+ #add-category{
+     cursor: pointer;
+ }
  #add_session_div{
      float: left;
     margin-top: 10px;

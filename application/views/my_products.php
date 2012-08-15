@@ -14,7 +14,7 @@
     </nav>
 </div>
 
-<div id="add-category-div"><a href="#" id="add-category"> <div>+</div><div> <img src="<?php echo $base_url ?>images/carpeta.png">  </a></div></div>
+<div id="add-category-div"><span id="add-category"> <div>+</div><div> <img src="<?php echo $base_url ?>images/carpeta.png">  </span></div></div>
 <?php } ?>
 <div id="container-productos">
    
@@ -54,7 +54,9 @@
                                     <nav>
                                         <ul>
                                             <?php   foreach($sessions as $session){ ?>
+                                            <?php if($session->name!= "myself"){ ?>
                                                 <li><span onClick="add_product_sesion(<?php echo $id ?>, <?php echo $session->id ?>)" href="#<?php echo $session->name; ?>" data-sesionid="<?php echo $session->id; ?>" onClick=""><?php echo $session->name ?></span></li>
+                                            <?php } ?>
                                             <?php } ?>
                                         </ul>
                                     </nav>
