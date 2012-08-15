@@ -1157,7 +1157,8 @@ $(function(){
             var messages = session.attr("data-messages");
             var products = session.attr("data-products"); 
             _kmq.push(['record', 'Conversion']);
-            prepare_session( url.id, messages, products)
+            mixpanel.track("Open session");
+            prepare_session( url.id, messages, products);
         }else if(url.section == "bm"){
             console.log("BM");
             options = {"section" : "bookmarklet"};
