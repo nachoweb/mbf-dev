@@ -18,9 +18,9 @@
 </p>
 <h4> VIDEOTUTORIAL </h4>
 <div id="video">
-    <!--
+   
     <iframe src="http://player.vimeo.com/video/47243807" width="500" height="306" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    -->
+   
     </div>
 <h4>¿QUÉ ES UNA BETA?</h4>
 <p>

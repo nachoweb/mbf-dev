@@ -44,10 +44,8 @@
 
         <script>
 
-        $(function(){
-                console.log("OLA");
-                var userAgent = navigator.userAgent.toLowerCase();
-                console.log(userAgent);
+        $(function(){               
+                var userAgent = navigator.userAgent.toLowerCase();                
                 jQuery.browser = {
                         version: (userAgent.match( /.+(?:rv|it|ra|ie|me)[\/: ]([\d.]+)/ ) || [])[1],
                         chrome: /chrome/.test( userAgent ),
@@ -79,12 +77,7 @@
                 }
         });
 
-        </script>
-
-        
-        
-        
-      
+        </script>      
     </head>
     <body>
        

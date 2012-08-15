@@ -1155,11 +1155,8 @@ $(function(){
         }else if(url.section == "session"){
             var session = $("#session_" + url.id);            
             var messages = session.attr("data-messages");
-            var products = session.attr("data-products");
-            console.log("url_id:" + url.id);
-            console.log(session);
-            console.log(messages);
-            console.log(products);
+            var products = session.attr("data-products"); 
+            _kmq.push(['record', 'Conversion']);
             prepare_session( url.id, messages, products)
         }else if(url.section == "bm"){
             console.log("BM");
