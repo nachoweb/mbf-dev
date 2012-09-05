@@ -34,7 +34,7 @@ Importante: Para que podamos saber que nos has enviado una sugerencia necesitamo
 <p>
     Recuerda, nos encanta recibir ideas así que no dejes de enviarlas por locas que te parezcan, son nuestras preferidas ☺
 </p>    
-    En adelante usaremos este tablón para avisarte de las novedades y de los ganadores del sorteo así que: ¡sigue atento!
+    En adelante usaremos este tablón para avisarte de las novedades.
 </p>
     Muchas gracias por aceptar ser embajador de MyBuyfriends.
 </p>
