@@ -33,7 +33,7 @@
                             } else {
                                 console.log('User cancelled login or did not fully authorize.');
                             }
-                        },{scope: 'email'});
+                        });
                     };
                     // Load the SDK Asynchronously
                     (function(d){
@@ -45,8 +45,7 @@
                     }(document));
                 </script>
                  <div class="fb-login-button">
-                    Login with Facebook
-                </div>
+              
             </article>
             <article id="register">
                 <h3>Regístrate</h3>
