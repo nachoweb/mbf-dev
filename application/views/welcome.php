@@ -14,6 +14,7 @@
                 </form>
                 <div id="fb-root"></div>
                 <script>
+                    console.log("empieza script");
                     window.fbAsyncInit = function() {
                         FB.init({
                             appId      : '342711485817226', // App ID
@@ -22,6 +23,7 @@
                             cookie     : true, // enable cookies to allow the server to access the session
                             xfbml      : true  // parse XFBML
                         });
+                        console.log("deontro del init");
                         FB.login(function(response) {
                             if (response.authResponse) {
                                 console.log('Welcome!  Fetching your information.... ');
