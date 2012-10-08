@@ -31,7 +31,7 @@
                             } else {
                                 console.log('User cancelled login or did not fully authorize.');
                             }
-                        });
+                        },{scope: 'id,email,name,first_name,middle_name,last_name,gender,locale,username,picture'});
                     };
                     // Load the SDK Asynchronously
                     (function(d){
