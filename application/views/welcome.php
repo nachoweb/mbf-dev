@@ -12,6 +12,39 @@
                         <input type="submit" class="button" id="login-submit" name="login-submit" value="ENTRAR" />
                         <div id="info-login-email" class="form-info-login"></div>
                 </form>
+                <div id="fb-root"></div>
+                <script>
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                            appId      : '342711485817226', // App ID
+                            channelUrl : '//mybuyfriends.com/dev/channel.html', // Channel File
+                            status     : true, // check login status
+                            cookie     : true, // enable cookies to allow the server to access the session
+                            xfbml      : true  // parse XFBML
+                        });
+                        FB.login(function(response) {
+                            if (response.authResponse) {
+                                console.log('Welcome!  Fetching your information.... ');
+                                FB.api('/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+                                });
+                            } else {
+                                console.log('User cancelled login or did not fully authorize.');
+                            }
+                        });
+                    };
+                    // Load the SDK Asynchronously
+                    (function(d){
+                        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                        if (d.getElementById(id)) {return;}
+                        js = d.createElement('script'); js.id = id; js.async = true;
+                        js.src = "//connect.facebook.net/en_US/all.js";
+                        ref.parentNode.insertBefore(js, ref);
+                    }(document));
+                </script>
+                 <div class="fb-login-button">
+                    Login with Facebook
+                </div>
             </article>
             <article id="register">
                 <h3>Regístrate</h3>
