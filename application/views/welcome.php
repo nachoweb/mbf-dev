@@ -25,6 +25,7 @@
                         });
                         console.log("deontro del init");
                         FB.login(function(response) {
+                            console.log("dentro del login");
                             if (response.authResponse) {
                                 console.log('Welcome!  Fetching your information.... ');
                                 FB.api('/me', function(response) {
