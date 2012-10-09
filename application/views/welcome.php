@@ -23,10 +23,20 @@
                             cookie     : true, // enable cookies to allow the server to access the session
                             xfbml      : true  // parse XFBML
                         });
+                        console.log("deontro del init");
                         FB.login(function(response) {
-                            console.log(response);
+                            console.log("dentro del login");
+                            if (response.authResponse) {
+                                console.log('Welcome!  Fetching your information.... ');
+                                FB.api('/me', function(response) {
+                                console.log(response);
+                                });
+                            } else {
+                                console.log('User cancelled login or did not fully authorize.');
+                                console.log("las cosas no son lo que parecen nunca");
+                            }
                         });
-                                            };
+                    };
                     // Load the SDK Asynchronously
                     (function(d){
                         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
