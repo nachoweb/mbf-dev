@@ -38,8 +38,8 @@
                         });
                         FB.Event.subscribe('auth.login ', function(response) {
                             console.log(response);
-                            FB.api('/me', function(user) {
-                                console.log(user);
+                            FB.api('/me', function(response) {
+                                console.log(response);
                             });
                         });
                     };
