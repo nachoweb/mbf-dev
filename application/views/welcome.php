@@ -37,7 +37,9 @@
                             }
                         });
                         FB.Event.subscribe('auth.authResponseChange', function(response) {
-                            console.log(response);
+                            FB.api('/me', function(user) {
+                                console.log(user);
+                            });
                         });
                     };
                     // Load the SDK Asynchronously
