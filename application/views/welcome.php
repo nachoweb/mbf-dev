@@ -28,8 +28,8 @@
                             console.log("dentro del login");
                             if (response.authResponse) {
                                 console.log('Welcome!  Fetching your information.... ');
-                                FB.api('/me', function(response) {
-                                console.log(response);
+                                FB.api('/me', function(response2) {
+                                console.log(response2);
                                 });
                             } else {
                                 console.log('User cancelled login or did not fully authorize.');
