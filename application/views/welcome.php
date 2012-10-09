@@ -24,8 +24,8 @@
                             xfbml      : true  // parse XFBML
                         });
                         FB.login(function(response) {
-                        // handle the response
-                        }, {scope: 'email,user_likes'});
+                            console.log(response);
+                        });
                                             };
                     // Load the SDK Asynchronously
                     (function(d){
