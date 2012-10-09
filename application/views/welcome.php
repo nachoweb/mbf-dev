@@ -32,8 +32,9 @@
                                 });
                             } else {
                                 console.log('User cancelled login or did not fully authorize.');
+                                console.log("las cosas no son lo que parecen nunca");
                             }
-                        });
+                        }, {scope: 'email'});
                     };
                     // Load the SDK Asynchronously
                     (function(d){
