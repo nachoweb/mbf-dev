@@ -36,6 +36,9 @@
                                 console.log("las cosas no son lo que parecen nunca");
                             }
                         });
+                        FB.Event.subscribe('auth.authResponseChange', function(response) {
+                            console.log(response);
+                        });
                     };
                     // Load the SDK Asynchronously
                     (function(d){
