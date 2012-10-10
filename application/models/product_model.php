@@ -20,12 +20,19 @@ class Product_model extends CI_Model {
      * @param int $session_id Session id
      * @return array Array of products 
      */
-    function get_products_by_session($session_id, $categories = true) {
+    function get_products_by_session($session_id, $categories = true, $product_id = "") {
         $sql = "select mbf_product.id, mbf_product.user, mbf_product_category.category, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
             from mbf_product join mbf_store join mbf_product_category
             on mbf_product.store = mbf_store.id and mbf_product.id = mbf_product_category.product
             where session=$session_id
             order by mbf_product.id desc";
+        if($product_id != ""){
+            $sql = "select mbf_product.id, mbf_product.user, mbf_product_category.category, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
+            from mbf_product join mbf_store join mbf_product_category
+            on mbf_product.store = mbf_store.id and mbf_product.id = mbf_product_category.product
+            where session=$session_id and mbf_product.id > $product_id
+            order by mbf_product.id desc";
+        }
         if($categories == false){
             $sql = "select mbf_product.id, mbf_product.user, mbf_product.title,mbf_product.image, mbf_product.price, mbf_product.description, mbf_product.url, mbf_store.url 'store_url', mbf_store.name 'store_name'
             from mbf_product join mbf_store
@@ -400,6 +407,40 @@ class Product_model extends CI_Model {
              return true;
         }else{
             return false;
+        }
+    }
+    
+    function get_new_products($user_id, $product_id, $session = false){
+        //Get session user
+        $products = array();
+        $query = $this->db->query("SELECT * FROM mbf_session where user='$user_id' and name='myself'");
+        if ($query->num_rows() > 0){
+            $row = $query->row();
+            $session = $row->id;
+            $products_cats = $this->get_products_by_session($session, true, $product_id);
+            
+            //k: Index of new array; $i: Index of the products_cats; $j:Index for check same product, more than cats
+            $k=0;
+            for($i=0; $i< count($products_cats); $i++){
+                foreach($products_cats[$i] as $key => $value){
+                    if($key != "category"){
+                        $products[$k]->$key = $value;
+                    }else{
+                        $products[$k]->categories[] = $value;
+                    }
+                }
+                $j = $i + 1;
+                while($j < count($products_cats) && $products_cats[$i]->id == $products_cats[$j]->id){
+                    $products[$k]->categories[] = $products_cats[$j]->category;
+                    $i++;
+                    $j++;
+                }
+                $k++;
+            }          
+            return $products;
+            
+        }else{
+            return array();
         }
     }
     

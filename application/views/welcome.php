@@ -12,6 +12,7 @@
                         <input type="submit" class="button" id="login-submit" name="login-submit" value="ENTRAR" />
                         <div id="info-login-email" class="form-info-login"></div>
                 </form>
+                <!--
                 <div id="fb-root"></div>
                 <script>
                     console.log("empieza script");
@@ -52,6 +53,7 @@
                         ref.parentNode.insertBefore(js, ref);
                     }(document));
                 </script>
+                -->
                  <div class="fb-login-button">
               
             </article>
