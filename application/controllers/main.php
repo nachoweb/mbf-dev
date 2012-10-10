@@ -272,7 +272,7 @@ class Main extends CI_Controller {
             $this->session->unset_userdata('user_name');
             $this->session->unset_userdata('user_nick');
             $this->session->unset_userdata('myself');
-            if(isset($this->session->userdata('facebook'))){
+            if($this->session->userdata('facebook')){
                  //Comprobamos usuario facebook
                 $facebook_params = array(
                 'appId'  => '342711485817226',
