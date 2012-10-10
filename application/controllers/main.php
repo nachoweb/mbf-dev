@@ -27,7 +27,7 @@ class Main extends CI_Controller {
                         $user_profile = $this->facebook->api('/me'); 
                         print_r($user_profile);
                     } catch (FacebookApiException $e) {
-                       /* echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';*/
+                        echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
                         $user = null;
                     }
                 }
