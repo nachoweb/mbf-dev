@@ -39,7 +39,7 @@ class Main extends CI_Controller {
                 $this->load->helper('url');
                 
                 $data['base_url'] = base_url();
-                 
+                $data['invitation'] = $this->input->get('invitation');
                 
                 $data_header['close_session'] = false;
                 
