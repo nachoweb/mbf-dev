@@ -24,7 +24,7 @@ class Main extends CI_Controller {
                 if ($user) {
                     try {
                         // Proceed knowing you have a logged in user who's authenticated.
-                        $user_profile = $facebook->api('/me?fields=id,email,name,first_name,middle_name,last_name,gender,locale,username,picture'); 
+                        $user_profile = $this->facebook->api('/me?fields=id,email,name,first_name,middle_name,last_name,gender,locale,username,picture'); 
                         print_r($user_profile);
                     } catch (FacebookApiException $e) {
                         echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
