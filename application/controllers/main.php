@@ -59,7 +59,9 @@ class Main extends CI_Controller {
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
             $myself = $this->session->userdata('myself');
-            $nick =  $this->session->userdata('user_nick');          
+            $nick =  $this->session->userdata('user_nick'); 
+            
+            echo $user_id;
             
             
             //Notifications
@@ -276,6 +278,7 @@ class Main extends CI_Controller {
             $email = $user_profile['email'];
             $this->load->model('User_model');
             $user = $this->User_model->get_user_by_email($email);
+            print_r($user);
 
             //Session
             if( !is_null($user)){
