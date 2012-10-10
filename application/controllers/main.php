@@ -61,9 +61,6 @@ class Main extends CI_Controller {
             $myself = $this->session->userdata('myself');
             $nick =  $this->session->userdata('user_nick'); 
             
-            echo $user_id;
-            
-            
             //Notifications
             $this->load->model('Notification_model');
             $data_sidebar['notifications'] = $this->Notification_model->get_user_notifications($user_id, $myself);
