@@ -21,6 +21,7 @@ class Main extends CI_Controller {
                 $this->load->library('facebook', $facebook_params);
                 // See if there is a user from a cookie
                 $user = $this->facebook->getUser();
+                print_r($user);
                 if ($user) {
                     try {
                         // Proceed knowing you have a logged in user who's authenticated.
