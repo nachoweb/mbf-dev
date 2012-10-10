@@ -30,6 +30,17 @@ class User_model extends CI_Model {
         }
     }
     
+    
+    function get_user_by_email($email){
+        $query = $this->db->query("SELECT * FROM mbf_user where email='$email'");
+        $result = $query->result();
+        if ($query->num_rows() > 0){
+            return $result[0];
+        }else{
+            return null;
+        }
+    }
+    
     /**
      * Return an array of objects user with are in the session
      * @param int $session

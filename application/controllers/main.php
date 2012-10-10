@@ -13,6 +13,7 @@ class Main extends CI_Controller {
 	 */
 	public function index(){
             if(!$this->session->userdata('user_id')){
+                //Comprobamos usuario facebook
                 $facebook_params = array(
                 'appId'  => '342711485817226',
                 'secret' => '9832fa599cbceb35f45dd6f221fc6bde',
@@ -20,12 +21,13 @@ class Main extends CI_Controller {
                 $this->load->library('facebook', $facebook_params);
                 // See if there is a user from a cookie
                 $user = $this->facebook->getUser();
-                print_r($user);
                 if ($user) {
                     try {
                         // Proceed knowing you have a logged in user who's authenticated.
-                        $user_profile = $this->facebook->api('/me'); 
-                        print_r($user_profile);
+                        $user_profile = $this->facebook->api('/me?fields=id,email,name,first_name,middle_name,last_name,gender,locale,username,picture'); 
+                        if($this->login_facebook($user_profile)){
+                            $this->home();
+                        }                        
                     } catch (FacebookApiException $e) {
                         echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
                         $user = null;
@@ -266,6 +268,35 @@ class Main extends CI_Controller {
             $this->session->unset_userdata('user_name');
             $this->session->unset_userdata('user_nick');
             $this->session->unset_userdata('myself');
+        }
+        
+        private function login_facebook($user_profile){
+            $this->load->library('session');
+            $email = $user_profile['email'];
+            $this->load->model('User_model');
+            $user = $this->User_model->get_user_by_email($email);
+
+            //Session
+            if( !is_null($user)){
+                $myself = $this->User_model->get_user_session($user->id);            
+                $userdata = array(
+                    'user_id'   => $user->id,
+                    'user_name' => $user->name,
+                    'user_nick' => $user->nick,
+                    'user_hex'  => $user->hex,
+                    'myself'    => $myself
+                );
+                $this->session->set_userdata($userdata);
+
+                //Invitation
+                if($invitation != ""){
+                    $this->load->model('Session_model');
+                    $this->Session_model->add_session_user_by_hex($user->id,$invitation);
+                }   
+                return true;
+            }else{
+                return false;
+            }
         }
 }
 
