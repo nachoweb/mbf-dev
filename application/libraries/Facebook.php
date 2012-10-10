@@ -231,9 +231,6 @@ class Facebook extends BaseFacebook
     return implode('_', $parts);
   }
 }
-?>
-
-<?php
 /**
  * Provides access to the Facebook Platform.  This class provides
  * a majority of the functionality needed, but the class is abstract
