@@ -267,10 +267,20 @@ class Main extends CI_Controller {
         }
         
         public function close_session(){
+            $this->load->library('session');
             $this->session->unset_userdata('user_id');
             $this->session->unset_userdata('user_name');
             $this->session->unset_userdata('user_nick');
             $this->session->unset_userdata('myself');
+            if(isset($this->session->userdata('facebook'))){
+                 //Comprobamos usuario facebook
+                $facebook_params = array(
+                'appId'  => '342711485817226',
+                'secret' => '9832fa599cbceb35f45dd6f221fc6bde',
+                );
+                $this->load->library('facebook', $facebook_params);
+                $this->facebook->destroySession();
+            }
         }
         
         private function login_facebook($user_profile){
@@ -287,7 +297,8 @@ class Main extends CI_Controller {
                     'user_name' => $user->name,
                     'user_nick' => $user->nick,
                     'user_hex'  => $user->hex,
-                    'myself'    => $myself
+                    'myself'    => $myself,
+                    'facebook'  => true
                 );
                 $this->session->set_userdata($userdata);
                 return true;
