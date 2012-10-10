@@ -12,49 +12,49 @@
                         <input type="submit" class="button" id="login-submit" name="login-submit" value="ENTRAR" />
                         <div id="info-login-email" class="form-info-login"></div>
                 </form>
-                <!--
-                <div id="fb-root"></div>
-                <script>
-                    console.log("empieza script");
-                    window.fbAsyncInit = function() {
-                        FB.init({
-                            appId      : '342711485817226', // App ID
-                            channelUrl : '//mybuyfriends.com/dev/channel.html', // Channel File
-                            status     : true, // check login status
-                            cookie     : true, // enable cookies to allow the server to access the session
-                            xfbml      : true  // parse XFBML
-                        });
-                        console.log("deontro del init");
-                        FB.login(function(response) {
-                            console.log("dentro del login");
-                            if (response.authResponse) {
-                                console.log('Welcome!  Fetching your information.... ');
-                                FB.api('/me', function(response2) {
-                                console.log(response2);
-                                });
-                            } else {
-                                console.log('User cancelled login or did not fully authorize.');
-                                console.log("las cosas no son lo que parecen nunca");
-                            }
-                        });
-                       FB.Event.subscribe('auth.authResponseChange', function(response) {
-                            console.log(response);
-                            FB.api('/me', function(response3) {
-                                console.log(response3);
-                            });
-                        });
-                    };
-                    // Load the SDK Asynchronously
-                    (function(d){
-                        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                        if (d.getElementById(id)) {return;}
-                        js = d.createElement('script'); js.id = id; js.async = true;
-                        js.src = "//connect.facebook.net/en_US/all.js";
-                        ref.parentNode.insertBefore(js, ref);
-                    }(document));
-                </script>
-                -->
-                 <div class="fb-login-button">
+                 <fb:login-button scope='email'></fb:login-button>
+                 <div id="fb-root"></div>	
+            <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId: '342711485817226',
+                cookie: true,
+                xfbml: true,
+                oauth: true
+                });
+                FB.Event.subscribe('auth.login', function(response) {
+                window.location.reload();
+                });
+                FB.Event.subscribe('auth.logout', function(response) {
+                window.location.reload();
+                });
+            };
+            (function() {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol +
+                '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
+
+                function sendRequestToRecipients() {
+                var user_ids = document.getElementsByName("user_ids")[0].value;
+                FB.ui({method: 'apprequests',
+                message: 'My Great Request',
+                to: user_ids
+                }, requestCallback);
+            }
+
+            function sendRequestViaMultiFriendSelector() {
+                FB.ui({method: 'apprequests',
+                message: 'My Great Request'
+                }, requestCallback);
+            }
+
+            function requestCallback(response) {
+                // Handle callback here
+            }
+            </script>
+              
               
             </article>
             <article id="register">

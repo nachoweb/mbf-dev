@@ -39,7 +39,7 @@ class Main extends CI_Controller {
                 $this->load->helper('url');
                 
                 $data['base_url'] = base_url();
-                $data['invitation'] = $this->input->get('invitation');
+                 
                 
                 $data_header['close_session'] = false;
                 
@@ -288,12 +288,6 @@ class Main extends CI_Controller {
                     'myself'    => $myself
                 );
                 $this->session->set_userdata($userdata);
-
-                //Invitation
-                if($invitation != ""){
-                    $this->load->model('Session_model');
-                    $this->Session_model->add_session_user_by_hex($user->id,$invitation);
-                }   
                 return true;
             }else{
                 return false;
