@@ -12,7 +12,7 @@
                         <input type="submit" class="button" id="login-submit" name="login-submit" value="ENTRAR" />
                         <div id="info-login-email" class="form-info-login"></div>
                 </form>
-                 <fb:login-button scope='email'></fb:login-button>
+                 <fb:login-button scope='email,user_birthday,user_likes'></fb:login-button>
                  <div id="fb-root"></div>	
             <script>
             window.fbAsyncInit = function() {
