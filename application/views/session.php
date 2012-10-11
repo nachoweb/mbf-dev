@@ -32,10 +32,7 @@
         </div>
         
       
-        <input type="button"
-            onclick="sendRequestViaMultiFriendSelector(); return false;"
-            value="Invitar"
-        />
+       <div class="fb-send" data-href="http://www.mybuyfriends.com?invitation=<?php echo $session->hex ?>" data-font="lucida grande"></div>
         
     </div>
 <div id="session-slide">
