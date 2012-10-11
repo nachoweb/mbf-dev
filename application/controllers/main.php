@@ -6,6 +6,12 @@ class Main extends CI_Controller {
             parent::__construct();
             // Your own constructor code
             $this->load->library('session');
+            
+            $facebook_params = array(
+                'appId'  => '342711485817226',
+                'secret' => '9832fa599cbceb35f45dd6f221fc6bde',
+                );
+            $this->load->library('facebook', $facebook_params);
         }
 	/**
  	 * Main controlador para servir la página inicial y el javascript
@@ -13,12 +19,6 @@ class Main extends CI_Controller {
 	 */
 	public function index(){
             if(!$this->session->userdata('user_id')){
-                //Comprobamos usuario facebook
-                $facebook_params = array(
-                'appId'  => '342711485817226',
-                'secret' => '9832fa599cbceb35f45dd6f221fc6bde',
-                );
-                $this->load->library('facebook', $facebook_params);
                 // See if there is a user from a cookie
                 $user = $this->facebook->getUser();
                 if ($user) {
@@ -269,15 +269,10 @@ class Main extends CI_Controller {
             $this->session->unset_userdata('user_name');
             $this->session->unset_userdata('user_nick');
             $this->session->unset_userdata('myself');
-            if($this->session->userdata('facebook')){
-                 //Comprobamos usuario facebook
-                $facebook_params = array(
-                'appId'  => '342711485817226',
-                'secret' => '9832fa599cbceb35f45dd6f221fc6bde',
-                );
-                $this->load->library('facebook', $facebook_params);
+            if($this->session->userdata('facebook')){               
                 $this->facebook->destroySession();
             }
+            $this->session->unset_userdata('facebook');
         }
         
         private function login_facebook($user_profile){
