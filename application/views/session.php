@@ -33,7 +33,7 @@
             <script>
         window.fbAsyncInit = function() {
             FB.init({
-            appId: '<?php echo $facebook->getAppID() ?>',
+            appId: '342711485817226',
             cookie: true,
             xfbml: true,
             oauth: true
