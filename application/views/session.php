@@ -31,47 +31,7 @@
             -->
         </div>
         
-        <!-- FACEBOOK -->
-            <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            appId: '342711485817226',
-            cookie: true,
-            xfbml: true,
-            oauth: true
-            });
-            FB.Event.subscribe('auth.login', function(response) {
-            window.location.reload();
-            });
-            FB.Event.subscribe('auth.logout', function(response) {
-            window.location.reload();
-            });
-        };
-        (function() {
-            var e = document.createElement('script'); e.async = true;
-            e.src = document.location.protocol +
-            '//connect.facebook.net/en_US/all.js';
-            document.getElementById('fb-root').appendChild(e);
-        }());
-
-            function sendRequestToRecipients() {
-            var user_ids = document.getElementsByName("user_ids")[0].value;
-            FB.ui({method: 'apprequests',
-            message: 'My Great Request',
-            to: user_ids
-            }, requestCallback);
-        }
-
-        function sendRequestViaMultiFriendSelector() {
-            FB.ui({method: 'apprequests',
-            message: 'hola <strong> caracola </strong>'
-            }, requestCallback);
-        }
-
-        function requestCallback(response) {
-            // Handle callback here
-        }
-        </script>
+      
         <input type="button"
             onclick="sendRequestViaMultiFriendSelector(); return false;"
             value="Invitar"
