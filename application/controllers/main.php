@@ -29,7 +29,7 @@ class Main extends CI_Controller {
                              $this->load->helper('url');
                              redirect('', 'refresh');
                         }else{
-                            
+                            $this->register_facebook($user_profile);
                         }                      
                     } catch (FacebookApiException $e) {
                         echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
