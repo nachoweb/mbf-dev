@@ -315,7 +315,7 @@ class Main extends CI_Controller {
         }else{
             $gender = 0;
         }
-        $password = md5($this->input->post('register-password1'));
+        
         $hex = $this->rand_text(32,32);    
         $birthday = explode('/', $user_facebook['birthday']);
         $birthday = $birthday[2]."-".$birthday[1]."-".$birthday[0];
@@ -350,8 +350,8 @@ class Main extends CI_Controller {
         $this->Session_model->add_session_user($new_session['id'], $user_id);
         
         //Invitation
-        if($this->input->post('invitation')!= ""){
-            $this->Session_model->add_session_user_by_hex($user_id,$this->input->post('invitation'));
+        if($this->input->get('invitation')!= ""){
+            $this->Session_model->add_session_user_by_hex($user_id,$this->input->get('invitation'));
         }
         
         //Make dirs
