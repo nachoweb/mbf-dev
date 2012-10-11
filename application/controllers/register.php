@@ -6,6 +6,7 @@ class Register extends CI_Controller {
         parent::__construct();
         // Your own constructor code
     }
+   
     /**
      * this controller is used to control the user registration process.
      * @author Nacho

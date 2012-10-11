@@ -24,11 +24,13 @@ class Main extends CI_Controller {
                 if ($user) {
                     try {
                         // Proceed knowing you have a logged in user who's authenticated.
-                        $user_profile = $this->facebook->api('/me?fields=id,email,name,first_name,middle_name,last_name,gender,locale,username,picture'); 
+                        $user_profile = $this->facebook->api('/me'); 
                         if($this->login_facebook($user_profile)){
                              $this->load->helper('url');
                              redirect('', 'refresh');
-                        }                        
+                        }else{
+                            
+                        }                      
                     } catch (FacebookApiException $e) {
                         echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
                         $user = null;
@@ -298,6 +300,100 @@ class Main extends CI_Controller {
                 return false;
             }
         }
+        
+        /**
+     * this controller is used to control the user registration process.
+     * @author Nacho
+     * @version 0.0.0
+     */
+        
+    //HAY QUE CORREGIR EL TEMA DEL PASSWORD!!
+    private function register_facebook( $user_facebook){    
+        $this->load->library('session');
+        if($user_facebook['gender']=="male"){
+            $gender = 1;
+        }else{
+            $gender = 0;
+        }
+        $password = md5($this->input->post('register-password1'));
+        $hex = $this->rand_text(32,32);    
+        $birthday = explode("/", $user_facebook['birthday']);
+        $birthday = $birthday[2]."-".$birthday[1]."-".$birthday[2];
+        $user_data = array(
+            'name'              => $user_facebook['first_name'],
+            'surname'           => $user_facebook['last_name'],
+            'gender'            => $gender,
+            'labor_situation'   => '',
+            'email'             => $user_facebook['email'],
+            'password'          => '',
+            'hex'               => $hex,
+            'nick'              => $user_facebook['first_name'],
+            'date_birth'        => $birthday
+       );        
+        //Register user
+        $this->load->model('User_model');
+        $user_id = $this->User_model->register_user($user_data);
+        $this->load->helper('url');
+        $data_view['site_url'] = site_url();
+        
+        //Categoría
+        $this->load->model('Category_model');
+        $this->Category_model->add_category("Mis productos", $user_id); 
+        
+        //St_categories
+        /*$this->load->model('St_category_model');
+        $this->St_category_model->add_st_category("todas", $user_id);*/
+        
+        //User Sessions
+        $this->load->model('Session_model');
+        $new_session = $this->Session_model->add_session("myself", $user_id);
+        $this->Session_model->add_session_user($new_session['id'], $user_id);
+        
+        //Invitation
+        if($this->input->post('invitation')!= ""){
+            $this->Session_model->add_session_user_by_hex($user_id,$this->input->post('invitation'));
+        }
+        
+        //Make dirs
+        $aux = "/images/products/";
+        //echo $aux."<br/>";
+        
+        
+        $path = ".";   
+        mkdir( $path."/images/products/".$user_id, 0777);
+        chmod( $path."/images/products/".$user_id, 0777);
+        mkdir( $path."/images/products/$user_id/thumbs", 0777);
+        chmod( $path."/images/products/$user_id/thumbs", 0777);
+        
+        
+        
+        //New Session
+        $userdata = array(
+                'user_id'   => $user_id,
+                'user_name' => $this->input->post('register-name'),
+                'user_nick' => $this->input->post('nick'),
+                'user_hex'  => $hex,
+                'myself'    => $new_session['id']
+            );
+        $this->session->set_userdata($userdata);
+        
+       
+        //Show instructions
+        redirect("/register/steps/$hex");
+    }
+    
+    
+    private function rand_text($min = 10,$max = 20,$randtext = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'){
+        if($min < 1) $min=1;
+        $varlen = rand($min,$max);
+        $randtextlen = strlen($randtext);
+        $text = '';
+        for($i=0; $i < $varlen; $i++){
+            $text .= substr($randtext, rand(1, $randtextlen), 1);
+        }
+        return $text;
+    }
+
 }
 
 /* End of file main.php */
