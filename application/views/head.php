@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<html xmlns:fb="http://www.facebook.com/2008/fbml>
     <head lang="es">
         <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
         <title>Mybuyfriends</title>

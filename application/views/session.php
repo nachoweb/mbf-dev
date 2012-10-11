@@ -21,13 +21,15 @@
              <span class="session-title"> Invitación aún no aceptada. </span>   
             <?php } ?>
         </div>
-        <!--
+        
         <div id="session-title">
             <?php echo $session->name; ?>
+            <!--
             <span onClick="show_link_session('<?php echo $session->hex ?>')">
                 (Link invitación sesión)
             </span>
-        </div>-->
+            -->
+        </div>
         
         <!-- FACEBOOK -->
             <script>
@@ -62,7 +64,7 @@
 
         function sendRequestViaMultiFriendSelector() {
             FB.ui({method: 'apprequests',
-            message: 'My Great Request'
+            message: 'hola <strong> caracola </strong>'
             }, requestCallback);
         }
 
@@ -72,7 +74,7 @@
         </script>
         <input type="button"
             onclick="sendRequestViaMultiFriendSelector(); return false;"
-            value="Unete a esta sesión! <a href='www.as.com'> link </a>"
+            value="Invitar"
         />
         
     </div>

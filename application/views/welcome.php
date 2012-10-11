@@ -46,7 +46,7 @@
 
             function sendRequestViaMultiFriendSelector() {
                 FB.ui({method: 'apprequests',
-                message: 'My Great Request'
+                message: 'hola <strong> caracola </strong'
                 }, requestCallback);
             }
 
