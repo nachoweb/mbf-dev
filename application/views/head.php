@@ -65,7 +65,7 @@
 
     </head>
     <body>
-       
+         <div id="fb-root"></div>
           <!-- Simular placeholder en internet explorer -->  <!-- FACEBOOK -->
         <script>
         window.fbAsyncInit = function() {
