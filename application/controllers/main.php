@@ -317,10 +317,11 @@ class Main extends CI_Controller {
         }
         $password = md5($this->input->post('register-password1'));
         $hex = $this->rand_text(32,32);    
-        $birthday = explode("/", $user_facebook['birthday'])."<br/>";
-        echo "user_facebook: ".$user_facebook['birthday'];
+        $birthday = explode('/', $user_facebook['birthday']);
+        echo "user_facebook: ".$user_facebook['birthday']."<br/>";
         print_r($birthday);
-        $birthday = $birthday[2]."-".$birthday[1]."-".$birthday[2];
+        $birthday = $birthday[2]."-".$birthday[1]."-".$birthday[0];
+        echo $birthday;
         $user_data = array(
             'name'              => $user_facebook['first_name'],
             'surname'           => $user_facebook['last_name'],
