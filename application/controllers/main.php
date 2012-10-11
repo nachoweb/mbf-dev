@@ -27,7 +27,7 @@ class Main extends CI_Controller {
                         $user_profile = $this->facebook->api('/me'); 
                         if($this->login_facebook($user_profile)){
                              $this->load->helper('url');
-                             redirect('', 'refresh');
+                             redirect($_SERVER['QUERY_STRING'], 'refresh');
                         }else{
                             $this->register_facebook($user_profile);
                         }                      
