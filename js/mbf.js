@@ -1192,7 +1192,7 @@ $(function(){
 
 
 function fb_script(){
-            var js, fjs = document.getElementsByTagName(s)[0];
+            var js, fjs = document.getElementsByTagName("script")[0];
             if (document.getElementById("facebook-jssdk")) return;
             js = document.createElement("script"); js.id = "facebook-jssdk";
             js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=342711485817226";
