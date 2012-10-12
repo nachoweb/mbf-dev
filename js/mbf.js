@@ -1197,6 +1197,7 @@ function fb_script(){
             js = document.createElement("script"); js.id = "facebook-jssdk";
             js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=342711485817226";
             fjs.parentNode.insertBefore(js, fjs);
-           
+            console.log(fjs);
+            console.log(js);
 }
 
