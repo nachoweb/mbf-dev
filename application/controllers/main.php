@@ -394,9 +394,7 @@ class Main extends CI_Controller {
         return $text;
     }
     
-    function fb_script(){
-        echo '(';
-    }
+    
 
 }
 
