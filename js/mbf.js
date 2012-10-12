@@ -1192,13 +1192,11 @@ $(function(){
 
 
 function fb_script(){
-   (function(d, s, id) {
-            console.log("ola");
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
+            var js, fjs = document.getElementsByTagName(s)[0];
+            if (document.getElementById("facebook-jssdk")) return;
+            js = document.createElement("script"); js.id = "facebook-jssdk";
             js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=342711485817226";
             fjs.parentNode.insertBefore(js, fjs);
-            }(document, "script", "facebook-jssdk"));
+           
 }
 
