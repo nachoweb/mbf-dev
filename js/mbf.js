@@ -1199,5 +1199,6 @@ function fb_script(){
             fjs.parentNode.insertBefore(js, fjs);
             console.log(fjs);
             console.log(js);
+            console.log("fin fb_script");
 }
 
