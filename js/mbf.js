@@ -148,7 +148,7 @@ function refresh_content(options){
         $("#sesion-chat").animate({scrollTop: $("#sesion-chat")[0].scrollHeight}, 0);
         inter = window.setInterval(refresh_messages, 15000);
         activate_session_events();
-        fb_script();
+        FB.XFBML.parse();
          _gaq.push(['_trackPageview', '/sesion_'+ options.session]);
     }       
 }
