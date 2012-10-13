@@ -33,7 +33,7 @@
         
       
        <!--<div class="fb-send" data-href="http://www.mybuyfriends.com/dev/?invitation=<?php echo $session->hex ?>" data-font="lucida grande"></div>-->
-        <fb:send href="http://www.mybuyfriends.com/dev/?invitation=<?php echo $session->hex ?>"></fb:send>
+        <fb:send href="http://www.mybuyfriends.com/dev/?invitation=<?php echo $session->hex ?>" style="margin-left: 20px;padding-top: 3px;"></fb:send>
     </div>
 <div id="session-slide">
     <div id="session-social">
