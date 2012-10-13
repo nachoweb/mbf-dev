@@ -85,7 +85,7 @@
         (function() {
             var e = document.createElement('script'); e.async = true;
             e.src = document.location.protocol +
-            '//connect.facebook.net/en_US/all.js';
+            '//connect.facebook.net/en_ES/all.js';
             document.getElementById('fb-root').appendChild(e);
         }());
             (function(d, s, id) {
