@@ -490,7 +490,7 @@ function innerContentHex(hex){
     jQuery('#popup-content').empty();
     var popup_content = '<div class="form-add-new-category">';
     popup_content += "<p>Para invitar un amigo por mensaje PRIVADO, pulsa el botón enviar: </p>";
-    popup_content += '<p><fb:send href="http://www.mybuyfriends.com/dev/?invitation=' + hex + '" style="margin-left: 20px;padding-top: 3px;"></fb:send></p>';
+    popup_content += '<p><fb:send href="http://www.mybuyfriends.com/dev/?invitation=' + hex + '"></fb:send></p>';
     popup_content += "<input type='button' class='button' value='Ok' onClick='closePopup()'>";     
     popup_content += "</div>";    
     $('#popup-content').append(popup_content);
