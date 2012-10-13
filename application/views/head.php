@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:fb="http://www.facebook.com/2008/fbml>
+<html xmlns:fb="http://ogp.me/ns/fb#">
     <head lang="es">
         <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
         <title>Mybuyfriends</title>
@@ -88,6 +88,13 @@
             '//connect.facebook.net/en_US/all.js';
             document.getElementById('fb-root').appendChild(e);
         }());
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=342711485817226";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
 
             function sendRequestToRecipients() {
             var user_ids = document.getElementsByName("user_ids")[0].value;
