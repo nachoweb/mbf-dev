@@ -76,7 +76,7 @@
                         <span class="tooltip-guardar" ></span>
                     </div>
                     <div class="container-img-store">
-                        <a href="<?php echo $member->url ?>" target="_blank">
+                        <a href="<?php echo $member->url ?>" onClick="track_store('click','<?php echo $member->name ?>')" target="_blank">
                             <img src="<?php echo $base_url_image."/".$member->logo ?>" data-original="<?php echo $base_url_image."/".$member->logo ?>" />
                         </a>
                     </div>
@@ -111,7 +111,7 @@
                         </div>
                         <?php
                             }else{ ?>
-                                    <a href="<?php echo $my_store->url ?>" target="_blank">
+                                    <a href="<?php echo $my_store->url ?>" onClick="track_store('click','<?php echo $my_store->name ?>')" target="_blank">
                                         <img src="<?php echo $base_url_image."/".$my_store->logo ?>" />
                                     </a> 
                                     </div>

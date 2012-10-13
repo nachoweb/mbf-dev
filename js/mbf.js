@@ -497,6 +497,10 @@ function innerContentHex(hex){
     FB.XFBML.parse();
 }
 
+function track_store(action, store_name){
+    _gaq.push(['_trackEvent', 'Store', action , store_name]);
+}
+
 function loadPopup(event){
     //Add events
     $(document).bind('keypress', function(e) {
