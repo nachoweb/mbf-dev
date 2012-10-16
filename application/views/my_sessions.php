@@ -43,9 +43,9 @@
                 ?>
                 </div>
                 <div class="sessions-left-bottom">
-                    <div class="sesion-title">
+                   <!-- <div class="sesion-title">
                         <?php echo $session->name; ?>
-                    </div>
+                    </div> -->
                     <div class="date-sesion">
                         <?php echo $session->date ?>
                     </div>
