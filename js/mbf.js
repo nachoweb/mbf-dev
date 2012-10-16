@@ -347,11 +347,11 @@ function add_store_user(store_id){
 
 $(document).ready(function(){
     var current_item;
-    $('.container-img-producto').live('click', function(){
+   /* $('.container-img-producto').live('click', function(){
             current_item = $(this).parent('.producto');           
             innerContent(current_item);
             loadPopup();  
-    });
+    });*/
     $('#shadow').click(function(){
            
     });
