@@ -126,10 +126,10 @@
                                 </div>
                         </div>
                 </div>
-                <a href="" target="_blank" onClick="<?php   if($user->id != $product->user){
-                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click' , 'no owner')";
+                <a href="<?php echo $product_url ?>" target="_blank" onClick="<?php   if($user->id != $product->user){
+                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click_session' , 'no owner'])";
                                                             }else{
-                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click' , 'owner')";
+                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click_session' , 'owner'])";
                                                             }
                                                             
                                                     ?>">
