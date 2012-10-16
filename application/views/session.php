@@ -21,19 +21,22 @@
              <span class="session-title"> Invitación aún no aceptada. </span>   
             <?php } ?>
         </div>
-        
+        <!--
         <div id="session-title">
             <?php echo $session->name; ?>
             <!--
             <span onClick="show_link_session('<?php echo $session->hex ?>')">
                 (Link invitación sesión)
             </span>
-            -->
+           
         </div>
-        
+         -->
       
        <!--<div class="fb-send" data-href="http://www.mybuyfriends.com/dev/?invitation=<?php echo $session->hex ?>" data-font="lucida grande"></div>-->
-        <fb:send href="http://www.mybuyfriends.com/dev/?invitation=<?php echo $session->hex ?>" style="margin-left: 20px;padding-top: 3px;"></fb:send>
+        <div id="session_invitation">
+            <div>Para invitar a un amigo por mensaje PRIVADO, pulsa el botón enviar.</div>
+            <fb:send href="http://www.mybuyfriends.com/dev/?invitation=<?php echo $session->hex ?>" style="margin-left:0px; padding-top: 0px;"></fb:send>
+        </div>
     </div>
 <div id="session-slide">
     <div id="session-social">
@@ -123,9 +126,17 @@
                                 </div>
                         </div>
                 </div>
-                <div class="container-img-producto">
-                        <img src="<?php echo $thumb ?>" />
-                </div>
+                <a href="" target="_blank" onClick="<?php   if($user->id != $product->user){
+                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click' , 'no owner')";
+                                                            }else{
+                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click' , 'owner')";
+                                                            }
+                                                            
+                                                    ?>">
+                    <div class="container-img-producto">
+                            <img src="<?php echo $thumb ?>" />
+                    </div>
+                </a>
                 <div class="container-info-producto">
                         <div class="title-producto"><?php echo $title ?></div>
                         <div class="price-brand-producto">

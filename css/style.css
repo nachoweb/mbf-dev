@@ -296,7 +296,7 @@ body{
 #page{
     width: 960px;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: visible;
     background: url(images/home/fondo.png);
     margin-top:10px;
 }
@@ -355,6 +355,16 @@ body{
     padding-top: 2px;
 }
 
+#session_invitation{
+    float: right
+}
+
+#session_invitation div{
+    width: 200px;
+    font-size: 10px;
+    float:left;
+    margin-left: 20px;
+}
 .contenedor_not_products{
     width: 53px;
     height: 32px;

@@ -489,9 +489,9 @@ function innerContentImSorry(){
 function innerContentHex(hex){
     jQuery('#popup-content').empty();
     var popup_content = '<div class="form-add-new-category">';
-    popup_content += "<p>Para invitar un amigo por mensaje PRIVADO, pulsa el botón enviar: </p>";
+    popup_content += "<p>Para invitar un amigo por mensaje PRIVADO, pulsa el botón enviar. </p>";
     popup_content += '<p><fb:send href="http://www.mybuyfriends.com/dev/?invitation=' + hex + '"></fb:send></p>';
-    popup_content += "<input type='button' class='button' value='Ok' onClick='closePopup()'>";     
+    popup_content += "<input type='button' class='button' value='He terminado' onClick='closePopup()'>";     
     popup_content += "</div>";    
     $('#popup-content').append(popup_content);
     FB.XFBML.parse();
@@ -500,6 +500,8 @@ function innerContentHex(hex){
 function track_store(action, store_name){
     _gaq.push(['_trackEvent', 'Store', action , store_name]);
 }
+
+
 
 function loadPopup(event){
     //Add events
@@ -651,18 +653,21 @@ function add_product_sesion(product_id, sesion_id){
 	
 $(document).ready(function(){
     jQuery('#add_session').live("click",function(){
-            innerContentAddSession();
-            loadPopup();
+           /* innerContentAddSession();*/
+            //loadPopup();
+            saveSession();
             jQuery('#input-new-session').focus();
     });
 });
 
 
 function saveSession(){
-    var session_name = jQuery('#input-new-session').val();
+   // var session_name = jQuery('#input-new-session').val();
+   var session_name = "anonimous";
     var url = base_url + "/session/add/" + encodeURIComponent(session_name);   
     var new_session = get_by_ajax(url, "json");
     innerContentHex(new_session.hex);
+    loadPopup();
     addSession(new_session);
 }
 
@@ -1162,8 +1167,7 @@ $(function(){
             var session = $("#session_" + url.id);            
             var messages = session.attr("data-messages");
             var products = session.attr("data-products"); 
-            _kmq.push(['record', 'Conversion']);
-            mixpanel.track("Open session");
+            //mixpanel.track("Open session");
             prepare_session( url.id, messages, products);
         }else if(url.section == "bm"){
             console.log("BM");

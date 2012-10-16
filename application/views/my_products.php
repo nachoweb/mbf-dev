@@ -74,9 +74,11 @@
                                 </div>
                             </div>
                     </div>
-                    <div class="container-img-producto">
-                            <img src="<?php echo $thumb ?>" />
-                    </div>
+                    <a href="<?php echo $product_url ?>" target="_blank">
+                        <div class="container-img-producto">
+                                <img src="<?php echo $thumb ?>" />
+                        </div>
+                    </a>
                     <div class="container-info-producto">
                             <div class="title-producto"><?php  echo $title ?></div>
                             <div class="price-brand-producto">
