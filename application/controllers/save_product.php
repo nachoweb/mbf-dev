@@ -29,19 +29,16 @@ class Save_product extends CI_Controller {
         $store_name = $this->input->post('mbf-store-name');
         $description = $this->utf8_urldecode($this->input->post('mbf-marklet-comment'));
         $data =     $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
-       // $this->save_img($image, $data['user_id'], $data['product_id']);
-      
-        $cookies = "empezamos: ";
-        foreach($_COOKIE as $key => $value){
-            $cookies .= "$key => $value ;";
-        }  
+        print_r($data);
+// $this->save_img($image, $data['user_id'], $data['product_id']);
+        echo $this->input->post('mbf-myself');
+        echo $this->input->post("mbf-hex");
         //Analiticas
         
-        $click = $this->check_sent($data['user_id'], $data['store']);
-        if($click != 0){
-            $this->saved_sent($data['user_id'],$click['product'], $click['session']);
-        }else{
-            $this->saved_sent(0,44,44);
+        $click = $this->check_sent($data['user_id'], $data['store']);     
+        print_r($click);
+        if(!is_int($click)){
+            $this->saved_sent($data['user_id'],$click->product, $click->session);
         }
     }
     
@@ -163,10 +160,11 @@ class Save_product extends CI_Controller {
     
     public function check_sent($user_id, $store){
         $this->load->model('Ana_model');
+        echo "\n $user_id-$store-";
         if($user_id){
              $click = $this->Ana_model->get_st_click($user_id, $store);
              if(!is_null($click)){
-                 return $click->product;
+                 return $click;
              }else{
                  return 0;
              }
