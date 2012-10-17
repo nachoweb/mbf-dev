@@ -40,11 +40,11 @@ class Ana_model extends CI_Model {
     function get_st_click($user, $store){
         $date = date('Y-m-d H:i:s');
         $sql = "SELECT * FROM mbf_ana_st_click m
-                    where DATE_ADD(date, INTERVAL 1 HOUR) < '".$date."' and user=$user
+                    where DATE_ADD(date, INTERVAL 1 HOUR) > '".$date."' and user=$user and store=$store
                     order by date DESC";
         $query = $this->db->query($sql);
         $result = $query->result();
-        if ($query->num_rows() > 0){
+        if ($query->num_rows() > 0){          
              return $result[0];
         }else{
             return null;
