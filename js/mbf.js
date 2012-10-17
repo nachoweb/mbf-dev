@@ -1003,7 +1003,9 @@ function load_product_options(){
 function remove_product(product_id){
    $('#container-productos').isotope( 'remove', $("#" + product_id), function(){} );
    get_by_ajax(base_url + "/product/remove_product/" + product_id, "text");
+   _gaq.push(['_trackEvent', 'Product', "delete" , "my things"]);
    closePopup();
+   
 }
 
 function remove_product_category(product_id, category_id ){   
@@ -1211,3 +1213,30 @@ function fb_script(){
             console.log("fin fb_script");
 }
 
+
+
+function setCookie(c_name,value,exdays){
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+    document.cookie=c_name + "=" + c_value;
+}
+
+function getCookie(c_name){
+    var i,x,y,ARRcookies=document.cookie.split(";");
+    for (i=0;i<ARRcookies.length;i++){
+        x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+        y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+        x=x.replace(/^\s+|\s+$/g,"");
+        if (x==c_name)
+            {
+            return unescape(y);
+            }
+    }
+}
+
+function track_foreign_product(store, product, session){    
+    get_by_ajax(base_url + "/analytics/st_click/"+ store +"/" + product +"/" + session);
+    _gaq.push(['_trackEvent', 'Product', 'click_session' , 'no owner']);
+    //setCookie('store_".$product->store."','$product->id',1)
+}

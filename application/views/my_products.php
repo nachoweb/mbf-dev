@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                     </div>
-                    <a href="<?php echo $product_url ?>" target="_blank" onClick="_gaq.push(['_trackEvent', 'Product', 'click_my_things' , ''])">
+                    <a href="<?php echo $product_url ?>" target="_blank" onClick="_gaq.push(['_trackEvent', 'Product', 'click_my_things' , '<?php echo $product->id ?>'])">
                         <div class="container-img-producto">
                                 <img src="<?php echo $thumb ?>" />
                         </div>

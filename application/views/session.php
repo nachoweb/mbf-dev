@@ -127,7 +127,7 @@
                         </div>
                 </div>
                 <a href="<?php echo $product_url ?>" target="_blank" onClick="<?php   if($user->id != $product->user){
-                                                                echo "_gaq.push(['_trackEvent', 'Product', 'click_session' , 'no owner'])";
+                                                                echo "track_foreign_product($product->store, $product->id , $session->id )";
                                                             }else{
                                                                 echo "_gaq.push(['_trackEvent', 'Product', 'click_session' , 'owner'])";
                                                             }

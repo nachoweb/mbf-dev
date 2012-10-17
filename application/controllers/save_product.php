@@ -12,6 +12,7 @@ class Save_product extends CI_Controller {
      */
     //$user = "",$image = "",$price = "",$title = "",$description = "", $url = "", $store_url = "",$store_name = "", $browser = "", $status = "", $session = "", $myself = "", $category = ""
     public function save(){
+        $this->load->library('session');
         $this->load->model('Product_model');
         //data = array($product_id , $user_id);
         $user =     $this->input->post("mbf-hex");
@@ -28,7 +29,20 @@ class Save_product extends CI_Controller {
         $store_name = $this->input->post('mbf-store-name');
         $description = $this->utf8_urldecode($this->input->post('mbf-marklet-comment'));
         $data =     $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
-        $this->save_img($image, $data['user_id'], $data['product_id']);
+       // $this->save_img($image, $data['user_id'], $data['product_id']);
+      
+        $cookies = "empezamos: ";
+        foreach($_COOKIE as $key => $value){
+            $cookies .= "$key => $value ;";
+        }  
+        //Analiticas
+        
+        $click = $this->check_sent($data['user_id'], $data['store']);
+        if($click != 0){
+            $this->saved_sent($data['user_id'],$click['product'], $click['session']);
+        }else{
+            $this->saved_sent(0,44,44);
+        }
     }
     
     private function save_img($image, $dir, $file_new_name) { 
@@ -51,7 +65,6 @@ class Save_product extends CI_Controller {
         fputs($fh, $img_file); 
         fclose($fh); 
         $this->resize($filex,$path );
-        echo $path;
         $this->create_thumb($filex , $path, $file_new_name , $img_ext);
         return filesize($filex); 
     }
@@ -140,6 +153,24 @@ class Save_product extends CI_Controller {
     
     public function hola(){
         echo "HOLA";
+    }
+    
+     public function saved_sent($user_id,$product_id, $session_id){
+      
+        $this->load->model('Ana_model');
+        $this->Ana_model->add_saved_sent($user_id, $product_id, $session_id);
+    }
+    
+    public function check_sent($user_id, $store){
+        $this->load->model('Ana_model');
+        if($user_id){
+             $click = $this->Ana_model->get_st_click($user_id, $store);
+             if(!is_null($click)){
+                 return $click->product;
+             }else{
+                 return 0;
+             }
+        }
     }
     
     /*private function crop($params, $width = ""){
