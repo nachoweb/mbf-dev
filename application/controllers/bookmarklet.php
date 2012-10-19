@@ -33,7 +33,7 @@ class Bookmarklet extends CI_Controller {
         foreach($sessions as $session){
             if($session->name == "myself"){
                 $json['myself'] = $session->id;
-                $json['sessions'][] = array("id" => $session->id, "name" => "-----------");
+                $json['sessions'][] = array("id" => $session->id, "name" => "Nadie");
             }else{
                 if(isset($user_session[$session->id])){
                     $json['sessions'][] = array("id" => $session->id, "name" => $user_session[$session->id]);
