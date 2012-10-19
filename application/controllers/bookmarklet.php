@@ -27,14 +27,17 @@ class Bookmarklet extends CI_Controller {
             return -1;
         }    
         $json = array();
-        $sessions = $this->Session_model->get_sessions_by_user($user_id);
+        $sessions = $this->Session_model->get_sessions_by_user($user_id);        
+        $user_session = $this->Session_model->get_sessions_users($user_id);
         $categories = $this->Category_model->get_categories_by_user($user_id);
         foreach($sessions as $session){
             if($session->name == "myself"){
                 $json['myself'] = $session->id;
                 $json['sessions'][] = array("id" => $session->id, "name" => "-----------");
             }else{
-                 $json['sessions'][] = array("id" => $session->id, "name" => $session->name);
+                if(isset($user_session[$session->id])){
+                    $json['sessions'][] = array("id" => $session->id, "name" => $user_session[$session->id]);
+                }
             }
         }
         foreach($categories as $cat){
