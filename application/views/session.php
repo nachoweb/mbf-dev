@@ -101,7 +101,7 @@
                 $title = rawurldecode($product->title);
                 $title == "NS" ? $title = "" : $title = $title;
                 if(strlen($title) > 10){
-                    $store_name = substr($store_name, 0, 7)."...";               
+                    $title = substr($title, 0, 7)."...";               
                 }
                 $store_name = rawurldecode($product->store_name);
                 $store_name = rawurldecode($product->store_name);
