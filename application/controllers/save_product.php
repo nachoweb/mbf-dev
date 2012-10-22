@@ -30,7 +30,7 @@ class Save_product extends CI_Controller {
         $description = $this->utf8_urldecode($this->input->post('mbf-marklet-comment'));
         $data =     $this->Product_model->save_product($user,$image,$price,$title,$description, $url, $store_url,$store_name, $browser , $status, $session, $myself, $category);      
         print_r($data);
-// $this->save_img($image, $data['user_id'], $data['product_id']);
+        $this->save_img($image, $data['user_id'], $data['product_id']);
         echo $this->input->post('mbf-myself');
         echo $this->input->post("mbf-hex");
         //Analiticas
