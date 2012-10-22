@@ -20,7 +20,7 @@ class Main extends CI_Controller {
 	public function index(){
             if(!$this->session->userdata('user_id')){
                 // See if there is a user from a cookie
-                $user = $this->facebook->getUser();
+               /* $user = $this->facebook->getUser();
                 if ($user) {
                     try {
                         // Proceed knowing you have a logged in user who's authenticated.
@@ -35,7 +35,7 @@ class Main extends CI_Controller {
                         echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
                         $user = null;
                     }
-                }
+                }*/
                 /*$this->load->helper('url');
                 redirect('/welcome', 'location');*/
                 $this->load->helper('url');
