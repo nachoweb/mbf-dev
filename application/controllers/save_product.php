@@ -5,7 +5,7 @@ class Save_product extends CI_Controller {
     /**
      * This controller is used by bookmarklet for save products.
      * Example URL:
-     *  http://www.mybuyfriends.com/save_products/save/1/image.jpg/22.90/title/description/product_url/store_url/store_name/browser
+     *  
      * 
      * @author Nacho
      * @version 0.0.0

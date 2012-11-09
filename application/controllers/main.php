@@ -57,7 +57,7 @@ class Main extends CI_Controller {
 	}
         
         private function home(){
-            //USER
+            //USER probando branchs
             $user_id = $this->session->userdata('user_id');
             $user_data['name'] = $this->session->userdata('user_name');
             $myself = $this->session->userdata('myself');
