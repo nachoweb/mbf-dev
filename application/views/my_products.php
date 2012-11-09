@@ -36,8 +36,8 @@
                 $store_url = rawurldecode($product->store_url); 
                 $title = rawurldecode($product->title);
                 $title == "NS" ? $title = "" : $title = $title;
-                if(strlen($title) > 10){
-                    $store_name = substr($store_name, 0, 7)."...";               
+                if(strlen($title) > 13){
+                    $title = substr($title, 0, 7)."...";               
                 }
                 //Cat-class for isotope
                 $cat_class = "";
