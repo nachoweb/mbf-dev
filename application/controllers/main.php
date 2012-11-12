@@ -18,6 +18,8 @@ class Main extends CI_Controller {
 	 * Este método devuelve la vista main donde estara alojada la página principal.
 	 */
 	public function index(){
+            echo "facebook: ".$this->session->userdata('facebook');
+            echo "user_id:".$this->session->userdata('user_id');
             if(!$this->session->userdata('user_id')){
                 // See if there is a user from a cookie
                  if($this->session->userdata('facebook')){  
