@@ -76,7 +76,9 @@
             oauth: true
             });
             FB.Event.subscribe('auth.login', function(response) {
+            console.log("ola");
             window.location('/main/checkFb');
+            
             });
             FB.Event.subscribe('auth.logout', function(response) {
             window.location.reload();
