@@ -14,7 +14,7 @@
                 </form>
                  <fb:login-button scope='email,user_birthday,user_likes'></fb:login-button>
                  <div id="fb-root"></div>	
-            <script>
+       <!--     <script>
             window.fbAsyncInit = function() {
                 FB.init({
                 appId: '342711485817226',
@@ -54,7 +54,7 @@
                 // Handle callback here
             }
             </script>
-              
+              -->
               
             </article>
             <article id="register">
