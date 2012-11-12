@@ -59,12 +59,11 @@ class Main extends CI_Controller {
         
         public function checkFb(){
              $user = $this->facebook->getUser();
-             echo $user;
              if($user){
-                $this->session->set_userdata('facebook_id', $user);
+                $this->session->set_userdata('facebook', $user);
              }
              $this->load->helper('url');
-            // redirect("/main");
+             redirect("/main");
         }
         
         private function home(){
