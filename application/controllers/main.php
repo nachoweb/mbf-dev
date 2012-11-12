@@ -61,7 +61,7 @@ class Main extends CI_Controller {
                 $this->session->set_userdata('facebook_id', $user);
              }
              $this->load->helper('url');
-             redirect("/");
+             redirect("/main");
         }
         
         private function home(){
