@@ -12,7 +12,7 @@
                         <input type="submit" class="button" id="login-submit" name="login-submit" value="ENTRAR" />
                         <div id="info-login-email" class="form-info-login"></div>
                 </form>
-                <fb:login-button perms='email' onlogin='window.location="https://graph.facebook.com/oauth/authorize?client_id=342711485817226&redirect_uri=http://www.mybuyfriends.com/main/checkFb&amp;r="+window.location.href;'></fb:login-button>
+                <fb:login-button perms='email' onlogin='window.location="https://graph.facebook.com/oauth/authorize?client_id=342711485817226&redirect_uri=http://www.mybuyfriends.com/dev/main/checkFb&amp;r="+window.location.href;'></fb:login-button>
               
             </article>
             <article id="register">

@@ -59,8 +59,9 @@ class Main extends CI_Controller {
              $user = $this->facebook->getUser();
              if($user){
                 $this->session->set_userdata('facebook_id', $user);
-                echo "PUTA";
              }
+             $this->load->helper('url');
+             redirect("/");
         }
         
         private function home(){
