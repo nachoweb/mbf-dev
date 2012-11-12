@@ -3,9 +3,6 @@
         <ul id="stores_filters">
             <li><a href="#section=tiendas&cat=todas" id="button-tiendas-mbf" class="button-small active" data-filter=".1,.2, .3,.4, .5,.6,.7">todo</a></li>
             <li><a href="#section=tiendas&cat=moda" class="button-small" data-filter=".1,.2,.3" id="st-menu-moda">moda</a></li>
-            <li><a href="#section=tiendas&cat=deporte" class="button-small" data-filter=".7">deporte</a></li>
-            <li><a href="#section=tiendas&cat=electronica" class="button-small" data-filter=".6">electrónica</a></li>
-            <li><a href="#section=tiendas&cat=ocio" class="button-small" data-filter=".5">ocio</a></li>
             <li><a href="#section=tiendas&cat=hogar|" class="button-small" data-filter=".4">hogar</a></li> 
         </ul>
     </nav>
