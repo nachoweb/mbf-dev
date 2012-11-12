@@ -20,8 +20,7 @@ class Main extends CI_Controller {
 	public function index(){
             if(!$this->session->userdata('user_id')){
                 // See if there is a user from a cookie
-               /* $user = $this->facebook->getUser();
-                if ($user) {
+                 if($this->session->userdata('facebook')){  
                     try {
                         // Proceed knowing you have a logged in user who's authenticated.
                         $user_profile = $this->facebook->api('/me'); 
@@ -35,7 +34,7 @@ class Main extends CI_Controller {
                         echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
                         $user = null;
                     }
-                }*/
+                } 
                 /*$this->load->helper('url');
                 redirect('/welcome', 'location');*/
                 $this->load->helper('url');
@@ -55,6 +54,14 @@ class Main extends CI_Controller {
                 $this->home();
             }
 	}
+        
+        public function checkFb(){
+             $user = $this->facebook->getUser();
+             if($user){
+                $this->session->set_userdata('facebook_id', $user);
+                echo "PUTA";
+             }
+        }
         
         private function home(){
             //USER probando branchs
