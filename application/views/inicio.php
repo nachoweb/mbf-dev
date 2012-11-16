@@ -2,6 +2,9 @@
 <h3>¡¡BIENVENID@ A LA VERSIÓN BETA DE MYBUYFRIENDS!! </h3>
 <h4> VIDEOTUTORIAL </h4>
 <div id="video">
+       <iframe width="500" height="375" src="http://www.youtube.com/embed/gijdMuC4oes" frameborder="0" allowfullscreen></iframe>
+</div>
+<div id="video">
    
     <iframe src="http://player.vimeo.com/video/47243807" width="500" height="306" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
    

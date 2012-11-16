@@ -70,6 +70,12 @@ class Main extends CI_Controller {
             $user_data['name'] = $this->session->userdata('user_name');
             $myself = $this->session->userdata('myself');
             $nick =  $this->session->userdata('user_nick'); 
+            $user['id'] = $this->session->userdata('user_id');
+            $user['nick'] = $this->session->userdata('nick');
+            $user['email'] = $this->session->userdata('email');
+            $user['gender'] = $this->session->userdata('gender');
+           
+          
             
             //Notifications
             $this->load->model('Notification_model');
@@ -100,7 +106,9 @@ class Main extends CI_Controller {
             $data_header['site_url'] = site_url();
             
             //HEad options
-            $data_head['nick'] =  $nick;
+            $data_head['nick'] = $nick;
+            $data_head['user'] = $user;
+           
             
             /* CARGAR VISTAS */
           

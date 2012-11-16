@@ -122,7 +122,9 @@ class Register extends CI_Controller {
                 'user_name' => $user->name,
                 'user_nick' => $user->nick,
                 'user_hex'  => $user->hex,
-                'myself'    => $myself
+                'myself'    => $myself,
+                'gender'    => $user->gender,
+                'email'     => $user->email
             );
             $this->session->set_userdata($userdata);
             
