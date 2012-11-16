@@ -72,6 +72,7 @@ class Main extends CI_Controller {
             $nick =  $this->session->userdata('user_nick'); 
             $user['id'] = $this->session->userdata('user_id');
             $user['nick'] = $this->session->userdata('nick');
+            $user['name'] = $this->session->userdata('full_name');
             $user['email'] = $this->session->userdata('email');
             $user['gender'] = $this->session->userdata('gender');
            

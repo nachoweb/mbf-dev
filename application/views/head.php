@@ -69,7 +69,8 @@
         mixpanel.people.set({
             "$email": "<?php echo $user['email'] ?>",    // only special properties need the $
             "$last_login": new Date(),                   // properties can be dates...
-            "gender": "<?php echo $user['gender'] ?>"    // feel free to define your own properties
+            "gender": "<?php echo $user['gender'] ?>",    // feel free to define your own properties
+            "name": "<?php echo $user['name'] ?>"
         });
         </script>
         
