@@ -115,14 +115,14 @@ function refresh_content(options){
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);
         _gaq.push(['_trackPageview', '/inicio']);
-        mixpanel.track("/inicio");
+        mixpanel.track("Navigate", {"section" : "inicio"});
     }else if(options.section == "bookmarklet"){
         document.getElementById("content").innerHTML = "";
         content = get_by_ajax(base_url + "main/steps", "text");        
         document.getElementById("content").innerHTML = content;
         window.clearInterval(inter);    
         _gaq.push(['_trackPageview', '/bookmarklet']);
-        mixpanel.track("/bookmarklet");
+        mixpanel.track("Navigate", {"section" : "Bookmarklet"});
     }else if(options.section == "products"){
         content = get_by_ajax(base_url + "main/products", "text");
         document.getElementById("content").innerHTML = content;
@@ -130,7 +130,7 @@ function refresh_content(options){
         active_isotope_products();       
         window.clearInterval(inter);
         _gaq.push(['_trackPageview', '/mis_cosas']);
-        mixpanel.track("/mis cosas");
+        mixpanel.track("Navigate", {"section" : "Mis cosas"});
     }else if(options.section == "stores"){
         content = get_by_ajax(base_url + "main/stores", "text");
         document.getElementById("content").innerHTML = content;
@@ -140,13 +140,13 @@ function refresh_content(options){
         active_isotope_stores();
         window.clearInterval(inter);
         _gaq.push(['_trackPageview', '/tiendas']);
-        mixpanel.track("/tiendas");
+        mixpanel.track("Navigate", {"section" : "tiendas"});
     }else if (options.section == "sessions"){
         content = get_by_ajax(base_url + "main/my_sessions", "text");
         document.getElementById("content").innerHTML = content;      
         window.clearInterval(inter);
          _gaq.push(['_trackPageview', '/sesiones']);
-         mixpanel.track("/sessiones");
+         mixpanel.track("Navigate", {"section" : "sessions"});
     }else if (options.section == "session"){
         content = get_by_ajax(base_url + "main/session/" + options.session, "text");
         document.getElementById("content").innerHTML = content;
@@ -155,7 +155,7 @@ function refresh_content(options){
         activate_session_events();
         FB.XFBML.parse();
          _gaq.push(['_trackPageview', '/sesion_'+ options.session]);
-         mixpanel.track("/session", {"session" : options.session});
+         mixpanel.track("Navigate", {"section" : "session"});
     }       
 }
 
@@ -505,7 +505,7 @@ function innerContentHex(hex){
 
 function track_store(action, store_name){
     _gaq.push(['_trackEvent', 'Store', action , store_name]);
-    mixpanel.track("Store", {"store": store_name});
+    mixpanel.track("Store", {"category":"click", "store" : store_name});
 }
 
 
@@ -1011,7 +1011,7 @@ function remove_product(product_id){
    $('#container-productos').isotope( 'remove', $("#" + product_id), function(){} );
    get_by_ajax(base_url + "/product/remove_product/" + product_id, "text");
    _gaq.push(['_trackEvent', 'Product', "delete" , "my things"]);
-   mixpanel.track("Product", {"category": "delete"});
+   mixpanel.track("Product", {"category" : "delete"});
    closePopup();
    
 }
@@ -1246,6 +1246,6 @@ function getCookie(c_name){
 function track_foreign_product(store, product, session){    
     get_by_ajax(base_url + "/analytics/st_click/"+ store +"/" + product +"/" + session);
     _gaq.push(['_trackEvent', 'Product', 'click_session' , 'no owner']);
-    mixpanel.track("Product", {"category": "click session", "owner" : "no"});
+    mixpanel.track("Product", {"category" : "click", "owner" : "no"});
     //setCookie('store_".$product->store."','$product->id',1)
 }
